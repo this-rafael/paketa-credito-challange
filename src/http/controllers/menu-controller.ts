@@ -1,18 +1,22 @@
 import type { NextFunction, Request, Response } from 'express';
-import { CreateMenuItem } from '../../application/use-cases/create-menu-item.js';
-import { GetMenuTree } from '../../application/use-cases/get-menu-tree.js';
+import type { CreateMenuItem } from '../../application/use-cases/create-menu-item.js';
+import type { DeleteMenuSubtree } from '../../application/use-cases/delete-menu-subtree.js';
+import type { GetMenuTree } from '../../application/use-cases/get-menu-tree.js';
 import {
   DataIntegrityError,
   MenuItemNameAlreadyExistsError,
+  MenuItemNotFoundError,
   ParentMenuItemNotFoundError,
 } from '../../domain/menu/menu-errors.js';
-import { sendError } from '../presenters/error-presenter.js';
 import type { CreateMenuItemBody } from '../schemas/create-menu-item.schema.js';
+import { parseMenuItemIdParam } from '../schemas/menu-item-id.param.js';
+import { sendError } from '../presenters/error-presenter.js';
 
 export class MenuController {
   constructor(
     private readonly createMenuItem?: CreateMenuItem,
     private readonly getMenuTree?: GetMenuTree,
+    private readonly deleteMenuSubtree?: DeleteMenuSubtree,
   ) {}
 
   create = async (
@@ -22,7 +26,12 @@ export class MenuController {
   ): Promise<void> => {
     try {
       if (!this.createMenuItem) {
-        sendError(res, 500, 'INTERNAL_ERROR', 'Create use case is not configured');
+        sendError(
+          res,
+          500,
+          'INTERNAL_ERROR',
+          'Create use case is not configured',
+        );
         return;
       }
       const body = req.body as CreateMenuItemBody;
@@ -54,10 +63,47 @@ export class MenuController {
         sendError(res, 500, 'INTERNAL_ERROR', 'Get use case is not configured');
         return;
       }
-      res.status(200).json(await this.getMenuTree.execute());
+      const tree = await this.getMenuTree.execute();
+      res.status(200).json(tree);
     } catch (error) {
       if (error instanceof DataIntegrityError) {
         sendError(res, 500, 'INTERNAL_ERROR', 'Unexpected error');
+        return;
+      }
+      next(error);
+    }
+  };
+
+  deleteSubtree = async (
+    req: Request,
+    res: Response,
+    next: NextFunction,
+  ): Promise<void> => {
+    try {
+      if (!this.deleteMenuSubtree) {
+        sendError(
+          res,
+          500,
+          'INTERNAL_ERROR',
+          'Delete use case is not configured',
+        );
+        return;
+      }
+      const rawId = req.params['id'];
+      if (typeof rawId !== 'string') {
+        sendError(res, 400, 'INVALID_MENU_ITEM_ID', 'Invalid menu item id');
+        return;
+      }
+      const id = parseMenuItemIdParam(rawId);
+      if (id === null) {
+        sendError(res, 400, 'INVALID_MENU_ITEM_ID', 'Invalid menu item id');
+        return;
+      }
+      await this.deleteMenuSubtree.execute(id);
+      res.status(200).end();
+    } catch (error) {
+      if (error instanceof MenuItemNotFoundError) {
+        sendError(res, 404, error.code, error.message);
         return;
       }
       next(error);

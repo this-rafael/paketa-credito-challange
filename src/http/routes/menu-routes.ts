@@ -1,5 +1,6 @@
 import { Router } from 'express';
 import type { CreateMenuItem } from '../../application/use-cases/create-menu-item.js';
+import type { DeleteMenuSubtree } from '../../application/use-cases/delete-menu-subtree.js';
 import type { GetMenuTree } from '../../application/use-cases/get-menu-tree.js';
 import { MenuController } from '../controllers/menu-controller.js';
 import { validateBody } from '../middlewares/validate-body.js';
@@ -8,20 +9,38 @@ import { createMenuItemBodySchema } from '../schemas/create-menu-item.schema.js'
 export type MenuRouterDeps = {
   createMenuItem?: CreateMenuItem;
   getMenuTree?: GetMenuTree;
+  deleteMenuSubtree?: DeleteMenuSubtree;
 };
 
 export function createMenuRouter(deps: MenuRouterDeps): Router {
   const router = Router();
-  const controller = new MenuController(deps.createMenuItem, deps.getMenuTree);
+  const controller = new MenuController(
+    deps.createMenuItem,
+    deps.getMenuTree,
+    deps.deleteMenuSubtree,
+  );
+
   if (deps.createMenuItem) {
-    router.post('/', validateBody(createMenuItemBodySchema), (req, res, next) => {
-      void controller.create(req, res, next);
-    });
+    router.post(
+      '/',
+      validateBody(createMenuItemBodySchema),
+      (req, res, next) => {
+        void controller.create(req, res, next);
+      },
+    );
   }
+
   if (deps.getMenuTree) {
     router.get('/', (req, res, next) => {
       void controller.getTree(req, res, next);
     });
   }
+
+  if (deps.deleteMenuSubtree) {
+    router.delete('/:id', (req, res, next) => {
+      void controller.deleteSubtree(req, res, next);
+    });
+  }
+
   return router;
 }
