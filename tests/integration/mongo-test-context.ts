@@ -8,9 +8,10 @@ import mongoose from 'mongoose';
 let container: StartedTestContainer | undefined;
 
 export async function startMongoTestContext(): Promise<string> {
+  process.env.TESTCONTAINERS_RYUK_DISABLED ??= 'true';
   container = await new GenericContainer('mongo:7')
     .withExposedPorts(27017)
-    .withWaitStrategy(Wait.forLogMessage('Waiting for connections'))
+    .withWaitStrategy(Wait.forListeningPorts())
     .withStartupTimeout(120_000)
     .start();
 
