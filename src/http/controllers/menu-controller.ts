@@ -1,6 +1,8 @@
 import type { NextFunction, Request, Response } from 'express';
 import { CreateMenuItem } from '../../application/use-cases/create-menu-item.js';
+import { GetMenuTree } from '../../application/use-cases/get-menu-tree.js';
 import {
+  DataIntegrityError,
   MenuItemNameAlreadyExistsError,
   ParentMenuItemNotFoundError,
 } from '../../domain/menu/menu-errors.js';
@@ -8,7 +10,10 @@ import { sendError } from '../presenters/error-presenter.js';
 import type { CreateMenuItemBody } from '../schemas/create-menu-item.schema.js';
 
 export class MenuController {
-  constructor(private readonly createMenuItem?: CreateMenuItem) {}
+  constructor(
+    private readonly createMenuItem?: CreateMenuItem,
+    private readonly getMenuTree?: GetMenuTree,
+  ) {}
 
   create = async (
     req: Request,
@@ -33,6 +38,26 @@ export class MenuController {
       }
       if (error instanceof MenuItemNameAlreadyExistsError) {
         sendError(res, 409, error.code, error.message);
+        return;
+      }
+      next(error);
+    }
+  };
+
+  getTree = async (
+    _req: Request,
+    res: Response,
+    next: NextFunction,
+  ): Promise<void> => {
+    try {
+      if (!this.getMenuTree) {
+        sendError(res, 500, 'INTERNAL_ERROR', 'Get use case is not configured');
+        return;
+      }
+      res.status(200).json(await this.getMenuTree.execute());
+    } catch (error) {
+      if (error instanceof DataIntegrityError) {
+        sendError(res, 500, 'INTERNAL_ERROR', 'Unexpected error');
         return;
       }
       next(error);
