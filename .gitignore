@@ -1,12 +1,6 @@
-# VS Code
-.vscode
-
-# Auto-generated
-node_modules
-package-lock.json
-
-# Environment
+node_modules/
+dist/
+coverage/
 .env
-
-# MISC
+*.log
 .DS_Store
