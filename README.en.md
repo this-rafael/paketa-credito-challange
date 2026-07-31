@@ -109,6 +109,26 @@ console. It does not change the API contract or architecture on `main`.
   </p>
 </div>
 
+## 📡 Optional addon: OpenTelemetry
+
+*This branch was implemented after the project was submitted — you can ignore it, but if you are curious it contains the equivalent of this project instrumented with OpenTelemetry.*
+
+To inspect traces, metrics, and correlation with structured logs, the
+[`experiments/opentelemetry`](https://github.com/this-rafael/paketa-credito-challange/tree/experiments/opentelemetry)
+branch extends the monorepo (API + Studio) with Collector → Tempo/Prometheus +
+Grafana, domain spans (`menu.create` / `menu.get_tree` / `menu.delete_subtree`),
+and W3C propagation from Angular. It does not change the API contract or
+architecture on `main`.
+
+<p>
+  <sub>
+    Branch
+    <a href="https://github.com/this-rafael/paketa-credito-challange/tree/experiments/opentelemetry"><code>experiments/opentelemetry</code></a>
+    · <code>docker compose up --build</code>
+    · Grafana at <code>http://localhost:3001</code> (<code>admin</code>/<code>admin</code>)
+  </sub>
+</p>
+
 ## 🚀 Start in 60 seconds
 
 ### With Docker: recommended
