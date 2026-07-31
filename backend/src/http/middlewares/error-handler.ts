@@ -12,6 +12,7 @@ import {
   MenuItemNotFoundError,
   ParentMenuItemNotFoundError,
 } from '../../domain/menu/menu-errors.js';
+import { recordActiveSpanError } from '../../infrastructure/telemetry/tracing.js';
 import { sendError } from '../presenters/error-presenter.js';
 
 /**
@@ -55,6 +56,8 @@ export function errorHandler(
     next(error);
     return;
   }
+
+  recordActiveSpanError(error);
 
   if (error instanceof ParentMenuItemNotFoundError) {
     sendError(res, 404, error.code, error.message);

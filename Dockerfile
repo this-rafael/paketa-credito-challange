@@ -15,4 +15,4 @@ COPY --from=build /app/dist ./dist
 COPY openapi ./openapi
 EXPOSE 3000
 USER node
-CMD ["node", "dist/main/server.js"]
+CMD ["node", "--import", "./dist/infrastructure/telemetry/register.js", "dist/main/server.js"]

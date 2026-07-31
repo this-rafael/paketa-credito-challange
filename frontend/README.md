@@ -16,7 +16,12 @@ Na raiz do monorepo:
 docker compose up --build
 ```
 
-UI: http://localhost:4200 (nginx + proxy `/api` → serviço `api`)
+UI: http://localhost:4200 (nginx + proxy `/api` → serviço `api`, `/otlp` → Collector)
+
+## Observabilidade (esta branch)
+
+O Studio exporta traces OTLP via `/otlp` e propaga `traceparent` nas chamadas à API.
+Desligue com `otelEnabled: false` em `src/environments/environment*.ts`.
 
 ## Rodar (dev local)
 

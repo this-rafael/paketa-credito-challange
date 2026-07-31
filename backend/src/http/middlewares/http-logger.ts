@@ -8,6 +8,7 @@ import type { IncomingMessage, ServerResponse } from 'node:http';
 import type { Handler } from 'express';
 import type { Logger } from 'pino';
 import { pinoHttp } from 'pino-http';
+import { activeTraceFields } from '../../infrastructure/telemetry/tracing.js';
 
 /**
  * Builds a `pino-http` handler bound to the given logger.
@@ -28,6 +29,7 @@ export function createHttpLogger(logger: Logger): Handler {
     },
     customProps: (req: IncomingMessage & { id?: string }) => ({
       requestId: req.id,
+      ...activeTraceFields(),
     }),
     serializers: {
       req(req: IncomingMessage & { id?: string }) {

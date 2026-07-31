@@ -24,6 +24,7 @@ import {
 } from '../http/middlewares/json-body-guards.js';
 import { notFoundMiddleware } from '../http/middlewares/not-found.js';
 import { requestIdMiddleware } from '../http/middlewares/request-id.js';
+import { registerHealthRoutes } from '../infrastructure/health/health-routes.js';
 import { createMenuRouter } from '../http/routes/menu-routes.js';
 import { createLogger } from '../infrastructure/logging/logger.js';
 
@@ -85,6 +86,10 @@ export function createApp(options: CreateAppOptions = {}): Express {
       );
   });
   app.use('/docs', swaggerUi.serve, swaggerUi.setup(openApiDocument));
+
+  const healthRouter = express.Router();
+  registerHealthRoutes(healthRouter);
+  app.use('/health', healthRouter);
 
   if (
     options.createMenuItem ||

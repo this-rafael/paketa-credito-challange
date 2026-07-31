@@ -20,10 +20,30 @@ export const envSchema = z.object({
     'silent',
   ]),
   JSON_BODY_LIMIT: z.string().min(1),
+  OTEL_ENABLED: z.boolean(),
+  OTEL_SERVICE_NAME: z.string().trim().min(1),
+  OTEL_EXPORTER_OTLP_ENDPOINT: z.string().url(),
 });
 
 /** Validated application configuration. */
 export type Env = z.infer<typeof envSchema>;
+
+/**
+ * Parses a boolean-like environment flag.
+ *
+ * @param raw - Raw string value.
+ * @param fallback - Value used when `raw` is missing.
+ * @returns Parsed boolean.
+ */
+function parseBoolFlag(
+  raw: string | undefined,
+  fallback: boolean,
+): boolean {
+  if (raw === undefined) {
+    return fallback;
+  }
+  return raw === 'true' || raw === '1';
+}
 
 /**
  * Loads and validates configuration.
@@ -36,10 +56,20 @@ export type Env = z.infer<typeof envSchema>;
 export function loadEnv(
   source: Record<string, string | undefined> = process.env,
 ): Env {
+  const otelDefault = source['VITEST']
+    ? false
+    : parseBoolFlag(source['OTEL_ENABLED'], true);
+
   return envSchema.parse({
     PORT: source.PORT ?? '3000',
     MONGODB_URI: source.MONGODB_URI ?? 'mongodb://127.0.0.1:27017/menu',
     LOG_LEVEL: source.LOG_LEVEL ?? 'info',
     JSON_BODY_LIMIT: source.JSON_BODY_LIMIT ?? '100kb',
+    OTEL_ENABLED: source['VITEST']
+      ? parseBoolFlag(source['OTEL_ENABLED'], false)
+      : otelDefault,
+    OTEL_SERVICE_NAME: source.OTEL_SERVICE_NAME ?? 'menu-api',
+    OTEL_EXPORTER_OTLP_ENDPOINT:
+      source.OTEL_EXPORTER_OTLP_ENDPOINT ?? 'http://127.0.0.1:4318',
   });
 }

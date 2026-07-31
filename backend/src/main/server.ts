@@ -16,6 +16,7 @@ import { MongoIdGenerator } from '../infrastructure/database/mongo-id-generator.
 import { ensureMenuIndexes } from '../infrastructure/database/mongoose/ensure-menu-indexes.js';
 import { MongooseMenuRepository } from '../infrastructure/database/mongoose/mongoose-menu-repository.js';
 import { createLogger } from '../infrastructure/logging/logger.js';
+import { shutdownTelemetry } from '../infrastructure/telemetry/start-telemetry.js';
 import { createApp } from './create-app.js';
 
 /** Result of `bootstrap`, exposing the wired pieces. */
@@ -75,6 +76,7 @@ export async function gracefulShutdown(server: Server): Promise<void> {
     server.close((error) => (error ? reject(error) : resolve()));
   });
   await mongoose.disconnect();
+  await shutdownTelemetry();
 }
 
 /**

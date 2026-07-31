@@ -14,6 +14,7 @@ import {
   MenuItemNotFoundError,
   ParentMenuItemNotFoundError,
 } from '../../domain/menu/menu-errors.js';
+import { withSpan } from '../../infrastructure/telemetry/tracing.js';
 import type { CreateMenuItemBody } from '../schemas/create-menu-item.schema.js';
 import { parseMenuItemIdParam } from '../schemas/menu-item-id.param.js';
 import { sendError } from '../presenters/error-presenter.js';
@@ -60,10 +61,21 @@ export class MenuController {
         return;
       }
       const body = req.body as CreateMenuItemBody;
-      const created = await this.createMenuItem.execute({
-        name: body.name,
-        ...(body.relatedId !== undefined ? { relatedId: body.relatedId } : {}),
-      });
+      const created = await withSpan(
+        'menu.create',
+        async (span) => {
+          span.setAttribute('menu.name', body.name);
+          if (body.relatedId !== undefined) {
+            span.setAttribute('menu.related_id', body.relatedId);
+          }
+          return this.createMenuItem!.execute({
+            name: body.name,
+            ...(body.relatedId !== undefined
+              ? { relatedId: body.relatedId }
+              : {}),
+          });
+        },
+      );
       res.status(201).json({ id: String(created.id) });
     } catch (error) {
       if (error instanceof ParentMenuItemNotFoundError) {
@@ -96,7 +108,9 @@ export class MenuController {
         sendError(res, 500, 'INTERNAL_ERROR', 'Get use case is not configured');
         return;
       }
-      const tree = await this.getMenuTree.execute();
+      const tree = await withSpan('menu.get_tree', () =>
+        this.getMenuTree!.execute(),
+      );
       res.status(200).json(tree);
     } catch (error) {
       if (error instanceof DataIntegrityError) {
@@ -141,7 +155,13 @@ export class MenuController {
         sendError(res, 400, 'INVALID_MENU_ITEM_ID', 'Invalid menu item id');
         return;
       }
-      await this.deleteMenuSubtree.execute(id);
+      await withSpan(
+        'menu.delete_subtree',
+        async (span) => {
+          span.setAttribute('menu.id', id);
+          await this.deleteMenuSubtree!.execute(id);
+        },
+      );
       res.status(200).end();
     } catch (error) {
       if (error instanceof MenuItemNotFoundError) {
