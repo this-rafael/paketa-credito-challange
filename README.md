@@ -81,6 +81,33 @@ mensurável.
   <img width="100%" src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif" alt="" />
 </div>
 
+## 🎛️ Addon opcional: UI para explorar a árvore
+
+A entrega principal é a API. Se, na avaliação, for mais confortável *ver* a
+hierarquia sendo montada e desmontada — em vez de só bater no Swagger ou no
+`curl` — existe um studio Angular na branch
+[`experiments/angular`](https://github.com/this-rafael/paketa-credito-challange/tree/experiments/angular).
+
+É um extra: mapa/árvore, detalhes do nó, criar/excluir e um console HTTP ao vivo.
+Não altera o contrato nem a arquitetura da API em `main`.
+
+<div align="center">
+  <a href="https://github.com/this-rafael/paketa-credito-challange/tree/experiments/angular">
+    <img
+      src="docs-site/assets/menu-studio-ui.jpg"
+      alt="Menu Studio: mapa visual, detalhes do nó e HTTP Console"
+      width="920"
+    />
+  </a>
+  <p>
+    <sub>
+      Branch
+      <a href="https://github.com/this-rafael/paketa-credito-challange/tree/experiments/angular"><code>experiments/angular</code></a>
+      · <code>docker compose up --build</code> · UI em <code>http://localhost:4200</code>
+    </sub>
+  </p>
+</div>
+
 ## 🚀 Comece em 60 segundos
 
 ### Com Docker: caminho recomendado

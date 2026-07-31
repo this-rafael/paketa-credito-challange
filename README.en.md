@@ -81,6 +81,34 @@ measurable quality.
   <img width="100%" src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif" alt="" />
 </div>
 
+## 🎛️ Optional addon: UI to explore the tree
+
+The core deliverable is the API. If, during review, it is easier to *see* the
+hierarchy being built and torn down — instead of only using Swagger or `curl` —
+there is an Angular studio on the
+[`experiments/angular`](https://github.com/this-rafael/paketa-credito-challange/tree/experiments/angular)
+branch.
+
+It is an extra: tree/map views, node details, create/delete, and a live HTTP
+console. It does not change the API contract or architecture on `main`.
+
+<div align="center">
+  <a href="https://github.com/this-rafael/paketa-credito-challange/tree/experiments/angular">
+    <img
+      src="docs-site/assets/menu-studio-ui.jpg"
+      alt="Menu Studio: visual map, node details, and HTTP Console"
+      width="920"
+    />
+  </a>
+  <p>
+    <sub>
+      Branch
+      <a href="https://github.com/this-rafael/paketa-credito-challange/tree/experiments/angular"><code>experiments/angular</code></a>
+      · <code>docker compose up --build</code> · UI at <code>http://localhost:4200</code>
+    </sub>
+  </p>
+</div>
+
 ## 🚀 Start in 60 seconds
 
 ### With Docker: recommended
