@@ -29,6 +29,8 @@
   <a href="#-arquitetura">Arquitetura</a>
   &nbsp;•&nbsp;
   <a href="#-documentação-viva">Documentação</a>
+  &nbsp;•&nbsp;
+  <a href="#-evolução-com-tdd">TDD</a>
 </p>
 
 <p>
@@ -367,6 +369,14 @@ Functions    100% (52/52)
 Lines        100% (258/258)
 ```
 
+<div align="center">
+  <img
+    src="docs-site/assets/coverage-report.png"
+    alt="Relatório de cobertura v8 — 100% em statements, branches, functions e lines"
+    width="920"
+  />
+</div>
+
 As suites cobrem domínio, casos de uso, árvore, schemas, middlewares, contrato
 OpenAPI, arquitetura, ciclo de vida, concorrência e persistência real com
 MongoDB via Testcontainers.
@@ -395,6 +405,25 @@ SLA; o atributo garantido pelo algoritmo é sua complexidade linear.
 O workflow principal executa formatação, lint, typecheck, testes, TypeDoc,
 Spectral e auditoria a cada pull request. O portal possui um workflow separado
 e só é publicado a partir da `main`.
+
+## 🔴🟢 Evolução com TDD
+
+A solução foi construída em ciclos **red → green**: primeiro os testes
+falhando, depois a implementação até o verde. O histórico abaixo preserva
+essa sequência no Git.
+
+| # | Capacidade | Red | Green |
+| :-: | :--- | :--- | :--- |
+| 01 | Bootstrap (Express + Vitest) | [`d114801`](https://github.com/this-rafael/paketa-credito-challange/commit/d114801) | [`#1`](https://github.com/this-rafael/paketa-credito-challange/pull/1) |
+| 02 | Criar item de menu | [`e6b0297`](https://github.com/this-rafael/paketa-credito-challange/commit/e6b0297) | [`#2`](https://github.com/this-rafael/paketa-credito-challange/pull/2) |
+| 03 | Obter árvore de menus | [`129e1e1`](https://github.com/this-rafael/paketa-credito-challange/commit/129e1e1) | [`#3`](https://github.com/this-rafael/paketa-credito-challange/pull/3) |
+| 04 | Remover subárvore | [`4f1743b`](https://github.com/this-rafael/paketa-credito-challange/commit/4f1743b) | [`#4`](https://github.com/this-rafael/paketa-credito-challange/pull/4) |
+| 05 | Erros e observabilidade | [`5d0571d`](https://github.com/this-rafael/paketa-credito-challange/commit/5d0571d) | [`#5`](https://github.com/this-rafael/paketa-credito-challange/pull/5) |
+| 06 | Ops e concorrência | [`53ed9e3`](https://github.com/this-rafael/paketa-credito-challange/commit/53ed9e3) | [`#6`](https://github.com/this-rafael/paketa-credito-challange/pull/6) |
+| 07 | OpenAPI e quality gates | [`97323c1`](https://github.com/this-rafael/paketa-credito-challange/commit/97323c1) | [`#7`](https://github.com/this-rafael/paketa-credito-challange/pull/7) |
+
+As branches `feature/*/red` e `feature/*/green` permanecem no repositório para
+inspecionar cada ciclo.
 
 <div align="center">
   <img width="100%" src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif" alt="" />
