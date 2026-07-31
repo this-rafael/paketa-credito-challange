@@ -1,0 +1,244 @@
+openapi: 3.1.0
+info:
+  title: Menu API
+  version: 1.0.0
+  description: Corporate menu management API
+servers:
+  - url: /
+paths:
+  /api/v1/menu:
+    get:
+      summary: Get the full menu tree
+      operationId: getMenu
+      responses:
+        '200':
+          description: Hierarchical menu forest
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MenuForest'
+              examples:
+                challenge:
+                  value:
+                    - id: '1'
+                      name: Eletrodomésticos
+                      submenus:
+                        - id: '2'
+                          name: Televisores
+                          submenus:
+                            - id: '3'
+                              name: LCD
+                              submenus:
+                                - id: '4'
+                                  name: '110'
+                                - id: '5'
+                                  name: '220'
+                            - id: '6'
+                              name: Plasma
+                    - id: '7'
+                      name: Informática
+                      submenus:
+                        - id: '8'
+                          name: Computadores
+                          submenus:
+                            - id: '9'
+                              name: Apple
+                              submenus:
+                                - id: '10'
+                                  name: MacBook
+                                  submenus:
+                                    - id: '11'
+                                      name: Cabos
+                                - id: '12'
+                                  name: iMac
+        '500':
+          $ref: '#/components/responses/InternalError'
+        '503':
+          $ref: '#/components/responses/DatabaseUnavailable'
+    post:
+      summary: Create a menu item
+      operationId: createMenuItem
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateMenuItemRequest'
+            examples:
+              root:
+                value:
+                  name: Eletrodomésticos
+              child:
+                value:
+                  name: Televisores
+                  relatedId: 1
+      responses:
+        '201':
+          description: Created menu item id
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateMenuItemResponse'
+              example:
+                id: '2'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/ParentNotFound'
+        '409':
+          $ref: '#/components/responses/NameConflict'
+        '413':
+          $ref: '#/components/responses/PayloadTooLarge'
+        '415':
+          $ref: '#/components/responses/UnsupportedMediaType'
+        '500':
+          $ref: '#/components/responses/InternalError'
+        '503':
+          $ref: '#/components/responses/DatabaseUnavailable'
+  /api/v1/menu/{id}:
+    delete:
+      summary: Delete a menu item subtree
+      operationId: deleteMenuItem
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            pattern: '^[1-9][0-9]*$'
+          description: Public string id of the menu item
+      responses:
+        '200':
+          description: Subtree deleted
+        '400':
+          $ref: '#/components/responses/InvalidId'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalError'
+        '503':
+          $ref: '#/components/responses/DatabaseUnavailable'
+components:
+  schemas:
+    CreateMenuItemRequest:
+      type: object
+      additionalProperties: false
+      required: [name]
+      properties:
+        name:
+          type: string
+          minLength: 1
+        relatedId:
+          type: integer
+          exclusiveMinimum: 0
+          maximum: 9007199254740991
+    CreateMenuItemResponse:
+      type: object
+      additionalProperties: false
+      required: [id]
+      properties:
+        id:
+          type: string
+          pattern: '^[1-9][0-9]*$'
+    PublicMenuNode:
+      type: object
+      additionalProperties: false
+      required: [id, name]
+      properties:
+        id:
+          type: string
+          pattern: '^[1-9][0-9]*$'
+        name:
+          type: string
+        submenus:
+          type: array
+          items:
+            $ref: '#/components/schemas/PublicMenuNode'
+    MenuForest:
+      type: array
+      items:
+        $ref: '#/components/schemas/PublicMenuNode'
+    ErrorBody:
+      type: object
+      additionalProperties: false
+      required: [error]
+      properties:
+        error:
+          type: object
+          additionalProperties: false
+          required: [code, message, requestId]
+          properties:
+            code:
+              type: string
+              enum:
+                - INVALID_JSON
+                - INVALID_MENU_ITEM_ID
+                - VALIDATION_ERROR
+                - PARENT_MENU_ITEM_NOT_FOUND
+                - MENU_ITEM_NOT_FOUND
+                - ROUTE_NOT_FOUND
+                - MENU_ITEM_NAME_ALREADY_EXISTS
+                - PAYLOAD_TOO_LARGE
+                - UNSUPPORTED_MEDIA_TYPE
+                - DATABASE_UNAVAILABLE
+                - INTERNAL_ERROR
+            message:
+              type: string
+            requestId:
+              type: string
+              format: uuid
+  responses:
+    BadRequest:
+      description: Validation or malformed JSON
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorBody'
+    InvalidId:
+      description: Invalid menu item id
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorBody'
+    ParentNotFound:
+      description: Parent menu item not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorBody'
+    NotFound:
+      description: Menu item not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorBody'
+    NameConflict:
+      description: Duplicate menu item name
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorBody'
+    PayloadTooLarge:
+      description: Payload too large
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorBody'
+    UnsupportedMediaType:
+      description: Unsupported media type
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorBody'
+    InternalError:
+      description: Internal error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorBody'
+    DatabaseUnavailable:
+      description: Database unavailable
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorBody'
