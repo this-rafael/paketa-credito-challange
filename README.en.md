@@ -377,9 +377,10 @@ Lines        100% (258/258)
   />
 </div>
 
-The suites cover the domain, use cases, tree assembly, schemas, middlewares,
-OpenAPI contract, architecture, process lifecycle, concurrency, and real
-MongoDB persistence through Testcontainers.
+The test scenarios are based on [`BDD.md`](BDD.md). The suites cover the
+domain, use cases, tree assembly, schemas, middlewares, OpenAPI contract,
+architecture, process lifecycle, concurrency, and real MongoDB persistence
+through Testcontainers.
 
 ```bash
 npm test                 # tests
