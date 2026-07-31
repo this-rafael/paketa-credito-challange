@@ -1,0 +1,3160 @@
+{
+  "version": "1.0.0",
+  "gitCommitHash": "294a7d35a61ba0543a4cce71cad94ebe53341f5f",
+  "generatedAt": "2026-07-31T13:09:58.951Z",
+  "files": {
+    ".dockerignore": {
+      "filePath": ".dockerignore",
+      "contentHash": "853c4f585d55ec2b9873e1221cf944f366cddaae76edaa95890e144fafbb29d9",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 8,
+      "hasStructuralAnalysis": false
+    },
+    ".github/workflows/ci.yml": {
+      "filePath": ".github/workflows/ci.yml",
+      "contentHash": "2aecdca5f7af53b37234e6121e4aa1f7963b816bf5a3aed77a5c49a6a4186c93",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 26,
+      "hasStructuralAnalysis": true
+    },
+    ".github/workflows/pages.yml": {
+      "filePath": ".github/workflows/pages.yml",
+      "contentHash": "be73b567c8c453f10e92c6bd94d17936f785ce86623ff9cc6a848c7e304304e2",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 60,
+      "hasStructuralAnalysis": true
+    },
+    ".prettierrc.json": {
+      "filePath": ".prettierrc.json",
+      "contentHash": "d11c6c55354755e52a47f45050dd18b431c1dc27c964b56d2ef128bcd909b022",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 7,
+      "hasStructuralAnalysis": true
+    },
+    ".spectral.yaml": {
+      "filePath": ".spectral.yaml",
+      "contentHash": "1d1df7aaa4abe6139d4556a14326aeba7da141c228c7befde84468fc38cec954",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 2,
+      "hasStructuralAnalysis": true
+    },
+    "docker-compose.yml": {
+      "filePath": "docker-compose.yml",
+      "contentHash": "37141b5a8aee89bfea43a078af796f4779ee552a17717cfd2568308315c1c4fa",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 23,
+      "hasStructuralAnalysis": true
+    },
+    "Dockerfile": {
+      "filePath": "Dockerfile",
+      "contentHash": "528ac284e56ab891dcf466eab7e8b1549bd3db7767f713accf53a9410d4d856c",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 19,
+      "hasStructuralAnalysis": true
+    },
+    "docs-site/.nojekyll": {
+      "filePath": "docs-site/.nojekyll",
+      "contentHash": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 2,
+      "hasStructuralAnalysis": false
+    },
+    "docs-site/assets/styles.css": {
+      "filePath": "docs-site/assets/styles.css",
+      "contentHash": "845b34056ec6c431070c0d9a50e4413721ecdb8156f52f271e03fbab6c2998c7",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 511,
+      "hasStructuralAnalysis": false
+    },
+    "docs-site/en/index.html": {
+      "filePath": "docs-site/en/index.html",
+      "contentHash": "da1b38990f0ce8a12d44de856ff77c998bd88df7427e71bfc475573ca922a9d4",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 139,
+      "hasStructuralAnalysis": false
+    },
+    "docs-site/index.html": {
+      "filePath": "docs-site/index.html",
+      "contentHash": "0f33549a4d73c33429d3daef2c1b9328b0d62371d7d7af759c3a7622be7cceb0",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 141,
+      "hasStructuralAnalysis": false
+    },
+    "eslint.config.js": {
+      "filePath": "eslint.config.js",
+      "contentHash": "50d387826a70be5ad1e5c9e83967867f43435ba79b00d20615985eaadb2e1277",
+      "functions": [],
+      "classes": [],
+      "imports": [
+        {
+          "source": "@eslint/js",
+          "specifiers": [
+            "eslint"
+          ]
+        },
+        {
+          "source": "eslint-config-prettier",
+          "specifiers": [
+            "eslintConfigPrettier"
+          ]
+        },
+        {
+          "source": "typescript-eslint",
+          "specifiers": [
+            "tseslint"
+          ]
+        },
+        {
+          "source": "eslint-plugin-tsdoc",
+          "specifiers": [
+            "tsdoc"
+          ]
+        }
+      ],
+      "exports": [],
+      "totalLines": 49,
+      "hasStructuralAnalysis": true
+    },
+    "openapi/openapi.yaml": {
+      "filePath": "openapi/openapi.yaml",
+      "contentHash": "d9d272af7b6232df6ea3819c873aa2d878862201287da59ac650ed836863d552",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 257,
+      "hasStructuralAnalysis": true
+    },
+    "package.json": {
+      "filePath": "package.json",
+      "contentHash": "8cf194151b89daec0eb681906d5bdc5e3fbef4b9f26e25d78cd6be7b6c37394b",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 70,
+      "hasStructuralAnalysis": true
+    },
+    "README.en.md": {
+      "filePath": "README.en.md",
+      "contentHash": "5739e62cdef8970ed9efd16ed18b4a833ef155732d0334e9e5d493079e8e2c29",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 404,
+      "hasStructuralAnalysis": true
+    },
+    "readme.md": {
+      "filePath": "readme.md",
+      "contentHash": "2b0278beac9d27c6e5e053edb60f6eddddde0a1d7899d2f99a40ecf0b35dcbdb",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 6,
+      "hasStructuralAnalysis": true
+    },
+    "README.md": {
+      "filePath": "README.md",
+      "contentHash": "d30d7a98f8fe85451441c6f3b499e26cc233af3d1cd9f318a501566f83034368",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 404,
+      "hasStructuralAnalysis": true
+    },
+    "scripts/benchmark-tree.ts": {
+      "filePath": "scripts/benchmark-tree.ts",
+      "contentHash": "5e909a19cd412c9ffd78c1a22401f70dac4c6df9f901a6312a3151510f23a571",
+      "functions": [
+        {
+          "name": "buildChain",
+          "params": [
+            "size"
+          ],
+          "returnType": "MenuTreeInputItem[]",
+          "exported": false,
+          "lineCount": 10
+        },
+        {
+          "name": "run",
+          "params": [
+            "size"
+          ],
+          "returnType": "void",
+          "exported": false,
+          "lineCount": 21
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "node:perf_hooks",
+          "specifiers": [
+            "performance"
+          ]
+        },
+        {
+          "source": "../src/shared/tree/build-menu-tree.js",
+          "specifiers": [
+            "buildMenuTree",
+            "MenuTreeInputItem"
+          ]
+        }
+      ],
+      "exports": [],
+      "totalLines": 43,
+      "hasStructuralAnalysis": true
+    },
+    "scripts/build-docs-site.mjs": {
+      "filePath": "scripts/build-docs-site.mjs",
+      "contentHash": "978f1c817fadfb95e214aeab9bd24723088938efb9841205f65adf9f6a432975",
+      "functions": [
+        {
+          "name": "localBinary",
+          "params": [
+            "name"
+          ],
+          "exported": false,
+          "lineCount": 8
+        },
+        {
+          "name": "run",
+          "params": [
+            "command",
+            "args"
+          ],
+          "exported": false,
+          "lineCount": 15
+        },
+        {
+          "name": "makeRedocClientRendered",
+          "params": [],
+          "exported": false,
+          "lineCount": 26
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "node:fs/promises",
+          "specifiers": [
+            "cp",
+            "mkdir",
+            "readFile",
+            "rm",
+            "writeFile"
+          ]
+        },
+        {
+          "source": "node:child_process",
+          "specifiers": [
+            "spawnSync"
+          ]
+        },
+        {
+          "source": "node:path",
+          "specifiers": [
+            "dirname",
+            "join",
+            "resolve"
+          ]
+        },
+        {
+          "source": "node:url",
+          "specifiers": [
+            "fileURLToPath"
+          ]
+        }
+      ],
+      "exports": [],
+      "totalLines": 98,
+      "hasStructuralAnalysis": true
+    },
+    "scripts/build-ua-viewer.mjs": {
+      "filePath": "scripts/build-ua-viewer.mjs",
+      "contentHash": "53e2c913d306298bc97ce4c74d20e0619d0f8ad8f3e7fcbca9a3978e16099738",
+      "functions": [
+        {
+          "name": "run",
+          "params": [
+            "command",
+            "args"
+          ],
+          "exported": false,
+          "lineCount": 15
+        },
+        {
+          "name": "exists",
+          "params": [
+            "path"
+          ],
+          "exported": false,
+          "lineCount": 8
+        },
+        {
+          "name": "ensurePinnedSource",
+          "params": [],
+          "exported": false,
+          "lineCount": 26
+        },
+        {
+          "name": "copyGraphInputs",
+          "params": [],
+          "exported": false,
+          "lineCount": 25
+        },
+        {
+          "name": "buildViewer",
+          "params": [],
+          "exported": false,
+          "lineCount": 42
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "node:fs/promises",
+          "specifiers": [
+            "cp",
+            "mkdir",
+            "readFile",
+            "rm",
+            "stat",
+            "writeFile"
+          ]
+        },
+        {
+          "source": "node:child_process",
+          "specifiers": [
+            "spawnSync"
+          ]
+        },
+        {
+          "source": "node:path",
+          "specifiers": [
+            "delimiter",
+            "dirname",
+            "join",
+            "resolve"
+          ]
+        },
+        {
+          "source": "node:url",
+          "specifiers": [
+            "fileURLToPath"
+          ]
+        }
+      ],
+      "exports": [],
+      "totalLines": 145,
+      "hasStructuralAnalysis": true
+    },
+    "scripts/check-docs-site.mjs": {
+      "filePath": "scripts/check-docs-site.mjs",
+      "contentHash": "f7ca93b0758aadcaa9989ff3d34bf27938f10cc86229ccf02b5e056556237ef8",
+      "functions": [],
+      "classes": [],
+      "imports": [
+        {
+          "source": "node:fs/promises",
+          "specifiers": [
+            "readFile",
+            "stat"
+          ]
+        },
+        {
+          "source": "node:path",
+          "specifiers": [
+            "dirname",
+            "join",
+            "resolve"
+          ]
+        },
+        {
+          "source": "node:url",
+          "specifiers": [
+            "fileURLToPath"
+          ]
+        }
+      ],
+      "exports": [],
+      "totalLines": 80,
+      "hasStructuralAnalysis": true
+    },
+    "src/application/ports/id-generator.ts": {
+      "filePath": "src/application/ports/id-generator.ts",
+      "contentHash": "f88eb3c1b51150c70bd5ff93cda5235c4afc622b7255457622db9471535b6bd1",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 18,
+      "hasStructuralAnalysis": true
+    },
+    "src/application/ports/menu-ports.ts": {
+      "filePath": "src/application/ports/menu-ports.ts",
+      "contentHash": "6d29017e6e6bdc9536be26a21e7f5b3d35cdc1d78b1ee1e597c428f1713f5df9",
+      "functions": [
+        {
+          "name": "assertMenuRepository",
+          "params": [
+            "repository"
+          ],
+          "returnType": "MenuRepository",
+          "exported": true,
+          "lineCount": 5
+        },
+        {
+          "name": "assertMenuItemIdGenerator",
+          "params": [
+            "generator"
+          ],
+          "returnType": "MenuItemIdGenerator",
+          "exported": true,
+          "lineCount": 5
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "./id-generator.js",
+          "specifiers": [
+            "MenuItemIdGenerator"
+          ]
+        },
+        {
+          "source": "./menu-repository.js",
+          "specifiers": [
+            "MenuRepository"
+          ]
+        }
+      ],
+      "exports": [
+        "assertMenuRepository",
+        "assertMenuItemIdGenerator"
+      ],
+      "totalLines": 33,
+      "hasStructuralAnalysis": true
+    },
+    "src/application/ports/menu-repository.ts": {
+      "filePath": "src/application/ports/menu-repository.ts",
+      "contentHash": "ce8235d46271e299af2393907ee50bab45573e2f38a4d1913fcddc14b8021413",
+      "functions": [],
+      "classes": [],
+      "imports": [
+        {
+          "source": "../../domain/menu/menu-item.js",
+          "specifiers": [
+            "MenuItem"
+          ]
+        }
+      ],
+      "exports": [],
+      "totalLines": 55,
+      "hasStructuralAnalysis": true
+    },
+    "src/application/use-cases/create-menu-item.ts": {
+      "filePath": "src/application/use-cases/create-menu-item.ts",
+      "contentHash": "292488d49a19468cbd763b9077cc7c17421cf38886dc30eb22706e21ce8b3fdf",
+      "functions": [],
+      "classes": [
+        {
+          "name": "CreateMenuItem",
+          "methods": [
+            "constructor",
+            "execute"
+          ],
+          "properties": [],
+          "exported": true,
+          "lineCount": 38
+        }
+      ],
+      "imports": [
+        {
+          "source": "../ports/id-generator.js",
+          "specifiers": [
+            "MenuItemIdGenerator"
+          ]
+        },
+        {
+          "source": "../ports/menu-repository.js",
+          "specifiers": [
+            "MenuRepository"
+          ]
+        },
+        {
+          "source": "../../domain/menu/menu-errors.js",
+          "specifiers": [
+            "ParentMenuItemNotFoundError"
+          ]
+        },
+        {
+          "source": "../../domain/menu/menu-item.js",
+          "specifiers": [
+            "createChildMenuItem",
+            "createRootMenuItem",
+            "MenuItem"
+          ]
+        }
+      ],
+      "exports": [
+        "CreateMenuItem"
+      ],
+      "totalLines": 65,
+      "hasStructuralAnalysis": true
+    },
+    "src/application/use-cases/delete-menu-subtree.ts": {
+      "filePath": "src/application/use-cases/delete-menu-subtree.ts",
+      "contentHash": "f51d7e00fe164ecf5aee156986ce95e8d0b082a900e03686252ec8a055d1d9ac",
+      "functions": [],
+      "classes": [
+        {
+          "name": "DeleteMenuSubtree",
+          "methods": [
+            "constructor",
+            "execute"
+          ],
+          "properties": [],
+          "exported": true,
+          "lineCount": 21
+        }
+      ],
+      "imports": [
+        {
+          "source": "../ports/menu-repository.js",
+          "specifiers": [
+            "DeleteSubtreeResult",
+            "MenuRepository"
+          ]
+        },
+        {
+          "source": "../../domain/menu/menu-errors.js",
+          "specifiers": [
+            "MenuItemNotFoundError"
+          ]
+        }
+      ],
+      "exports": [
+        "DeleteMenuSubtree"
+      ],
+      "totalLines": 37,
+      "hasStructuralAnalysis": true
+    },
+    "src/application/use-cases/get-menu-tree.ts": {
+      "filePath": "src/application/use-cases/get-menu-tree.ts",
+      "contentHash": "07fc556a7d52a9f27dd9678521e2d1ae8b6e652427debc62e962a17722290975",
+      "functions": [],
+      "classes": [
+        {
+          "name": "GetMenuTree",
+          "methods": [
+            "constructor",
+            "execute"
+          ],
+          "properties": [],
+          "exported": true,
+          "lineCount": 18
+        }
+      ],
+      "imports": [
+        {
+          "source": "../ports/menu-repository.js",
+          "specifiers": [
+            "MenuRepository"
+          ]
+        },
+        {
+          "source": "../../shared/tree/build-menu-tree.js",
+          "specifiers": [
+            "buildMenuTree",
+            "PublicMenuNode"
+          ]
+        }
+      ],
+      "exports": [
+        "GetMenuTree"
+      ],
+      "totalLines": 34,
+      "hasStructuralAnalysis": true
+    },
+    "src/domain/menu/menu-errors.ts": {
+      "filePath": "src/domain/menu/menu-errors.ts",
+      "contentHash": "c7a7309600abcc8d2b53bb7464fdd83a5724564cf27d8723f48df2c49692ed20",
+      "functions": [],
+      "classes": [
+        {
+          "name": "ParentMenuItemNotFoundError",
+          "methods": [
+            "constructor"
+          ],
+          "properties": [
+            "code"
+          ],
+          "exported": true,
+          "lineCount": 12
+        },
+        {
+          "name": "MenuItemNotFoundError",
+          "methods": [
+            "constructor"
+          ],
+          "properties": [
+            "code"
+          ],
+          "exported": true,
+          "lineCount": 12
+        },
+        {
+          "name": "MenuItemNameAlreadyExistsError",
+          "methods": [
+            "constructor"
+          ],
+          "properties": [
+            "code"
+          ],
+          "exported": true,
+          "lineCount": 12
+        },
+        {
+          "name": "InvalidMenuItemIdError",
+          "methods": [
+            "constructor"
+          ],
+          "properties": [
+            "code"
+          ],
+          "exported": true,
+          "lineCount": 12
+        },
+        {
+          "name": "InvalidMenuItemNameError",
+          "methods": [
+            "constructor"
+          ],
+          "properties": [
+            "code"
+          ],
+          "exported": true,
+          "lineCount": 12
+        },
+        {
+          "name": "DataIntegrityError",
+          "methods": [
+            "constructor"
+          ],
+          "properties": [
+            "code"
+          ],
+          "exported": true,
+          "lineCount": 12
+        }
+      ],
+      "imports": [],
+      "exports": [
+        "ParentMenuItemNotFoundError",
+        "MenuItemNotFoundError",
+        "MenuItemNameAlreadyExistsError",
+        "InvalidMenuItemIdError",
+        "InvalidMenuItemNameError",
+        "DataIntegrityError"
+      ],
+      "totalLines": 85,
+      "hasStructuralAnalysis": true
+    },
+    "src/domain/menu/menu-item.ts": {
+      "filePath": "src/domain/menu/menu-item.ts",
+      "contentHash": "5f50053bf2acd248f8f35d38a6dbad211f7a25436a32f9005ea7362ad1264c45",
+      "functions": [
+        {
+          "name": "normalizeMenuItemName",
+          "params": [
+            "name"
+          ],
+          "returnType": "string",
+          "exported": true,
+          "lineCount": 7
+        },
+        {
+          "name": "assertPositiveSafeId",
+          "params": [
+            "id"
+          ],
+          "returnType": "void",
+          "exported": false,
+          "lineCount": 5
+        },
+        {
+          "name": "createRootMenuItem",
+          "params": [
+            "id",
+            "name"
+          ],
+          "returnType": "MenuItem",
+          "exported": true,
+          "lineCount": 9
+        },
+        {
+          "name": "createChildMenuItem",
+          "params": [
+            "id",
+            "name",
+            "parent"
+          ],
+          "returnType": "MenuItem",
+          "exported": true,
+          "lineCount": 17
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "./menu-errors.js",
+          "specifiers": [
+            "InvalidMenuItemIdError",
+            "InvalidMenuItemNameError"
+          ]
+        }
+      ],
+      "exports": [
+        "normalizeMenuItemName",
+        "createRootMenuItem",
+        "createChildMenuItem"
+      ],
+      "totalLines": 102,
+      "hasStructuralAnalysis": true
+    },
+    "src/http/controllers/menu-controller.ts": {
+      "filePath": "src/http/controllers/menu-controller.ts",
+      "contentHash": "bf91a5a9bfb7178527865f1177437b7ce7234ca5856201af7baf07b30403cdb3",
+      "functions": [],
+      "classes": [
+        {
+          "name": "MenuController",
+          "methods": [
+            "constructor"
+          ],
+          "properties": [
+            "create",
+            "getTree",
+            "deleteSubtree"
+          ],
+          "exported": true,
+          "lineCount": 131
+        }
+      ],
+      "imports": [
+        {
+          "source": "express",
+          "specifiers": [
+            "NextFunction",
+            "Request",
+            "Response"
+          ]
+        },
+        {
+          "source": "../../application/use-cases/create-menu-item.js",
+          "specifiers": [
+            "CreateMenuItem"
+          ]
+        },
+        {
+          "source": "../../application/use-cases/delete-menu-subtree.js",
+          "specifiers": [
+            "DeleteMenuSubtree"
+          ]
+        },
+        {
+          "source": "../../application/use-cases/get-menu-tree.js",
+          "specifiers": [
+            "GetMenuTree"
+          ]
+        },
+        {
+          "source": "../../domain/menu/menu-errors.js",
+          "specifiers": [
+            "DataIntegrityError",
+            "MenuItemNameAlreadyExistsError",
+            "MenuItemNotFoundError",
+            "ParentMenuItemNotFoundError"
+          ]
+        },
+        {
+          "source": "../schemas/create-menu-item.schema.js",
+          "specifiers": [
+            "CreateMenuItemBody"
+          ]
+        },
+        {
+          "source": "../schemas/menu-item-id.param.js",
+          "specifiers": [
+            "parseMenuItemIdParam"
+          ]
+        },
+        {
+          "source": "../presenters/error-presenter.js",
+          "specifiers": [
+            "sendError"
+          ]
+        }
+      ],
+      "exports": [
+        "MenuController"
+      ],
+      "totalLines": 155,
+      "hasStructuralAnalysis": true
+    },
+    "src/http/middlewares/error-handler.ts": {
+      "filePath": "src/http/middlewares/error-handler.ts",
+      "contentHash": "5f09b2827c18b70cd2c6c0c2340327e2d97a4a6d217d61b7a9d10f78c8e005e2",
+      "functions": [
+        {
+          "name": "isDatabaseUnavailable",
+          "params": [
+            "error"
+          ],
+          "returnType": "boolean",
+          "exported": false,
+          "lineCount": 15
+        },
+        {
+          "name": "errorHandler",
+          "params": [
+            "error",
+            "_req",
+            "res",
+            "next"
+          ],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 51
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "express",
+          "specifiers": [
+            "NextFunction",
+            "Request",
+            "Response"
+          ]
+        },
+        {
+          "source": "../../domain/menu/menu-errors.js",
+          "specifiers": [
+            "DataIntegrityError",
+            "MenuItemNameAlreadyExistsError",
+            "MenuItemNotFoundError",
+            "ParentMenuItemNotFoundError"
+          ]
+        },
+        {
+          "source": "../presenters/error-presenter.js",
+          "specifiers": [
+            "sendError"
+          ]
+        }
+      ],
+      "exports": [
+        "errorHandler"
+      ],
+      "totalLines": 99,
+      "hasStructuralAnalysis": true
+    },
+    "src/http/middlewares/http-logger.ts": {
+      "filePath": "src/http/middlewares/http-logger.ts",
+      "contentHash": "e9ddd551a595da28e4db464022b16bbba01145482f0133f70d70fc0fab7ef311",
+      "functions": [
+        {
+          "name": "createHttpLogger",
+          "params": [
+            "logger"
+          ],
+          "returnType": "Handler",
+          "exported": true,
+          "lineCount": 34
+        },
+        {
+          "name": "httpLoggerMiddleware",
+          "params": [
+            "logger"
+          ],
+          "returnType": "Handler",
+          "exported": true,
+          "lineCount": 3
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "node:http",
+          "specifiers": [
+            "IncomingMessage",
+            "ServerResponse"
+          ]
+        },
+        {
+          "source": "express",
+          "specifiers": [
+            "Handler"
+          ]
+        },
+        {
+          "source": "pino",
+          "specifiers": [
+            "Logger"
+          ]
+        },
+        {
+          "source": "pino-http",
+          "specifiers": [
+            "pinoHttp"
+          ]
+        }
+      ],
+      "exports": [
+        "createHttpLogger",
+        "httpLoggerMiddleware"
+      ],
+      "totalLines": 66,
+      "hasStructuralAnalysis": true
+    },
+    "src/http/middlewares/json-body-guards.ts": {
+      "filePath": "src/http/middlewares/json-body-guards.ts",
+      "contentHash": "2bd14f396cc705d3d3e3a820a186f9980d2f4cc71fb311a1718c39c5fb6db2a2",
+      "functions": [
+        {
+          "name": "requireJsonContentType",
+          "params": [
+            "req",
+            "res",
+            "next"
+          ],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 21
+        },
+        {
+          "name": "mapBodyParserErrors",
+          "params": [
+            "error",
+            "_req",
+            "res",
+            "next"
+          ],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 26
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "express",
+          "specifiers": [
+            "NextFunction",
+            "Request",
+            "Response"
+          ]
+        },
+        {
+          "source": "../presenters/error-presenter.js",
+          "specifiers": [
+            "sendError"
+          ]
+        }
+      ],
+      "exports": [
+        "requireJsonContentType",
+        "mapBodyParserErrors"
+      ],
+      "totalLines": 79,
+      "hasStructuralAnalysis": true
+    },
+    "src/http/middlewares/not-found.ts": {
+      "filePath": "src/http/middlewares/not-found.ts",
+      "contentHash": "01b8ba703253cb398c4056ffd97eae4990159e9823f55d1588a04dadabcece95",
+      "functions": [
+        {
+          "name": "notFoundMiddleware",
+          "params": [
+            "_req",
+            "res"
+          ],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 3
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "express",
+          "specifiers": [
+            "Request",
+            "Response"
+          ]
+        },
+        {
+          "source": "../presenters/error-presenter.js",
+          "specifiers": [
+            "sendError"
+          ]
+        }
+      ],
+      "exports": [
+        "notFoundMiddleware"
+      ],
+      "totalLines": 18,
+      "hasStructuralAnalysis": true
+    },
+    "src/http/middlewares/request-id.ts": {
+      "filePath": "src/http/middlewares/request-id.ts",
+      "contentHash": "30e7a59f8a27d9d5cb72ce41b54c0237cd7c564c3fe9d04732dd3167b814446d",
+      "functions": [
+        {
+          "name": "requestIdMiddleware",
+          "params": [
+            "req",
+            "res",
+            "next"
+          ],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 14
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "express",
+          "specifiers": [
+            "NextFunction",
+            "Request",
+            "Response"
+          ]
+        },
+        {
+          "source": "node:crypto",
+          "specifiers": [
+            "randomUUID"
+          ]
+        }
+      ],
+      "exports": [
+        "requestIdMiddleware"
+      ],
+      "totalLines": 32,
+      "hasStructuralAnalysis": true
+    },
+    "src/http/middlewares/validate-body.ts": {
+      "filePath": "src/http/middlewares/validate-body.ts",
+      "contentHash": "efbbdb6e353fde74222314aa213d30a4332219633f9a983adc6b885f07aa2ee0",
+      "functions": [
+        {
+          "name": "validateBody",
+          "params": [
+            "schema"
+          ],
+          "exported": true,
+          "lineCount": 11
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "express",
+          "specifiers": [
+            "NextFunction",
+            "Request",
+            "Response"
+          ]
+        },
+        {
+          "source": "zod",
+          "specifiers": [
+            "ZodType"
+          ]
+        },
+        {
+          "source": "../presenters/error-presenter.js",
+          "specifiers": [
+            "sendError"
+          ]
+        }
+      ],
+      "exports": [
+        "validateBody"
+      ],
+      "totalLines": 31,
+      "hasStructuralAnalysis": true
+    },
+    "src/http/presenters/error-presenter.ts": {
+      "filePath": "src/http/presenters/error-presenter.ts",
+      "contentHash": "8fdad494109ed466ff30e7a66a158fedd42cc541778b1fee34dc0d5b68676743",
+      "functions": [
+        {
+          "name": "buildErrorBody",
+          "params": [
+            "code",
+            "message",
+            "requestId"
+          ],
+          "returnType": "PublicErrorBody",
+          "exported": true,
+          "lineCount": 13
+        },
+        {
+          "name": "sendError",
+          "params": [
+            "res",
+            "status",
+            "code",
+            "message",
+            "requestId"
+          ],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 14
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "node:crypto",
+          "specifiers": [
+            "randomUUID"
+          ]
+        },
+        {
+          "source": "express",
+          "specifiers": [
+            "Response"
+          ]
+        }
+      ],
+      "exports": [
+        "buildErrorBody",
+        "sendError"
+      ],
+      "totalLines": 68,
+      "hasStructuralAnalysis": true
+    },
+    "src/http/routes/menu-routes.ts": {
+      "filePath": "src/http/routes/menu-routes.ts",
+      "contentHash": "b97d2f1bfba3776d4342bbeb3a8ca0aa94194ffdefb64a6da7104d1fb095e1fa",
+      "functions": [
+        {
+          "name": "createMenuRouter",
+          "params": [
+            "deps"
+          ],
+          "returnType": "Router",
+          "exported": true,
+          "lineCount": 32
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "express",
+          "specifiers": [
+            "Router"
+          ]
+        },
+        {
+          "source": "../../application/use-cases/create-menu-item.js",
+          "specifiers": [
+            "CreateMenuItem"
+          ]
+        },
+        {
+          "source": "../../application/use-cases/delete-menu-subtree.js",
+          "specifiers": [
+            "DeleteMenuSubtree"
+          ]
+        },
+        {
+          "source": "../../application/use-cases/get-menu-tree.js",
+          "specifiers": [
+            "GetMenuTree"
+          ]
+        },
+        {
+          "source": "../controllers/menu-controller.js",
+          "specifiers": [
+            "MenuController"
+          ]
+        },
+        {
+          "source": "../middlewares/validate-body.js",
+          "specifiers": [
+            "validateBody"
+          ]
+        },
+        {
+          "source": "../schemas/create-menu-item.schema.js",
+          "specifiers": [
+            "createMenuItemBodySchema"
+          ]
+        }
+      ],
+      "exports": [
+        "createMenuRouter"
+      ],
+      "totalLines": 63,
+      "hasStructuralAnalysis": true
+    },
+    "src/http/schemas/create-menu-item.schema.ts": {
+      "filePath": "src/http/schemas/create-menu-item.schema.ts",
+      "contentHash": "247645a43eee89150b32f102d30be610e968364e82dc84965b81b8bde9147f3f",
+      "functions": [],
+      "classes": [],
+      "imports": [
+        {
+          "source": "zod",
+          "specifiers": [
+            "z"
+          ]
+        }
+      ],
+      "exports": [
+        "createMenuItemBodySchema"
+      ],
+      "totalLines": 31,
+      "hasStructuralAnalysis": true
+    },
+    "src/http/schemas/menu-item-id.param.ts": {
+      "filePath": "src/http/schemas/menu-item-id.param.ts",
+      "contentHash": "5a292c9e111cac63b7e9b746ef8ba88b920c284943e7a5e031c37d9a81bb8168",
+      "functions": [
+        {
+          "name": "parseMenuItemIdParam",
+          "params": [
+            "raw"
+          ],
+          "returnType": "number | null",
+          "exported": true,
+          "lineCount": 10
+        }
+      ],
+      "classes": [],
+      "imports": [],
+      "exports": [
+        "parseMenuItemIdParam"
+      ],
+      "totalLines": 25,
+      "hasStructuralAnalysis": true
+    },
+    "src/infrastructure/config/env.ts": {
+      "filePath": "src/infrastructure/config/env.ts",
+      "contentHash": "1511ca3b0dcb0ca9eafa64701c92e8f4b4c0b96ff4db30a75d2e1a1f09fa0603",
+      "functions": [
+        {
+          "name": "loadEnv",
+          "params": [
+            "source"
+          ],
+          "returnType": "Env",
+          "exported": true,
+          "lineCount": 10
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "zod",
+          "specifiers": [
+            "z"
+          ]
+        }
+      ],
+      "exports": [
+        "envSchema",
+        "loadEnv"
+      ],
+      "totalLines": 46,
+      "hasStructuralAnalysis": true
+    },
+    "src/infrastructure/database/mongo-id-generator.ts": {
+      "filePath": "src/infrastructure/database/mongo-id-generator.ts",
+      "contentHash": "068b3691104319e2108488c5b201ef6f6bc84623a514e751b46bc498cece1cf9",
+      "functions": [],
+      "classes": [
+        {
+          "name": "MongoIdGenerator",
+          "methods": [
+            "constructor",
+            "next"
+          ],
+          "properties": [],
+          "exported": true,
+          "lineCount": 33
+        }
+      ],
+      "imports": [
+        {
+          "source": "pino",
+          "specifiers": [
+            "Logger"
+          ]
+        },
+        {
+          "source": "../../application/ports/id-generator.js",
+          "specifiers": [
+            "MenuItemIdGenerator"
+          ]
+        },
+        {
+          "source": "../../domain/menu/menu-errors.js",
+          "specifiers": [
+            "InvalidMenuItemIdError"
+          ]
+        },
+        {
+          "source": "./mongoose/counter-model.js",
+          "specifiers": [
+            "CounterModel"
+          ]
+        }
+      ],
+      "exports": [
+        "MongoIdGenerator"
+      ],
+      "totalLines": 51,
+      "hasStructuralAnalysis": true
+    },
+    "src/infrastructure/database/mongoose/counter-model.ts": {
+      "filePath": "src/infrastructure/database/mongoose/counter-model.ts",
+      "contentHash": "59d38c70427afa4afaf8fd33bb7b7eb74416794b17fc1d9cc53774d0d15cdad9",
+      "functions": [],
+      "classes": [],
+      "imports": [
+        {
+          "source": "mongoose",
+          "specifiers": [
+            "Schema",
+            "model"
+          ]
+        }
+      ],
+      "exports": [
+        "CounterModel"
+      ],
+      "totalLines": 21,
+      "hasStructuralAnalysis": true
+    },
+    "src/infrastructure/database/mongoose/ensure-menu-indexes.ts": {
+      "filePath": "src/infrastructure/database/mongoose/ensure-menu-indexes.ts",
+      "contentHash": "765a87129eb8c252a9418168302819bf6ad24671ea107b123c8b6be2895c6fbd",
+      "functions": [
+        {
+          "name": "ensureMenuIndexes",
+          "params": [],
+          "returnType": "Promise<void>",
+          "exported": true,
+          "lineCount": 3
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "./menu-item-model.js",
+          "specifiers": [
+            "MenuItemModel"
+          ]
+        }
+      ],
+      "exports": [
+        "ensureMenuIndexes"
+      ],
+      "totalLines": 17,
+      "hasStructuralAnalysis": true
+    },
+    "src/infrastructure/database/mongoose/menu-item-model.ts": {
+      "filePath": "src/infrastructure/database/mongoose/menu-item-model.ts",
+      "contentHash": "d87ca67e775e0725dd94ac0e1d7d979362c4373d9578f3e0189339b104a399f9",
+      "functions": [],
+      "classes": [],
+      "imports": [
+        {
+          "source": "mongoose",
+          "specifiers": [
+            "Schema",
+            "model",
+            "InferSchemaType"
+          ]
+        }
+      ],
+      "exports": [
+        "menuItemSchema",
+        "MenuItemModel"
+      ],
+      "totalLines": 31,
+      "hasStructuralAnalysis": true
+    },
+    "src/infrastructure/database/mongoose/mongoose-menu-repository.ts": {
+      "filePath": "src/infrastructure/database/mongoose/mongoose-menu-repository.ts",
+      "contentHash": "c89f0f022dddb55481cf45e9cecdad5e47eeb9921f6c7075e3510a7f0260849e",
+      "functions": [
+        {
+          "name": "toDomain",
+          "params": [
+            "doc"
+          ],
+          "returnType": "MenuItem",
+          "exported": false,
+          "lineCount": 14
+        },
+        {
+          "name": "isDuplicateKeyError",
+          "params": [
+            "error"
+          ],
+          "returnType": "boolean",
+          "exported": false,
+          "lineCount": 8
+        }
+      ],
+      "classes": [
+        {
+          "name": "MongooseMenuRepository",
+          "methods": [
+            "findById",
+            "create",
+            "findAllOrderedById",
+            "deleteSubtree"
+          ],
+          "properties": [],
+          "exported": true,
+          "lineCount": 55
+        }
+      ],
+      "imports": [
+        {
+          "source": "../../../application/ports/menu-repository.js",
+          "specifiers": [
+            "DeleteSubtreeResult",
+            "MenuRepository",
+            "NewMenuItem"
+          ]
+        },
+        {
+          "source": "../../../domain/menu/menu-errors.js",
+          "specifiers": [
+            "MenuItemNameAlreadyExistsError"
+          ]
+        },
+        {
+          "source": "../../../domain/menu/menu-item.js",
+          "specifiers": [
+            "MenuItem"
+          ]
+        },
+        {
+          "source": "./menu-item-model.js",
+          "specifiers": [
+            "MenuItemModel"
+          ]
+        }
+      ],
+      "exports": [
+        "MongooseMenuRepository"
+      ],
+      "totalLines": 110,
+      "hasStructuralAnalysis": true
+    },
+    "src/infrastructure/logging/logger.ts": {
+      "filePath": "src/infrastructure/logging/logger.ts",
+      "contentHash": "c9ceef6a3f40a4d5d7e5633fcc3b59bab8eb1279fcc495d20413f36b7ba04bde",
+      "functions": [
+        {
+          "name": "createLogger",
+          "params": [
+            "level"
+          ],
+          "returnType": "Logger",
+          "exported": true,
+          "lineCount": 17
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "pino",
+          "specifiers": [
+            "pino",
+            "Logger"
+          ]
+        }
+      ],
+      "exports": [
+        "createLogger"
+      ],
+      "totalLines": 32,
+      "hasStructuralAnalysis": true
+    },
+    "src/main/create-app.ts": {
+      "filePath": "src/main/create-app.ts",
+      "contentHash": "2d616e74fefc34f79e353c701c490f54b5abcf3f68203e0dfed9f1312d2d9f82",
+      "functions": [
+        {
+          "name": "createApp",
+          "params": [
+            "options"
+          ],
+          "returnType": "Express",
+          "exported": true,
+          "lineCount": 55
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "node:fs",
+          "specifiers": [
+            "readFileSync"
+          ]
+        },
+        {
+          "source": "node:path",
+          "specifiers": [
+            "dirname",
+            "join"
+          ]
+        },
+        {
+          "source": "node:url",
+          "specifiers": [
+            "fileURLToPath"
+          ]
+        },
+        {
+          "source": "express",
+          "specifiers": [
+            "express",
+            "Express"
+          ]
+        },
+        {
+          "source": "helmet",
+          "specifiers": [
+            "helmet"
+          ]
+        },
+        {
+          "source": "pino",
+          "specifiers": [
+            "Logger"
+          ]
+        },
+        {
+          "source": "swagger-ui-express",
+          "specifiers": [
+            "swaggerUi"
+          ]
+        },
+        {
+          "source": "yaml",
+          "specifiers": [
+            "YAML"
+          ]
+        },
+        {
+          "source": "../application/use-cases/create-menu-item.js",
+          "specifiers": [
+            "CreateMenuItem"
+          ]
+        },
+        {
+          "source": "../application/use-cases/delete-menu-subtree.js",
+          "specifiers": [
+            "DeleteMenuSubtree"
+          ]
+        },
+        {
+          "source": "../application/use-cases/get-menu-tree.js",
+          "specifiers": [
+            "GetMenuTree"
+          ]
+        },
+        {
+          "source": "../http/middlewares/error-handler.js",
+          "specifiers": [
+            "errorHandler"
+          ]
+        },
+        {
+          "source": "../http/middlewares/http-logger.js",
+          "specifiers": [
+            "httpLoggerMiddleware"
+          ]
+        },
+        {
+          "source": "../http/middlewares/json-body-guards.js",
+          "specifiers": [
+            "mapBodyParserErrors",
+            "requireJsonContentType"
+          ]
+        },
+        {
+          "source": "../http/middlewares/not-found.js",
+          "specifiers": [
+            "notFoundMiddleware"
+          ]
+        },
+        {
+          "source": "../http/middlewares/request-id.js",
+          "specifiers": [
+            "requestIdMiddleware"
+          ]
+        },
+        {
+          "source": "../http/routes/menu-routes.js",
+          "specifiers": [
+            "createMenuRouter"
+          ]
+        },
+        {
+          "source": "../infrastructure/logging/logger.js",
+          "specifiers": [
+            "createLogger"
+          ]
+        }
+      ],
+      "exports": [
+        "createApp"
+      ],
+      "totalLines": 113,
+      "hasStructuralAnalysis": true
+    },
+    "src/main/server.ts": {
+      "filePath": "src/main/server.ts",
+      "contentHash": "88181c29b66049f6b28683e5ff64597c767589a2de844b5a15bcd85abd0d5b67",
+      "functions": [
+        {
+          "name": "bootstrap",
+          "params": [],
+          "returnType": "Promise<BootstrapResult>",
+          "exported": true,
+          "lineCount": 29
+        },
+        {
+          "name": "gracefulShutdown",
+          "params": [
+            "server"
+          ],
+          "returnType": "Promise<void>",
+          "exported": true,
+          "lineCount": 6
+        },
+        {
+          "name": "startServer",
+          "params": [],
+          "returnType": "Promise<void>",
+          "exported": true,
+          "lineCount": 16
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "node:http",
+          "specifiers": [
+            "Server"
+          ]
+        },
+        {
+          "source": "mongoose",
+          "specifiers": [
+            "mongoose"
+          ]
+        },
+        {
+          "source": "pino",
+          "specifiers": [
+            "Logger"
+          ]
+        },
+        {
+          "source": "../application/use-cases/create-menu-item.js",
+          "specifiers": [
+            "CreateMenuItem"
+          ]
+        },
+        {
+          "source": "../application/use-cases/delete-menu-subtree.js",
+          "specifiers": [
+            "DeleteMenuSubtree"
+          ]
+        },
+        {
+          "source": "../application/use-cases/get-menu-tree.js",
+          "specifiers": [
+            "GetMenuTree"
+          ]
+        },
+        {
+          "source": "../infrastructure/config/env.js",
+          "specifiers": [
+            "loadEnv",
+            "Env"
+          ]
+        },
+        {
+          "source": "../infrastructure/database/mongo-id-generator.js",
+          "specifiers": [
+            "MongoIdGenerator"
+          ]
+        },
+        {
+          "source": "../infrastructure/database/mongoose/ensure-menu-indexes.js",
+          "specifiers": [
+            "ensureMenuIndexes"
+          ]
+        },
+        {
+          "source": "../infrastructure/database/mongoose/mongoose-menu-repository.js",
+          "specifiers": [
+            "MongooseMenuRepository"
+          ]
+        },
+        {
+          "source": "../infrastructure/logging/logger.js",
+          "specifiers": [
+            "createLogger"
+          ]
+        },
+        {
+          "source": "./create-app.js",
+          "specifiers": [
+            "createApp"
+          ]
+        }
+      ],
+      "exports": [
+        "bootstrap",
+        "gracefulShutdown",
+        "startServer"
+      ],
+      "totalLines": 117,
+      "hasStructuralAnalysis": true
+    },
+    "src/shared/tree/build-menu-tree.ts": {
+      "filePath": "src/shared/tree/build-menu-tree.ts",
+      "contentHash": "0117eaca295e695e2dba84cf2492b48cbb920a0e85a1c3b9c10ea8933aa0d4cd",
+      "functions": [
+        {
+          "name": "buildMenuTree",
+          "params": [
+            "items"
+          ],
+          "returnType": "PublicMenuNode[]",
+          "exported": true,
+          "lineCount": 30
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "../../domain/menu/menu-errors.js",
+          "specifiers": [
+            "DataIntegrityError"
+          ]
+        }
+      ],
+      "exports": [
+        "buildMenuTree"
+      ],
+      "totalLines": 78,
+      "hasStructuralAnalysis": true
+    },
+    "tests/architecture/architecture.test.ts": {
+      "filePath": "tests/architecture/architecture.test.ts",
+      "contentHash": "01ddb023621527b05da6beb24dbc7a79455036f2e0a1a353d320d2c417432f0b",
+      "functions": [
+        {
+          "name": "collectTsFiles",
+          "params": [
+            "dir"
+          ],
+          "returnType": "string[]",
+          "exported": false,
+          "lineCount": 13
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "node:fs",
+          "specifiers": [
+            "readFileSync",
+            "readdirSync"
+          ]
+        },
+        {
+          "source": "node:path",
+          "specifiers": [
+            "dirname",
+            "join"
+          ]
+        },
+        {
+          "source": "node:url",
+          "specifiers": [
+            "fileURLToPath"
+          ]
+        },
+        {
+          "source": "vitest",
+          "specifiers": [
+            "describe",
+            "expect",
+            "it"
+          ]
+        },
+        {
+          "source": "yaml",
+          "specifiers": [
+            "YAML"
+          ]
+        }
+      ],
+      "exports": [],
+      "totalLines": 104,
+      "hasStructuralAnalysis": true
+    },
+    "tests/contract/openapi.test.ts": {
+      "filePath": "tests/contract/openapi.test.ts",
+      "contentHash": "774c0723ff578ffb31d411c4618f2b89e1484ae808c446a48cf9505fcceae5dc",
+      "functions": [],
+      "classes": [],
+      "imports": [
+        {
+          "source": "node:fs",
+          "specifiers": [
+            "readFileSync"
+          ]
+        },
+        {
+          "source": "node:path",
+          "specifiers": [
+            "dirname",
+            "join"
+          ]
+        },
+        {
+          "source": "node:url",
+          "specifiers": [
+            "fileURLToPath"
+          ]
+        },
+        {
+          "source": "vitest",
+          "specifiers": [
+            "describe",
+            "expect",
+            "it"
+          ]
+        },
+        {
+          "source": "yaml",
+          "specifiers": [
+            "YAML"
+          ]
+        }
+      ],
+      "exports": [],
+      "totalLines": 69,
+      "hasStructuralAnalysis": true
+    },
+    "tests/fakes/in-memory-menu.ts": {
+      "filePath": "tests/fakes/in-memory-menu.ts",
+      "contentHash": "bf1ec24610f2591c9c6b257ca829f7390cfdb991b2a7ad19f19cd8d8fd78edea",
+      "functions": [],
+      "classes": [
+        {
+          "name": "InMemoryMenuRepository",
+          "methods": [
+            "seed",
+            "findById",
+            "create",
+            "findAllOrderedById",
+            "deleteSubtree"
+          ],
+          "properties": [
+            "items"
+          ],
+          "exported": true,
+          "lineCount": 45
+        },
+        {
+          "name": "InMemoryMenuItemIdGenerator",
+          "methods": [
+            "constructor",
+            "next"
+          ],
+          "properties": [
+            "current",
+            "nextCalls"
+          ],
+          "exported": true,
+          "lineCount": 14
+        }
+      ],
+      "imports": [
+        {
+          "source": "../../src/application/ports/id-generator.js",
+          "specifiers": [
+            "MenuItemIdGenerator"
+          ]
+        },
+        {
+          "source": "../../src/application/ports/menu-repository.js",
+          "specifiers": [
+            "DeleteSubtreeResult",
+            "MenuRepository",
+            "NewMenuItem"
+          ]
+        },
+        {
+          "source": "../../src/domain/menu/menu-errors.js",
+          "specifiers": [
+            "MenuItemNameAlreadyExistsError"
+          ]
+        },
+        {
+          "source": "../../src/domain/menu/menu-item.js",
+          "specifiers": [
+            "MenuItem"
+          ]
+        }
+      ],
+      "exports": [
+        "InMemoryMenuRepository",
+        "InMemoryMenuItemIdGenerator"
+      ],
+      "totalLines": 70,
+      "hasStructuralAnalysis": true
+    },
+    "tests/integration/concurrency.test.ts": {
+      "filePath": "tests/integration/concurrency.test.ts",
+      "contentHash": "945b8767ae6a9f2dd77f24bf1e9f50ff8a2e8b9d75b214c082786e891a45f39f",
+      "functions": [],
+      "classes": [],
+      "imports": [
+        {
+          "source": "vitest",
+          "specifiers": [
+            "afterAll",
+            "beforeAll",
+            "beforeEach",
+            "describe",
+            "expect",
+            "it",
+            "vi"
+          ]
+        },
+        {
+          "source": "supertest",
+          "specifiers": [
+            "request"
+          ]
+        },
+        {
+          "source": "../../src/application/use-cases/create-menu-item.js",
+          "specifiers": [
+            "CreateMenuItem"
+          ]
+        },
+        {
+          "source": "../../src/application/use-cases/delete-menu-subtree.js",
+          "specifiers": [
+            "DeleteMenuSubtree"
+          ]
+        },
+        {
+          "source": "../../src/application/use-cases/get-menu-tree.js",
+          "specifiers": [
+            "GetMenuTree"
+          ]
+        },
+        {
+          "source": "../../src/infrastructure/database/mongo-id-generator.js",
+          "specifiers": [
+            "MongoIdGenerator"
+          ]
+        },
+        {
+          "source": "../../src/infrastructure/database/mongoose/counter-model.js",
+          "specifiers": [
+            "CounterModel"
+          ]
+        },
+        {
+          "source": "../../src/infrastructure/database/mongoose/ensure-menu-indexes.js",
+          "specifiers": [
+            "ensureMenuIndexes"
+          ]
+        },
+        {
+          "source": "../../src/infrastructure/database/mongoose/menu-item-model.js",
+          "specifiers": [
+            "MenuItemModel"
+          ]
+        },
+        {
+          "source": "../../src/infrastructure/database/mongoose/mongoose-menu-repository.js",
+          "specifiers": [
+            "MongooseMenuRepository"
+          ]
+        },
+        {
+          "source": "../../src/infrastructure/logging/logger.js",
+          "specifiers": [
+            "createLogger"
+          ]
+        },
+        {
+          "source": "../../src/main/create-app.js",
+          "specifiers": [
+            "createApp"
+          ]
+        },
+        {
+          "source": "../integration/mongo-test-context.js",
+          "specifiers": [
+            "resetMongoCollections",
+            "startMongoTestContext",
+            "stopMongoTestContext"
+          ]
+        }
+      ],
+      "exports": [],
+      "totalLines": 102,
+      "hasStructuralAnalysis": true
+    },
+    "tests/integration/http-create-menu.test.ts": {
+      "filePath": "tests/integration/http-create-menu.test.ts",
+      "contentHash": "a5886d481b402b697d6643d314755768b9f95fefddc7549f7a48f7c8446fc6b5",
+      "functions": [
+        {
+          "name": "errorBody",
+          "params": [
+            "value"
+          ],
+          "returnType": "ErrorBody['error']",
+          "exported": false,
+          "lineCount": 3
+        },
+        {
+          "name": "createdBody",
+          "params": [
+            "value"
+          ],
+          "returnType": "CreatedBody",
+          "exported": false,
+          "lineCount": 3
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "vitest",
+          "specifiers": [
+            "afterAll",
+            "beforeAll",
+            "beforeEach",
+            "describe",
+            "expect",
+            "it",
+            "vi"
+          ]
+        },
+        {
+          "source": "supertest",
+          "specifiers": [
+            "request"
+          ]
+        },
+        {
+          "source": "../../src/application/use-cases/create-menu-item.js",
+          "specifiers": [
+            "CreateMenuItem"
+          ]
+        },
+        {
+          "source": "../../src/infrastructure/database/mongo-id-generator.js",
+          "specifiers": [
+            "MongoIdGenerator"
+          ]
+        },
+        {
+          "source": "../../src/infrastructure/database/mongoose/counter-model.js",
+          "specifiers": [
+            "CounterModel"
+          ]
+        },
+        {
+          "source": "../../src/infrastructure/database/mongoose/ensure-menu-indexes.js",
+          "specifiers": [
+            "ensureMenuIndexes"
+          ]
+        },
+        {
+          "source": "../../src/infrastructure/database/mongoose/menu-item-model.js",
+          "specifiers": [
+            "MenuItemModel"
+          ]
+        },
+        {
+          "source": "../../src/infrastructure/database/mongoose/mongoose-menu-repository.js",
+          "specifiers": [
+            "MongooseMenuRepository"
+          ]
+        },
+        {
+          "source": "../../src/main/create-app.js",
+          "specifiers": [
+            "createApp"
+          ]
+        },
+        {
+          "source": "./mongo-test-context.js",
+          "specifiers": [
+            "resetMongoCollections",
+            "startMongoTestContext",
+            "stopMongoTestContext"
+          ]
+        }
+      ],
+      "exports": [],
+      "totalLines": 287,
+      "hasStructuralAnalysis": true
+    },
+    "tests/integration/http-errors-observability.test.ts": {
+      "filePath": "tests/integration/http-errors-observability.test.ts",
+      "contentHash": "89edc1c020bf3526eb498bf8ff3079fb1d9872224cde4461b33876b6c41b4b25",
+      "functions": [
+        {
+          "name": "asError",
+          "params": [
+            "body"
+          ],
+          "returnType": "PublicError",
+          "exported": false,
+          "lineCount": 3
+        },
+        {
+          "name": "createLogCapture",
+          "params": [],
+          "exported": false,
+          "lineCount": 15
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "node:stream",
+          "specifiers": [
+            "Writable"
+          ]
+        },
+        {
+          "source": "vitest",
+          "specifiers": [
+            "afterAll",
+            "beforeAll",
+            "beforeEach",
+            "describe",
+            "expect",
+            "it",
+            "vi"
+          ]
+        },
+        {
+          "source": "pino",
+          "specifiers": [
+            "pino"
+          ]
+        },
+        {
+          "source": "supertest",
+          "specifiers": [
+            "request"
+          ]
+        },
+        {
+          "source": "../../src/application/use-cases/create-menu-item.js",
+          "specifiers": [
+            "CreateMenuItem"
+          ]
+        },
+        {
+          "source": "../../src/application/use-cases/delete-menu-subtree.js",
+          "specifiers": [
+            "DeleteMenuSubtree"
+          ]
+        },
+        {
+          "source": "../../src/application/use-cases/get-menu-tree.js",
+          "specifiers": [
+            "GetMenuTree"
+          ]
+        },
+        {
+          "source": "../../src/infrastructure/database/mongo-id-generator.js",
+          "specifiers": [
+            "MongoIdGenerator"
+          ]
+        },
+        {
+          "source": "../../src/infrastructure/database/mongoose/ensure-menu-indexes.js",
+          "specifiers": [
+            "ensureMenuIndexes"
+          ]
+        },
+        {
+          "source": "../../src/infrastructure/database/mongoose/mongoose-menu-repository.js",
+          "specifiers": [
+            "MongooseMenuRepository"
+          ]
+        },
+        {
+          "source": "../../src/main/create-app.js",
+          "specifiers": [
+            "createApp"
+          ]
+        },
+        {
+          "source": "./mongo-test-context.js",
+          "specifiers": [
+            "resetMongoCollections",
+            "startMongoTestContext",
+            "stopMongoTestContext"
+          ]
+        }
+      ],
+      "exports": [],
+      "totalLines": 207,
+      "hasStructuralAnalysis": true
+    },
+    "tests/integration/http-get-delete-menu.test.ts": {
+      "filePath": "tests/integration/http-get-delete-menu.test.ts",
+      "contentHash": "787e3f44f6a6b917ca7e14afa460144f8e355bba9f9fdb428e3f2364af3a3420",
+      "functions": [
+        {
+          "name": "errorBody",
+          "params": [
+            "value"
+          ],
+          "returnType": "ErrorBody['error']",
+          "exported": false,
+          "lineCount": 3
+        },
+        {
+          "name": "createdBody",
+          "params": [
+            "value"
+          ],
+          "returnType": "CreatedBody",
+          "exported": false,
+          "lineCount": 3
+        },
+        {
+          "name": "buildApp",
+          "params": [],
+          "exported": false,
+          "lineCount": 9
+        },
+        {
+          "name": "createItem",
+          "params": [
+            "app",
+            "name",
+            "relatedId"
+          ],
+          "returnType": "Promise<string>",
+          "exported": false,
+          "lineCount": 11
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "vitest",
+          "specifiers": [
+            "afterAll",
+            "beforeAll",
+            "beforeEach",
+            "describe",
+            "expect",
+            "it"
+          ]
+        },
+        {
+          "source": "supertest",
+          "specifiers": [
+            "request"
+          ]
+        },
+        {
+          "source": "../../src/application/use-cases/create-menu-item.js",
+          "specifiers": [
+            "CreateMenuItem"
+          ]
+        },
+        {
+          "source": "../../src/application/use-cases/delete-menu-subtree.js",
+          "specifiers": [
+            "DeleteMenuSubtree"
+          ]
+        },
+        {
+          "source": "../../src/application/use-cases/get-menu-tree.js",
+          "specifiers": [
+            "GetMenuTree"
+          ]
+        },
+        {
+          "source": "../../src/infrastructure/database/mongo-id-generator.js",
+          "specifiers": [
+            "MongoIdGenerator"
+          ]
+        },
+        {
+          "source": "../../src/infrastructure/database/mongoose/ensure-menu-indexes.js",
+          "specifiers": [
+            "ensureMenuIndexes"
+          ]
+        },
+        {
+          "source": "../../src/infrastructure/database/mongoose/menu-item-model.js",
+          "specifiers": [
+            "MenuItemModel"
+          ]
+        },
+        {
+          "source": "../../src/infrastructure/database/mongoose/mongoose-menu-repository.js",
+          "specifiers": [
+            "MongooseMenuRepository"
+          ]
+        },
+        {
+          "source": "../../src/main/create-app.js",
+          "specifiers": [
+            "createApp"
+          ]
+        },
+        {
+          "source": "./mongo-test-context.js",
+          "specifiers": [
+            "resetMongoCollections",
+            "startMongoTestContext",
+            "stopMongoTestContext"
+          ]
+        }
+      ],
+      "exports": [],
+      "totalLines": 205,
+      "hasStructuralAnalysis": true
+    },
+    "tests/integration/mongo-menu-persistence.test.ts": {
+      "filePath": "tests/integration/mongo-menu-persistence.test.ts",
+      "contentHash": "dc54e071dae0b49d5b0fdf78111772b97e1049f10aa9f7eb61b514e05713487f",
+      "functions": [],
+      "classes": [],
+      "imports": [
+        {
+          "source": "mongoose",
+          "specifiers": [
+            "mongoose"
+          ]
+        },
+        {
+          "source": "vitest",
+          "specifiers": [
+            "afterAll",
+            "beforeAll",
+            "beforeEach",
+            "describe",
+            "expect",
+            "it",
+            "vi"
+          ]
+        },
+        {
+          "source": "../../src/application/use-cases/create-menu-item.js",
+          "specifiers": [
+            "CreateMenuItem"
+          ]
+        },
+        {
+          "source": "../../src/infrastructure/database/mongo-id-generator.js",
+          "specifiers": [
+            "MongoIdGenerator"
+          ]
+        },
+        {
+          "source": "../../src/infrastructure/database/mongoose/ensure-menu-indexes.js",
+          "specifiers": [
+            "ensureMenuIndexes"
+          ]
+        },
+        {
+          "source": "../../src/infrastructure/database/mongoose/menu-item-model.js",
+          "specifiers": [
+            "MenuItemModel"
+          ]
+        },
+        {
+          "source": "../../src/infrastructure/database/mongoose/mongoose-menu-repository.js",
+          "specifiers": [
+            "MongooseMenuRepository"
+          ]
+        },
+        {
+          "source": "./mongo-test-context.js",
+          "specifiers": [
+            "resetMongoCollections",
+            "startMongoTestContext",
+            "stopMongoTestContext"
+          ]
+        }
+      ],
+      "exports": [],
+      "totalLines": 186,
+      "hasStructuralAnalysis": true
+    },
+    "tests/integration/mongo-test-context.ts": {
+      "filePath": "tests/integration/mongo-test-context.ts",
+      "contentHash": "0172e042cc7b534d181e22ac71d306500ec736db9d19b756a2717b57b50a431b",
+      "functions": [
+        {
+          "name": "startMongoTestContext",
+          "params": [],
+          "returnType": "Promise<string>",
+          "exported": true,
+          "lineCount": 14
+        },
+        {
+          "name": "stopMongoTestContext",
+          "params": [],
+          "returnType": "Promise<void>",
+          "exported": true,
+          "lineCount": 11
+        },
+        {
+          "name": "resetMongoCollections",
+          "params": [],
+          "returnType": "Promise<void>",
+          "exported": true,
+          "lineCount": 7
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "testcontainers",
+          "specifiers": [
+            "GenericContainer",
+            "Wait",
+            "StartedTestContainer"
+          ]
+        },
+        {
+          "source": "mongoose",
+          "specifiers": [
+            "mongoose"
+          ]
+        }
+      ],
+      "exports": [
+        "startMongoTestContext",
+        "stopMongoTestContext",
+        "resetMongoCollections"
+      ],
+      "totalLines": 44,
+      "hasStructuralAnalysis": true
+    },
+    "tests/operational/env.test.ts": {
+      "filePath": "tests/operational/env.test.ts",
+      "contentHash": "1e88e7e05c6211d90499b8119a322c4d4b14e6443708ee02e46ee9fdbfeb04e0",
+      "functions": [],
+      "classes": [],
+      "imports": [
+        {
+          "source": "vitest",
+          "specifiers": [
+            "describe",
+            "expect",
+            "it"
+          ]
+        },
+        {
+          "source": "../../src/infrastructure/config/env.js",
+          "specifiers": [
+            "loadEnv"
+          ]
+        }
+      ],
+      "exports": [],
+      "totalLines": 37,
+      "hasStructuralAnalysis": true
+    },
+    "tests/operational/ops-packaging.test.ts": {
+      "filePath": "tests/operational/ops-packaging.test.ts",
+      "contentHash": "e48a7f5ce713d639623fc609816d48544968c84290c3ffd35c56a1a5f3bd1098",
+      "functions": [],
+      "classes": [],
+      "imports": [
+        {
+          "source": "node:fs",
+          "specifiers": [
+            "readFileSync"
+          ]
+        },
+        {
+          "source": "node:path",
+          "specifiers": [
+            "dirname",
+            "join"
+          ]
+        },
+        {
+          "source": "node:url",
+          "specifiers": [
+            "fileURLToPath"
+          ]
+        },
+        {
+          "source": "vitest",
+          "specifiers": [
+            "describe",
+            "expect",
+            "it"
+          ]
+        }
+      ],
+      "exports": [],
+      "totalLines": 25,
+      "hasStructuralAnalysis": true
+    },
+    "tests/operational/server-lifecycle.test.ts": {
+      "filePath": "tests/operational/server-lifecycle.test.ts",
+      "contentHash": "24135dbf5adb71a34a229f3076fca86b019c40b0b46dd36b9d6952047f3a8d90",
+      "functions": [],
+      "classes": [],
+      "imports": [
+        {
+          "source": "vitest",
+          "specifiers": [
+            "afterEach",
+            "describe",
+            "expect",
+            "it",
+            "vi"
+          ]
+        },
+        {
+          "source": "mongoose",
+          "specifiers": [
+            "mongoose"
+          ]
+        },
+        {
+          "source": "../../src/main/server.js",
+          "specifiers": [
+            "bootstrap",
+            "gracefulShutdown"
+          ]
+        }
+      ],
+      "exports": [],
+      "totalLines": 34,
+      "hasStructuralAnalysis": true
+    },
+    "tests/unit/build-menu-tree.test.ts": {
+      "filePath": "tests/unit/build-menu-tree.test.ts",
+      "contentHash": "ed71210129b4ed9908cc252014df8f0a9e59f9eb4f9fb9b816e34c5044529f0e",
+      "functions": [
+        {
+          "name": "collectNodes",
+          "params": [
+            "nodes"
+          ],
+          "returnType": "PublicMenuNode[]",
+          "exported": false,
+          "lineCount": 14
+        },
+        {
+          "name": "publicIdsInOrder",
+          "params": [
+            "nodes"
+          ],
+          "returnType": "string[]",
+          "exported": false,
+          "lineCount": 3
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "node:fs",
+          "specifiers": [
+            "readFileSync"
+          ]
+        },
+        {
+          "source": "node:path",
+          "specifiers": [
+            "dirname",
+            "join"
+          ]
+        },
+        {
+          "source": "node:url",
+          "specifiers": [
+            "fileURLToPath"
+          ]
+        },
+        {
+          "source": "fast-check",
+          "specifiers": [
+            "* as fc"
+          ]
+        },
+        {
+          "source": "vitest",
+          "specifiers": [
+            "describe",
+            "expect",
+            "it"
+          ]
+        },
+        {
+          "source": "../../src/domain/menu/menu-errors.js",
+          "specifiers": [
+            "DataIntegrityError"
+          ]
+        },
+        {
+          "source": "../../src/shared/tree/build-menu-tree.js",
+          "specifiers": [
+            "buildMenuTree",
+            "MenuTreeInputItem",
+            "PublicMenuNode"
+          ]
+        }
+      ],
+      "exports": [],
+      "totalLines": 200,
+      "hasStructuralAnalysis": true
+    },
+    "tests/unit/coverage-fillers.test.ts": {
+      "filePath": "tests/unit/coverage-fillers.test.ts",
+      "contentHash": "81332a66c4aca333be55acf05cbd74ee3fbccdb4b4026ebe32cd71db3bf5fa72",
+      "functions": [
+        {
+          "name": "mockRes",
+          "params": [],
+          "returnType": "{\n  headersSent: boolean;\n  locals: Record<string, unknown>;\n  status: ReturnType<typeof vi.fn>;\n  json: ReturnType<typeof vi.fn>;\n  end: ReturnType<typeof vi.fn>;\n} & Response",
+          "exported": false,
+          "lineCount": 15
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "vitest",
+          "specifiers": [
+            "afterEach",
+            "describe",
+            "expect",
+            "it",
+            "vi"
+          ]
+        },
+        {
+          "source": "express",
+          "specifiers": [
+            "express"
+          ]
+        },
+        {
+          "source": "supertest",
+          "specifiers": [
+            "request"
+          ]
+        },
+        {
+          "source": "express",
+          "specifiers": [
+            "NextFunction",
+            "Request",
+            "Response"
+          ]
+        },
+        {
+          "source": "../../src/domain/menu/menu-errors.js",
+          "specifiers": [
+            "DataIntegrityError",
+            "InvalidMenuItemIdError",
+            "InvalidMenuItemNameError",
+            "MenuItemNameAlreadyExistsError",
+            "MenuItemNotFoundError",
+            "ParentMenuItemNotFoundError"
+          ]
+        },
+        {
+          "source": "../../src/domain/menu/menu-item.js",
+          "specifiers": [
+            "createChildMenuItem",
+            "createRootMenuItem"
+          ]
+        },
+        {
+          "source": "../../src/http/controllers/menu-controller.js",
+          "specifiers": [
+            "MenuController"
+          ]
+        },
+        {
+          "source": "../../src/http/middlewares/error-handler.js",
+          "specifiers": [
+            "errorHandler"
+          ]
+        },
+        {
+          "source": "../../src/http/middlewares/json-body-guards.js",
+          "specifiers": [
+            "mapBodyParserErrors",
+            "requireJsonContentType"
+          ]
+        },
+        {
+          "source": "../../src/http/middlewares/request-id.js",
+          "specifiers": [
+            "requestIdMiddleware"
+          ]
+        },
+        {
+          "source": "../../src/http/presenters/error-presenter.js",
+          "specifiers": [
+            "buildErrorBody",
+            "sendError"
+          ]
+        },
+        {
+          "source": "../../src/main/create-app.js",
+          "specifiers": [
+            "createApp"
+          ]
+        },
+        {
+          "source": "../../src/infrastructure/database/mongoose/mongoose-menu-repository.js",
+          "specifiers": [
+            "MongooseMenuRepository"
+          ]
+        }
+      ],
+      "exports": [],
+      "totalLines": 285,
+      "hasStructuralAnalysis": true
+    },
+    "tests/unit/create-app.test.ts": {
+      "filePath": "tests/unit/create-app.test.ts",
+      "contentHash": "af54f41b694255b152cd104dc66d966156268586b25ab6b777b10c264f609337",
+      "functions": [],
+      "classes": [],
+      "imports": [
+        {
+          "source": "node:net",
+          "specifiers": [
+            "createServer"
+          ]
+        },
+        {
+          "source": "vitest",
+          "specifiers": [
+            "describe",
+            "expect",
+            "it",
+            "vi"
+          ]
+        },
+        {
+          "source": "../../src/main/create-app.js",
+          "specifiers": [
+            "createApp"
+          ]
+        }
+      ],
+      "exports": [],
+      "totalLines": 46,
+      "hasStructuralAnalysis": true
+    },
+    "tests/unit/create-menu-item.schema.test.ts": {
+      "filePath": "tests/unit/create-menu-item.schema.test.ts",
+      "contentHash": "d85a7a2640e813bc0edd15bb5916ac9659b5f819e4db05f4bbf25698fa518e8c",
+      "functions": [],
+      "classes": [],
+      "imports": [
+        {
+          "source": "vitest",
+          "specifiers": [
+            "describe",
+            "expect",
+            "it"
+          ]
+        },
+        {
+          "source": "../../src/http/schemas/create-menu-item.schema.js",
+          "specifiers": [
+            "createMenuItemBodySchema"
+          ]
+        }
+      ],
+      "exports": [],
+      "totalLines": 27,
+      "hasStructuralAnalysis": true
+    },
+    "tests/unit/menu-item.test.ts": {
+      "filePath": "tests/unit/menu-item.test.ts",
+      "contentHash": "851f8d8548710fb2e32f23663ebe208e75b8d8b1df46701acbe0bf3279e9be24",
+      "functions": [
+        {
+          "name": "collectTsFiles",
+          "params": [
+            "dir"
+          ],
+          "returnType": "string[]",
+          "exported": false,
+          "lineCount": 13
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "node:fs",
+          "specifiers": [
+            "readFileSync",
+            "readdirSync"
+          ]
+        },
+        {
+          "source": "node:path",
+          "specifiers": [
+            "dirname",
+            "join"
+          ]
+        },
+        {
+          "source": "node:url",
+          "specifiers": [
+            "fileURLToPath"
+          ]
+        },
+        {
+          "source": "vitest",
+          "specifiers": [
+            "describe",
+            "expect",
+            "it"
+          ]
+        },
+        {
+          "source": "../../src/domain/menu/menu-item.js",
+          "specifiers": [
+            "createChildMenuItem",
+            "createRootMenuItem",
+            "normalizeMenuItemName"
+          ]
+        },
+        {
+          "source": "../../src/domain/menu/menu-errors.js",
+          "specifiers": [
+            "DataIntegrityError",
+            "InvalidMenuItemIdError",
+            "InvalidMenuItemNameError",
+            "MenuItemNameAlreadyExistsError",
+            "MenuItemNotFoundError",
+            "ParentMenuItemNotFoundError"
+          ]
+        }
+      ],
+      "exports": [],
+      "totalLines": 132,
+      "hasStructuralAnalysis": true
+    },
+    "tests/unit/menu-ports.test.ts": {
+      "filePath": "tests/unit/menu-ports.test.ts",
+      "contentHash": "745615d18e4889935061a84f746a1a339a1f1d6ca6274d48882876298da84fe6",
+      "functions": [],
+      "classes": [],
+      "imports": [
+        {
+          "source": "vitest",
+          "specifiers": [
+            "describe",
+            "expect",
+            "it"
+          ]
+        },
+        {
+          "source": "../../src/application/ports/menu-ports.js",
+          "specifiers": [
+            "assertMenuItemIdGenerator",
+            "assertMenuRepository"
+          ]
+        },
+        {
+          "source": "../../src/application/ports/id-generator.js",
+          "specifiers": [
+            "MenuItemIdGenerator"
+          ]
+        },
+        {
+          "source": "../../src/application/ports/menu-repository.js",
+          "specifiers": [
+            "DeleteSubtreeResult",
+            "MenuRepository",
+            "NewMenuItem"
+          ]
+        },
+        {
+          "source": "../../src/domain/menu/menu-item.js",
+          "specifiers": [
+            "MenuItem"
+          ]
+        }
+      ],
+      "exports": [],
+      "totalLines": 45,
+      "hasStructuralAnalysis": true
+    },
+    "tests/unit/menu-use-cases.test.ts": {
+      "filePath": "tests/unit/menu-use-cases.test.ts",
+      "contentHash": "e9c0cede611cca6f114797be58cf2fa11895b49c73d88a75646de98ec00d3b44",
+      "functions": [
+        {
+          "name": "collectTsFiles",
+          "params": [
+            "dir"
+          ],
+          "returnType": "string[]",
+          "exported": false,
+          "lineCount": 5
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "node:fs",
+          "specifiers": [
+            "readFileSync",
+            "readdirSync"
+          ]
+        },
+        {
+          "source": "node:path",
+          "specifiers": [
+            "dirname",
+            "join"
+          ]
+        },
+        {
+          "source": "node:url",
+          "specifiers": [
+            "fileURLToPath"
+          ]
+        },
+        {
+          "source": "vitest",
+          "specifiers": [
+            "describe",
+            "expect",
+            "it"
+          ]
+        },
+        {
+          "source": "../../src/application/use-cases/create-menu-item.js",
+          "specifiers": [
+            "CreateMenuItem"
+          ]
+        },
+        {
+          "source": "../../src/application/use-cases/delete-menu-subtree.js",
+          "specifiers": [
+            "DeleteMenuSubtree"
+          ]
+        },
+        {
+          "source": "../../src/application/use-cases/get-menu-tree.js",
+          "specifiers": [
+            "GetMenuTree"
+          ]
+        },
+        {
+          "source": "../../src/domain/menu/menu-errors.js",
+          "specifiers": [
+            "MenuItemNameAlreadyExistsError",
+            "MenuItemNotFoundError",
+            "ParentMenuItemNotFoundError"
+          ]
+        },
+        {
+          "source": "../fakes/in-memory-menu.js",
+          "specifiers": [
+            "InMemoryMenuItemIdGenerator",
+            "InMemoryMenuRepository"
+          ]
+        }
+      ],
+      "exports": [],
+      "totalLines": 140,
+      "hasStructuralAnalysis": true
+    },
+    "tests/unit/stack-manifest.test.ts": {
+      "filePath": "tests/unit/stack-manifest.test.ts",
+      "contentHash": "7500b5941064b1b30a032f05f697d18479f80483424346e05f1d43f4663b420a",
+      "functions": [],
+      "classes": [],
+      "imports": [
+        {
+          "source": "node:fs",
+          "specifiers": [
+            "readFileSync"
+          ]
+        },
+        {
+          "source": "node:path",
+          "specifiers": [
+            "dirname",
+            "join"
+          ]
+        },
+        {
+          "source": "node:url",
+          "specifiers": [
+            "fileURLToPath"
+          ]
+        },
+        {
+          "source": "vitest",
+          "specifiers": [
+            "describe",
+            "expect",
+            "it"
+          ]
+        }
+      ],
+      "exports": [],
+      "totalLines": 37,
+      "hasStructuralAnalysis": true
+    },
+    "tsconfig.build.json": {
+      "filePath": "tsconfig.build.json",
+      "contentHash": "3942902ec0819ba74fd5f07e35c13d97cea48544024211c5a39fe5f424cccdd6",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 12,
+      "hasStructuralAnalysis": true
+    },
+    "tsconfig.json": {
+      "filePath": "tsconfig.json",
+      "contentHash": "95399a96a1dbb39d76ee159f525e02d834fce2a942fcb22018992392c1e2feee",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 23,
+      "hasStructuralAnalysis": true
+    },
+    "TSDOC_STYLE.md": {
+      "filePath": "TSDOC_STYLE.md",
+      "contentHash": "dc384ce9d177722ddbec90fa57ea7db52bf2d70649ab2aba96920bd0206c4ca6",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 44,
+      "hasStructuralAnalysis": true
+    },
+    "typedoc.json": {
+      "filePath": "typedoc.json",
+      "contentHash": "5796c6e8d67462ae21c9329a528100bea398a4c28ddbd4bc545fed18a0451485",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 15,
+      "hasStructuralAnalysis": true
+    },
+    "typedoc.markdown.json": {
+      "filePath": "typedoc.markdown.json",
+      "contentHash": "28113831d9def552c724626fab8364faee1a82b75f76f2a50b95860a47cf059e",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 15,
+      "hasStructuralAnalysis": true
+    },
+    "vitest.config.ts": {
+      "filePath": "vitest.config.ts",
+      "contentHash": "853f67afd28ac553e517e3aba48310ba91d6cd482e4e0b47320b7bffce7383c4",
+      "functions": [],
+      "classes": [],
+      "imports": [
+        {
+          "source": "vitest/config",
+          "specifiers": [
+            "defineConfig"
+          ]
+        }
+      ],
+      "exports": [],
+      "totalLines": 26,
+      "hasStructuralAnalysis": true
+    }
+  }
+}

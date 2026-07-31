@@ -3,13 +3,21 @@ info:
   title: Menu API
   version: 1.0.0
   description: Corporate menu management API
+  contact:
+    name: Rafael Pereira
+    url: https://github.com/this-rafael
 servers:
   - url: /
+tags:
+  - name: Menu
+    description: Create, retrieve, and delete hierarchical menu items
 paths:
   /api/v1/menu:
     get:
       summary: Get the full menu tree
+      description: Returns every menu item as an ordered hierarchical forest.
       operationId: getMenu
+      tags: [Menu]
       responses:
         '200':
           description: Hierarchical menu forest
@@ -57,7 +65,9 @@ paths:
           $ref: '#/components/responses/DatabaseUnavailable'
     post:
       summary: Create a menu item
+      description: Creates either a root menu item or a child of an existing item.
       operationId: createMenuItem
+      tags: [Menu]
       requestBody:
         required: true
         content:
@@ -98,7 +108,9 @@ paths:
   /api/v1/menu/{id}:
     delete:
       summary: Delete a menu item subtree
+      description: Deletes a menu item and every descendant in its subtree.
       operationId: deleteMenuItem
+      tags: [Menu]
       parameters:
         - name: id
           in: path

@@ -1,3 +1,10 @@
+/**
+ * @packageDocumentation
+ *
+ * Process entry point: loads configuration, connects to MongoDB, wires the use
+ * cases and starts listening. Also exposes the building blocks so tests can
+ * boot the server without opening a port.
+ */
 import type { Server } from 'node:http';
 import mongoose from 'mongoose';
 import type { Logger } from 'pino';
@@ -11,12 +18,22 @@ import { MongooseMenuRepository } from '../infrastructure/database/mongoose/mong
 import { createLogger } from '../infrastructure/logging/logger.js';
 import { createApp } from './create-app.js';
 
+/** Result of `bootstrap`, exposing the wired pieces. */
 export type BootstrapResult = {
+  /** Validated environment configuration. */
   env: Env;
+  /** Listening HTTP server. */
   server: Server;
+  /** Application logger. */
   logger: Logger;
 };
 
+/**
+ * Connects to the database, wires dependencies and starts the HTTP server.
+ *
+ * @returns A `BootstrapResult` once the server is listening.
+ * @throws When MongoDB connection or index synchronization fails.
+ */
 export async function bootstrap(): Promise<BootstrapResult> {
   const env = loadEnv();
   const logger = createLogger(env.LOG_LEVEL);
@@ -47,6 +64,12 @@ export async function bootstrap(): Promise<BootstrapResult> {
   return { env, server, logger };
 }
 
+/**
+ * Stops the HTTP server and closes the MongoDB connection.
+ *
+ * @param server - The `Server{ returned by }bootstrap`.
+ * @returns A promise that resolves once both are closed.
+ */
 export async function gracefulShutdown(server: Server): Promise<void> {
   await new Promise<void>((resolve, reject) => {
     server.close((error) => (error ? reject(error) : resolve()));
@@ -54,6 +77,13 @@ export async function gracefulShutdown(server: Server): Promise<void> {
   await mongoose.disconnect();
 }
 
+/**
+ * Boots the server and registers `SIGINT`/`SIGTERM` handlers for graceful
+ * shutdown. Intended as the process entry point.
+ *
+ * @returns A promise that resolves once the server is listening (it then stays
+ *   alive until a termination signal arrives).
+ */
 export async function startServer(): Promise<void> {
   const { server, logger, env } = await bootstrap();
   logger.info({ port: env.PORT }, 'server listening');
@@ -72,6 +102,7 @@ export async function startServer(): Promise<void> {
 }
 
 const entryPath = process.argv[1]?.replaceAll('\\', '/');
+/** `true` when this module is executed directly (not imported by a test/harness). */
 const isDirectRun =
   entryPath !== undefined &&
   (import.meta.url === `file://${entryPath}` ||

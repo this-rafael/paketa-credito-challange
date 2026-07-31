@@ -1,3 +1,10 @@
+/**
+ * @packageDocumentation
+ *
+ * Terminal Express error-handling middleware. It maps domain errors, database
+ * outages and body-parser failures to the public error envelope. Must be
+ * registered last so it catches errors from every preceding handler.
+ */
 import type { NextFunction, Request, Response } from 'express';
 import {
   DataIntegrityError,
@@ -7,6 +14,12 @@ import {
 } from '../../domain/menu/menu-errors.js';
 import { sendError } from '../presenters/error-presenter.js';
 
+/**
+ * Detects MongoDB connection failures from an unknown error value.
+ *
+ * @param error - Arbitrary error value.
+ * @returns `true` when the error looks like a database outage.
+ */
 function isDatabaseUnavailable(error: unknown): boolean {
   /* v8 ignore next 3 */
   if (!error || typeof error !== 'object') {
@@ -23,6 +36,15 @@ function isDatabaseUnavailable(error: unknown): boolean {
   );
 }
 
+/**
+ * Express error handler. Delegates to `sendError` with the appropriate
+ * status and code for each known failure, and falls back to `500 INTERNAL_ERROR`.
+ *
+ * @param error - Error forwarded by a previous handler (or thrown synchronously).
+ * @param _req - Incoming request (unused).
+ * @param res - Express response.
+ * @param next - Next error handler (used only when headers are already sent).
+ */
 export function errorHandler(
   error: unknown,
   _req: Request,

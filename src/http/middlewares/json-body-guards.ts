@@ -1,6 +1,22 @@
+/**
+ * @packageDocumentation
+ *
+ * Express guards that reject requests whose JSON body is missing, malformed or
+ * too large before they reach the routes.
+ */
 import type { NextFunction, Request, Response } from 'express';
 import { sendError } from '../presenters/error-presenter.js';
 
+/**
+ * Enforces an `application/json` content type for write methods.
+ *
+ * Passes through for safe methods (`GET{ , }HEAD{ , }DELETE{ , …). For }POST`,
+ * `PUT{ and }PATCH{ without a JSON content type it responds }415`.
+ *
+ * @param req - Incoming request.
+ * @param res - Express response.
+ * @param next - Next middleware.
+ */
 export function requireJsonContentType(
   req: Request,
   res: Response,
@@ -23,6 +39,17 @@ export function requireJsonContentType(
   next();
 }
 
+/**
+ * Maps body-parser errors to JSON error responses.
+ *
+ * Catches malformed JSON (`400 INVALID_JSON`) and payloads exceeding the size
+ * limit (`413 PAYLOAD_TOO_LARGE{ ); every other error is forwarded via }next`.
+ *
+ * @param error - Error raised by the JSON body parser.
+ * @param _req - Incoming request (unused).
+ * @param res - Express response.
+ * @param next - Next middleware.
+ */
 export function mapBodyParserErrors(
   error: unknown,
   _req: Request,

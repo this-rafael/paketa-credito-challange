@@ -1,0 +1,14 @@
+{
+  "$schema": "https://typedoc.org/schema.json",
+  "entryPoints": ["src"],
+  "entryPointStrategy": "expand",
+  "out": "docs",
+  "tsconfig": "tsconfig.build.json",
+  "exclude": ["**/*.test.ts", "**/*.spec.ts"],
+  "excludePrivate": false,
+  "excludeProtected": false,
+  "excludeInternal": false,
+  "readme": "none",
+  "favicon": "docs-site/assets/favicon.svg",
+  "sort": ["source-order"]
+}

@@ -1,0 +1,4768 @@
+{
+  "version": "1.0.0",
+  "project": {
+    "name": "menu-api",
+    "languages": [
+      "css",
+      "dockerfile",
+      "html",
+      "javascript",
+      "json",
+      "markdown",
+      "typescript",
+      "unknown",
+      "yaml"
+    ],
+    "frameworks": [
+      "Docker",
+      "Docker Compose",
+      "Express",
+      "GitHub Actions",
+      "Mongoose",
+      "Vitest"
+    ],
+    "description": "API REST hierárquica para gerenciar menus com montagem de árvores em tempo linear, construída com Clean Architecture, Express 5 e MongoDB.",
+    "analyzedAt": "2026-07-31T12:58:40.196Z",
+    "gitCommitHash": "294a7d35a61ba0543a4cce71cad94ebe53341f5f"
+  },
+  "nodes": [
+    {
+      "id": "file:scripts/benchmark-tree.ts",
+      "type": "file",
+      "name": "benchmark-tree.ts",
+      "filePath": "scripts/benchmark-tree.ts",
+      "summary": "Mede o custo de ordenacao e montagem de uma arvore linear de itens de menu, permitindo comparar a sobrecarga do algoritmo com o baseline da consulta.",
+      "tags": [
+        "benchmark",
+        "arvore-de-menu",
+        "performance"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:scripts/benchmark-tree.ts:buildChain",
+      "type": "function",
+      "name": "buildChain",
+      "filePath": "scripts/benchmark-tree.ts",
+      "lineRange": [
+        7,
+        16
+      ],
+      "summary": "Gera uma cadeia sintetica de itens com profundidade configuravel para o benchmark.",
+      "tags": [
+        "benchmark",
+        "fixture",
+        "tree-builder"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:scripts/benchmark-tree.ts:run",
+      "type": "function",
+      "name": "run",
+      "filePath": "scripts/benchmark-tree.ts",
+      "lineRange": [
+        18,
+        38
+      ],
+      "summary": "Executa ordenacao e montagem da arvore, mede cada etapa e imprime metricas em JSON.",
+      "tags": [
+        "benchmark",
+        "performance",
+        "orchestration"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:src/application/ports/id-generator.ts",
+      "type": "file",
+      "name": "id-generator.ts",
+      "filePath": "src/application/ports/id-generator.ts",
+      "summary": "Define o contrato de geracao assíncrona de identificadores numericos usado pelos casos de uso sem acoplamento ao MongoDB.",
+      "tags": [
+        "porta",
+        "type-definition",
+        "id-generator",
+        "tested"
+      ],
+      "complexity": "simple",
+      "languageNotes": "TypeScript estrutural mantem os contratos independentes dos adaptadores concretos."
+    },
+    {
+      "id": "file:src/application/ports/menu-ports.ts",
+      "type": "file",
+      "name": "menu-ports.ts",
+      "filePath": "src/application/ports/menu-ports.ts",
+      "summary": "Centraliza guardas de runtime que verificam as implementacoes injetadas de repositorio de menu e gerador de IDs.",
+      "tags": [
+        "porta",
+        "validation",
+        "dependency-injection",
+        "tested"
+      ],
+      "complexity": "simple",
+      "languageNotes": "TypeScript estrutural mantem os contratos independentes dos adaptadores concretos."
+    },
+    {
+      "id": "function:src/application/ports/menu-ports.ts:assertMenuRepository",
+      "type": "function",
+      "name": "assertMenuRepository",
+      "filePath": "src/application/ports/menu-ports.ts",
+      "lineRange": [
+        16,
+        20
+      ],
+      "summary": "Assegura em runtime que a dependencia oferece todas as operacoes do repositorio de menu.",
+      "tags": [
+        "validation",
+        "repository",
+        "type-guard"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/application/ports/menu-ports.ts:assertMenuItemIdGenerator",
+      "type": "function",
+      "name": "assertMenuItemIdGenerator",
+      "filePath": "src/application/ports/menu-ports.ts",
+      "lineRange": [
+        28,
+        32
+      ],
+      "summary": "Assegura em runtime que a dependencia fornece a operacao assincrona de proximo ID.",
+      "tags": [
+        "validation",
+        "id-generator",
+        "type-guard"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:src/application/ports/menu-repository.ts",
+      "type": "file",
+      "name": "menu-repository.ts",
+      "filePath": "src/application/ports/menu-repository.ts",
+      "summary": "Define o contrato de persistencia do menu, incluindo busca, criacao, listagem ordenada e exclusao de subarvore.",
+      "tags": [
+        "porta",
+        "repository",
+        "type-definition",
+        "tested"
+      ],
+      "complexity": "simple",
+      "languageNotes": "TypeScript estrutural mantem os contratos independentes dos adaptadores concretos."
+    },
+    {
+      "id": "file:src/application/use-cases/create-menu-item.ts",
+      "type": "file",
+      "name": "create-menu-item.ts",
+      "filePath": "src/application/use-cases/create-menu-item.ts",
+      "summary": "Orquestra a criacao de itens raiz ou filhos, validando dependencias, resolvendo o pai e persistindo a entidade com um novo ID.",
+      "tags": [
+        "use-case",
+        "criacao",
+        "dependency-injection",
+        "tested"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:src/application/use-cases/create-menu-item.ts:CreateMenuItem",
+      "type": "class",
+      "name": "CreateMenuItem",
+      "filePath": "src/application/use-cases/create-menu-item.ts",
+      "lineRange": [
+        27,
+        64
+      ],
+      "summary": "Caso de uso que valida dependencias, resolve o pai opcional, gera o ID e persiste um novo item.",
+      "tags": [
+        "use-case",
+        "criacao",
+        "service"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:src/domain/menu/menu-errors.ts",
+      "type": "file",
+      "name": "menu-errors.ts",
+      "filePath": "src/domain/menu/menu-errors.ts",
+      "summary": "Reune os erros de dominio tipados do menu, com codigos estaveis para ausencia, conflito, entrada invalida e integridade de dados.",
+      "tags": [
+        "domain-error",
+        "error-contract",
+        "menu",
+        "tested"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:src/domain/menu/menu-errors.ts:ParentMenuItemNotFoundError",
+      "type": "class",
+      "name": "ParentMenuItemNotFoundError",
+      "filePath": "src/domain/menu/menu-errors.ts",
+      "lineRange": [
+        8,
+        19
+      ],
+      "summary": "Representa a tentativa de criar um filho para um item pai inexistente.",
+      "tags": [
+        "domain-error",
+        "not-found",
+        "parent-menu"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:src/domain/menu/menu-errors.ts:MenuItemNotFoundError",
+      "type": "class",
+      "name": "MenuItemNotFoundError",
+      "filePath": "src/domain/menu/menu-errors.ts",
+      "lineRange": [
+        21,
+        32
+      ],
+      "summary": "Representa a ausencia do item de menu solicitado por identificador.",
+      "tags": [
+        "domain-error",
+        "not-found",
+        "menu"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:src/domain/menu/menu-errors.ts:MenuItemNameAlreadyExistsError",
+      "type": "class",
+      "name": "MenuItemNameAlreadyExistsError",
+      "filePath": "src/domain/menu/menu-errors.ts",
+      "lineRange": [
+        34,
+        45
+      ],
+      "summary": "Representa conflito de unicidade para nome de item de menu.",
+      "tags": [
+        "domain-error",
+        "conflict",
+        "menu"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:src/domain/menu/menu-errors.ts:InvalidMenuItemIdError",
+      "type": "class",
+      "name": "InvalidMenuItemIdError",
+      "filePath": "src/domain/menu/menu-errors.ts",
+      "lineRange": [
+        47,
+        58
+      ],
+      "summary": "Representa um identificador de menu invalido ou numericamente inseguro.",
+      "tags": [
+        "domain-error",
+        "validation",
+        "identifier"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:src/domain/menu/menu-errors.ts:InvalidMenuItemNameError",
+      "type": "class",
+      "name": "InvalidMenuItemNameError",
+      "filePath": "src/domain/menu/menu-errors.ts",
+      "lineRange": [
+        60,
+        71
+      ],
+      "summary": "Representa um nome de menu vazio ou invalido apos normalizacao.",
+      "tags": [
+        "domain-error",
+        "validation",
+        "name"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:src/domain/menu/menu-errors.ts:DataIntegrityError",
+      "type": "class",
+      "name": "DataIntegrityError",
+      "filePath": "src/domain/menu/menu-errors.ts",
+      "lineRange": [
+        73,
+        84
+      ],
+      "summary": "Representa inconsistencias persistidas que impedem reconstruir ou manipular o menu com seguranca.",
+      "tags": [
+        "domain-error",
+        "data-integrity",
+        "persistence"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:src/domain/menu/menu-item.ts",
+      "type": "file",
+      "name": "menu-item.ts",
+      "filePath": "src/domain/menu/menu-item.ts",
+      "summary": "Modela invariantes de itens de menu e fornece fabricas para criar raizes e filhos com nomes normalizados e ancestrais consistentes.",
+      "tags": [
+        "domain-model",
+        "factory",
+        "validation",
+        "tested"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/domain/menu/menu-item.ts:normalizeMenuItemName",
+      "type": "function",
+      "name": "normalizeMenuItemName",
+      "filePath": "src/domain/menu/menu-item.ts",
+      "lineRange": [
+        34,
+        40
+      ],
+      "summary": "Normaliza o nome removendo espacos externos e rejeita valores vazios.",
+      "tags": [
+        "domain-model",
+        "normalization",
+        "validation"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/domain/menu/menu-item.ts:createRootMenuItem",
+      "type": "function",
+      "name": "createRootMenuItem",
+      "filePath": "src/domain/menu/menu-item.ts",
+      "lineRange": [
+        63,
+        71
+      ],
+      "summary": "Cria um item raiz valido sem pai nem ancestrais.",
+      "tags": [
+        "factory",
+        "domain-model",
+        "root-item"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/domain/menu/menu-item.ts:createChildMenuItem",
+      "type": "function",
+      "name": "createChildMenuItem",
+      "filePath": "src/domain/menu/menu-item.ts",
+      "lineRange": [
+        85,
+        101
+      ],
+      "summary": "Cria um filho valido, herdando a cadeia de ancestrais e impedindo ciclos.",
+      "tags": [
+        "factory",
+        "domain-model",
+        "hierarchy"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:src/shared/tree/build-menu-tree.ts",
+      "type": "file",
+      "name": "build-menu-tree.ts",
+      "filePath": "src/shared/tree/build-menu-tree.ts",
+      "summary": "Converte itens planos ordenados em uma hierarquia publica de menus em tempo linear, detectando referencias parentais invalidas.",
+      "tags": [
+        "utility",
+        "tree-builder",
+        "serialization",
+        "tested"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/shared/tree/build-menu-tree.ts:buildMenuTree",
+      "type": "function",
+      "name": "buildMenuTree",
+      "filePath": "src/shared/tree/build-menu-tree.ts",
+      "lineRange": [
+        48,
+        77
+      ],
+      "summary": "Monta a hierarquia publica por Map em duas passagens e falha diante de pais ausentes.",
+      "tags": [
+        "tree-builder",
+        "linear-time",
+        "serialization"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:tests/fakes/in-memory-menu.ts",
+      "type": "file",
+      "name": "in-memory-menu.ts",
+      "filePath": "tests/fakes/in-memory-menu.ts",
+      "summary": "Fornece implementacoes em memoria do repositorio de menu e do gerador de IDs para testes deterministas dos casos de uso.",
+      "tags": [
+        "test-double",
+        "repository",
+        "id-generator"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:tests/fakes/in-memory-menu.ts:InMemoryMenuRepository",
+      "type": "class",
+      "name": "InMemoryMenuRepository",
+      "filePath": "tests/fakes/in-memory-menu.ts",
+      "lineRange": [
+        10,
+        54
+      ],
+      "summary": "Repositorio em memoria com clones defensivos, ordenacao por ID e exclusao de descendentes.",
+      "tags": [
+        "test-double",
+        "repository",
+        "in-memory"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:tests/fakes/in-memory-menu.ts:InMemoryMenuItemIdGenerator",
+      "type": "class",
+      "name": "InMemoryMenuItemIdGenerator",
+      "filePath": "tests/fakes/in-memory-menu.ts",
+      "lineRange": [
+        56,
+        69
+      ],
+      "summary": "Gerador incremental controlavel que tambem registra quantas vezes foi chamado.",
+      "tags": [
+        "test-double",
+        "id-generator",
+        "deterministic"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:tests/unit/build-menu-tree.test.ts",
+      "type": "file",
+      "name": "build-menu-tree.test.ts",
+      "filePath": "tests/unit/build-menu-tree.test.ts",
+      "summary": "Valida montagem, ordenacao, profundidade e integridade da arvore de menu, incluindo cenarios extensos e entradas inconsistentes.",
+      "tags": [
+        "test",
+        "tree-builder",
+        "edge-cases"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:tests/unit/build-menu-tree.test.ts:collectNodes",
+      "type": "function",
+      "name": "collectNodes",
+      "filePath": "tests/unit/build-menu-tree.test.ts",
+      "lineRange": [
+        19,
+        32
+      ],
+      "summary": "Percorre iterativamente a floresta para coletar todos os nos sem depender de recursao.",
+      "tags": [
+        "test-utility",
+        "tree-traversal",
+        "iteration"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:tests/unit/menu-item.test.ts",
+      "type": "file",
+      "name": "menu-item.test.ts",
+      "filePath": "tests/unit/menu-item.test.ts",
+      "summary": "Exercita as invariantes e fabricas do dominio de menu e audita fontes TypeScript para impedir identificadores numericos inseguros.",
+      "tags": [
+        "test",
+        "domain-model",
+        "validation"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:tests/unit/menu-item.test.ts:collectTsFiles",
+      "type": "function",
+      "name": "collectTsFiles",
+      "filePath": "tests/unit/menu-item.test.ts",
+      "lineRange": [
+        22,
+        34
+      ],
+      "summary": "Coleta recursivamente fontes TypeScript usadas pela auditoria de IDs seguros.",
+      "tags": [
+        "test-utility",
+        "filesystem",
+        "source-audit"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:tests/unit/menu-ports.test.ts",
+      "type": "file",
+      "name": "menu-ports.test.ts",
+      "filePath": "tests/unit/menu-ports.test.ts",
+      "summary": "Verifica que as guardas das portas de aplicacao aceitam adaptadores validos e rejeitam dependencias incompletas.",
+      "tags": [
+        "test",
+        "porta",
+        "dependency-injection"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:tests/unit/menu-use-cases.test.ts",
+      "type": "file",
+      "name": "menu-use-cases.test.ts",
+      "filePath": "tests/unit/menu-use-cases.test.ts",
+      "summary": "Cobre a orquestracao dos casos de uso de menu com fakes, incluindo criacao, consulta, exclusao e falhas de dominio.",
+      "tags": [
+        "test",
+        "use-case",
+        "menu"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:src/infrastructure/database/mongo-id-generator.ts",
+      "type": "file",
+      "name": "mongo-id-generator.ts",
+      "filePath": "src/infrastructure/database/mongo-id-generator.ts",
+      "summary": "Implementa IDs sequenciais atomicos no MongoDB por meio de um contador, registrando e rejeitando valores fora do intervalo seguro.",
+      "tags": [
+        "database",
+        "id-generator",
+        "atomic-counter",
+        "tested"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:src/infrastructure/database/mongo-id-generator.ts:MongoIdGenerator",
+      "type": "class",
+      "name": "MongoIdGenerator",
+      "filePath": "src/infrastructure/database/mongo-id-generator.ts",
+      "lineRange": [
+        18,
+        50
+      ],
+      "summary": "Aloca IDs por incremento atomico de um documento contador e valida o resultado retornado.",
+      "tags": [
+        "id-generator",
+        "mongodb",
+        "atomic-counter"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:src/infrastructure/database/mongoose/counter-model.ts",
+      "type": "file",
+      "name": "counter-model.ts",
+      "filePath": "src/infrastructure/database/mongoose/counter-model.ts",
+      "summary": "Declara o model Mongoose do contador persistente usado para alocar identificadores numericos monotônicos.",
+      "tags": [
+        "data-model",
+        "mongoose",
+        "counter",
+        "tested"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:src/infrastructure/database/mongoose/ensure-menu-indexes.ts",
+      "type": "file",
+      "name": "ensure-menu-indexes.ts",
+      "filePath": "src/infrastructure/database/mongoose/ensure-menu-indexes.ts",
+      "summary": "Sincroniza os indices declarados pelo schema de itens de menu antes de a aplicacao atender requisicoes.",
+      "tags": [
+        "database",
+        "index-management",
+        "mongoose",
+        "tested"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/infrastructure/database/mongoose/ensure-menu-indexes.ts:ensureMenuIndexes",
+      "type": "function",
+      "name": "ensureMenuIndexes",
+      "filePath": "src/infrastructure/database/mongoose/ensure-menu-indexes.ts",
+      "lineRange": [
+        14,
+        16
+      ],
+      "summary": "Sincroniza os indices do model de menu com o banco conectado.",
+      "tags": [
+        "database",
+        "index-management",
+        "startup"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:src/infrastructure/database/mongoose/menu-item-model.ts",
+      "type": "file",
+      "name": "menu-item-model.ts",
+      "filePath": "src/infrastructure/database/mongoose/menu-item-model.ts",
+      "summary": "Define o schema e o model Mongoose de itens de menu, incluindo IDs, nomes, relacionamento parental e cadeia de ancestrais.",
+      "tags": [
+        "data-model",
+        "mongoose",
+        "schema-definition",
+        "tested"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:src/infrastructure/database/mongoose/mongoose-menu-repository.ts",
+      "type": "file",
+      "name": "mongoose-menu-repository.ts",
+      "filePath": "src/infrastructure/database/mongoose/mongoose-menu-repository.ts",
+      "summary": "Adapta o contrato de repositorio para Mongoose, convertendo documentos para o dominio e traduzindo conflitos de chave em erros estaveis.",
+      "tags": [
+        "repository",
+        "mongoose",
+        "persistence",
+        "tested"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/infrastructure/database/mongoose/mongoose-menu-repository.ts:toDomain",
+      "type": "function",
+      "name": "toDomain",
+      "filePath": "src/infrastructure/database/mongoose/mongoose-menu-repository.ts",
+      "lineRange": [
+        22,
+        35
+      ],
+      "summary": "Converte documentos lean do Mongoose para a representacao imutavel do dominio.",
+      "tags": [
+        "mapping",
+        "mongoose",
+        "domain-model"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:src/infrastructure/database/mongoose/mongoose-menu-repository.ts:MongooseMenuRepository",
+      "type": "class",
+      "name": "MongooseMenuRepository",
+      "filePath": "src/infrastructure/database/mongoose/mongoose-menu-repository.ts",
+      "lineRange": [
+        55,
+        109
+      ],
+      "summary": "Implementa leitura, criacao, listagem ordenada e remocao de subarvore com Mongoose.",
+      "tags": [
+        "repository",
+        "mongoose",
+        "persistence"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:tests/integration/concurrency.test.ts",
+      "type": "file",
+      "name": "concurrency.test.ts",
+      "filePath": "tests/integration/concurrency.test.ts",
+      "summary": "Valida criacoes concorrentes sobre a API e o MongoDB, garantindo unicidade dos IDs e consistencia sob disputa.",
+      "tags": [
+        "test",
+        "concurrency",
+        "integration"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:tests/integration/http-create-menu.test.ts",
+      "type": "file",
+      "name": "http-create-menu.test.ts",
+      "filePath": "tests/integration/http-create-menu.test.ts",
+      "summary": "Exercita o contrato HTTP de criacao de menus, cobrindo sucesso, validacao, headers, conflitos e limites do payload.",
+      "tags": [
+        "test",
+        "http-api",
+        "criacao"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:tests/integration/http-errors-observability.test.ts",
+      "type": "file",
+      "name": "http-errors-observability.test.ts",
+      "filePath": "tests/integration/http-errors-observability.test.ts",
+      "summary": "Verifica respostas de erro, request IDs e logs estruturados para falhas de dominio, parser, banco e excecoes inesperadas.",
+      "tags": [
+        "test",
+        "observability",
+        "error-contract"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:tests/integration/http-errors-observability.test.ts:createLogCapture",
+      "type": "function",
+      "name": "createLogCapture",
+      "filePath": "tests/integration/http-errors-observability.test.ts",
+      "lineRange": [
+        34,
+        48
+      ],
+      "summary": "Cria logger e stream em memoria para inspecionar eventos estruturados produzidos pela API.",
+      "tags": [
+        "test-utility",
+        "observability",
+        "log-capture"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:tests/integration/http-get-delete-menu.test.ts",
+      "type": "file",
+      "name": "http-get-delete-menu.test.ts",
+      "filePath": "tests/integration/http-get-delete-menu.test.ts",
+      "summary": "Valida consulta hierarquica e exclusao de subarvores pela API, incluindo status, payloads e casos inexistentes.",
+      "tags": [
+        "test",
+        "http-api",
+        "tree-operations"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:tests/integration/http-get-delete-menu.test.ts:createItem",
+      "type": "function",
+      "name": "createItem",
+      "filePath": "tests/integration/http-get-delete-menu.test.ts",
+      "lineRange": [
+        38,
+        48
+      ],
+      "summary": "Envia uma requisicao de criacao e retorna o corpo tipado para compor cenarios de consulta e exclusao.",
+      "tags": [
+        "test-utility",
+        "http-client",
+        "fixture"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:tests/integration/mongo-menu-persistence.test.ts",
+      "type": "file",
+      "name": "mongo-menu-persistence.test.ts",
+      "filePath": "tests/integration/mongo-menu-persistence.test.ts",
+      "summary": "Testa diretamente a persistencia Mongoose, os indices, o contador atomico e a remocao de descendentes em MongoDB real.",
+      "tags": [
+        "test",
+        "mongodb",
+        "persistence"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:tests/integration/mongo-test-context.ts",
+      "type": "file",
+      "name": "mongo-test-context.ts",
+      "filePath": "tests/integration/mongo-test-context.ts",
+      "summary": "Gerencia o ciclo de vida de um MongoDB efemero em container e limpa colecoes entre testes de integracao.",
+      "tags": [
+        "test-utility",
+        "testcontainers",
+        "mongodb"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tests/integration/mongo-test-context.ts:startMongoTestContext",
+      "type": "function",
+      "name": "startMongoTestContext",
+      "filePath": "tests/integration/mongo-test-context.ts",
+      "lineRange": [
+        10,
+        23
+      ],
+      "summary": "Inicia um container MongoDB, resolve a porta publicada e conecta o Mongoose.",
+      "tags": [
+        "test-utility",
+        "testcontainers",
+        "setup"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tests/integration/mongo-test-context.ts:stopMongoTestContext",
+      "type": "function",
+      "name": "stopMongoTestContext",
+      "filePath": "tests/integration/mongo-test-context.ts",
+      "lineRange": [
+        25,
+        35
+      ],
+      "summary": "Desconecta o Mongoose e encerra o container MongoDB do conjunto de testes.",
+      "tags": [
+        "test-utility",
+        "testcontainers",
+        "teardown"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tests/integration/mongo-test-context.ts:resetMongoCollections",
+      "type": "function",
+      "name": "resetMongoCollections",
+      "filePath": "tests/integration/mongo-test-context.ts",
+      "lineRange": [
+        37,
+        43
+      ],
+      "summary": "Remove todos os documentos das colecoes para isolar cada cenario de integracao.",
+      "tags": [
+        "test-utility",
+        "database-cleanup",
+        "isolation"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:src/http/middlewares/error-handler.ts",
+      "type": "file",
+      "name": "error-handler.ts",
+      "filePath": "src/http/middlewares/error-handler.ts",
+      "summary": "Traduz erros de dominio, validacao, banco e falhas inesperadas para o contrato HTTP padronizado, preservando o fluxo do Express.",
+      "tags": [
+        "middleware",
+        "error-handler",
+        "error-contract",
+        "tested"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/http/middlewares/error-handler.ts:isDatabaseUnavailable",
+      "type": "function",
+      "name": "isDatabaseUnavailable",
+      "filePath": "src/http/middlewares/error-handler.ts",
+      "lineRange": [
+        23,
+        37
+      ],
+      "summary": "Reconhece falhas de conexao e selecao de servidor a partir de nomes e mensagens do driver.",
+      "tags": [
+        "error-detection",
+        "mongodb",
+        "availability"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/http/middlewares/error-handler.ts:errorHandler",
+      "type": "function",
+      "name": "errorHandler",
+      "filePath": "src/http/middlewares/error-handler.ts",
+      "lineRange": [
+        48,
+        98
+      ],
+      "summary": "Mapeia erros conhecidos para status e codigos publicos, registrando excecoes inesperadas.",
+      "tags": [
+        "middleware",
+        "error-handler",
+        "http-api"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:src/http/middlewares/http-logger.ts",
+      "type": "file",
+      "name": "http-logger.ts",
+      "filePath": "src/http/middlewares/http-logger.ts",
+      "summary": "Configura logging HTTP estruturado com Pino, incluindo serializacao segura de requisicoes, respostas e falhas.",
+      "tags": [
+        "middleware",
+        "observability",
+        "structured-logging"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/http/middlewares/http-logger.ts:createHttpLogger",
+      "type": "function",
+      "name": "createHttpLogger",
+      "filePath": "src/http/middlewares/http-logger.ts",
+      "lineRange": [
+        22,
+        55
+      ],
+      "summary": "Configura o pino-http com request IDs e serializers apropriados ao contrato da aplicacao.",
+      "tags": [
+        "observability",
+        "structured-logging",
+        "factory"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/http/middlewares/http-logger.ts:httpLoggerMiddleware",
+      "type": "function",
+      "name": "httpLoggerMiddleware",
+      "filePath": "src/http/middlewares/http-logger.ts",
+      "lineRange": [
+        63,
+        65
+      ],
+      "summary": "Expõe a configuracao de logging HTTP como middleware Express.",
+      "tags": [
+        "middleware",
+        "observability",
+        "factory"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:src/http/middlewares/json-body-guards.ts",
+      "type": "file",
+      "name": "json-body-guards.ts",
+      "filePath": "src/http/middlewares/json-body-guards.ts",
+      "summary": "Exige Content-Type JSON em metodos com corpo e converte erros do parser em respostas padronizadas da API.",
+      "tags": [
+        "middleware",
+        "json",
+        "validation",
+        "tested"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/http/middlewares/json-body-guards.ts:requireJsonContentType",
+      "type": "function",
+      "name": "requireJsonContentType",
+      "filePath": "src/http/middlewares/json-body-guards.ts",
+      "lineRange": [
+        20,
+        40
+      ],
+      "summary": "Bloqueia corpos POST, PUT e PATCH sem media type JSON antes do parser.",
+      "tags": [
+        "middleware",
+        "content-type",
+        "validation"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/http/middlewares/json-body-guards.ts:mapBodyParserErrors",
+      "type": "function",
+      "name": "mapBodyParserErrors",
+      "filePath": "src/http/middlewares/json-body-guards.ts",
+      "lineRange": [
+        53,
+        78
+      ],
+      "summary": "Converte sintaxe JSON invalida e payload excedente para erros HTTP estaveis.",
+      "tags": [
+        "middleware",
+        "body-parser",
+        "error-contract"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:src/http/middlewares/not-found.ts",
+      "type": "file",
+      "name": "not-found.ts",
+      "filePath": "src/http/middlewares/not-found.ts",
+      "summary": "Finaliza rotas desconhecidas com a representacao padronizada de recurso nao encontrado.",
+      "tags": [
+        "middleware",
+        "not-found",
+        "error-contract"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/http/middlewares/not-found.ts:notFoundMiddleware",
+      "type": "function",
+      "name": "notFoundMiddleware",
+      "filePath": "src/http/middlewares/not-found.ts",
+      "lineRange": [
+        15,
+        17
+      ],
+      "summary": "Responde a caminhos nao registrados usando o presenter de erros compartilhado.",
+      "tags": [
+        "middleware",
+        "not-found",
+        "http-api"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:src/http/middlewares/request-id.ts",
+      "type": "file",
+      "name": "request-id.ts",
+      "filePath": "src/http/middlewares/request-id.ts",
+      "summary": "Propaga um request ID recebido ou gera um UUID, disponibilizando a correlacao na requisicao e na resposta.",
+      "tags": [
+        "middleware",
+        "request-id",
+        "observability",
+        "tested"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/http/middlewares/request-id.ts:requestIdMiddleware",
+      "type": "function",
+      "name": "requestIdMiddleware",
+      "filePath": "src/http/middlewares/request-id.ts",
+      "lineRange": [
+        18,
+        31
+      ],
+      "summary": "Reutiliza ou gera o identificador de correlacao e o publica no header da resposta.",
+      "tags": [
+        "middleware",
+        "request-id",
+        "observability"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:src/http/middlewares/validate-body.ts",
+      "type": "file",
+      "name": "validate-body.ts",
+      "filePath": "src/http/middlewares/validate-body.ts",
+      "summary": "Cria middleware de validacao com Zod que substitui o corpo pelo valor parseado ou responde com erro de entrada.",
+      "tags": [
+        "middleware",
+        "validation",
+        "zod"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/http/middlewares/validate-body.ts:validateBody",
+      "type": "function",
+      "name": "validateBody",
+      "filePath": "src/http/middlewares/validate-body.ts",
+      "lineRange": [
+        20,
+        30
+      ],
+      "summary": "Adapta um schema Zod para middleware Express com parsing seguro do corpo.",
+      "tags": [
+        "middleware",
+        "zod",
+        "validation"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:src/http/presenters/error-presenter.ts",
+      "type": "file",
+      "name": "error-presenter.ts",
+      "filePath": "src/http/presenters/error-presenter.ts",
+      "summary": "Constroi e envia o envelope uniforme de erros HTTP, garantindo codigo, mensagem, identificador e timestamp.",
+      "tags": [
+        "presenter",
+        "error-contract",
+        "serialization",
+        "tested"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/http/presenters/error-presenter.ts:buildErrorBody",
+      "type": "function",
+      "name": "buildErrorBody",
+      "filePath": "src/http/presenters/error-presenter.ts",
+      "lineRange": [
+        30,
+        42
+      ],
+      "summary": "Monta o envelope serializavel de erro e garante um request ID para correlacao.",
+      "tags": [
+        "presenter",
+        "error-contract",
+        "serialization"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/http/presenters/error-presenter.ts:sendError",
+      "type": "function",
+      "name": "sendError",
+      "filePath": "src/http/presenters/error-presenter.ts",
+      "lineRange": [
+        54,
+        67
+      ],
+      "summary": "Define o status HTTP e envia o envelope de erro em JSON.",
+      "tags": [
+        "presenter",
+        "http-response",
+        "serialization"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:src/main/create-app.ts",
+      "type": "file",
+      "name": "create-app.ts",
+      "filePath": "src/main/create-app.ts",
+      "summary": "Compõe a aplicacao Express com seguranca, logging, parser JSON, documentacao OpenAPI, rotas de menu e tratamento de erros.",
+      "tags": [
+        "application-factory",
+        "express",
+        "entry-point",
+        "tested"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/main/create-app.ts:createApp",
+      "type": "function",
+      "name": "createApp",
+      "filePath": "src/main/create-app.ts",
+      "lineRange": [
+        58,
+        112
+      ],
+      "summary": "Cria e configura a instancia Express completa a partir de adaptadores opcionais e defaults de producao.",
+      "tags": [
+        "application-factory",
+        "express",
+        "dependency-injection"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:tests/unit/coverage-fillers.test.ts",
+      "type": "file",
+      "name": "coverage-fillers.test.ts",
+      "filePath": "tests/unit/coverage-fillers.test.ts",
+      "summary": "Exercita ramos defensivos de middlewares, presenters, infraestrutura e casos de uso para assegurar cobertura integral.",
+      "tags": [
+        "test",
+        "coverage",
+        "defensive-branches"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:tests/unit/coverage-fillers.test.ts:mockRes",
+      "type": "function",
+      "name": "mockRes",
+      "filePath": "tests/unit/coverage-fillers.test.ts",
+      "lineRange": [
+        31,
+        45
+      ],
+      "summary": "Produz um Response Express simulado com metodos encadeaveis para testes de middlewares.",
+      "tags": [
+        "test-utility",
+        "mock",
+        "express"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:tests/unit/create-app.test.ts",
+      "type": "file",
+      "name": "create-app.test.ts",
+      "filePath": "tests/unit/create-app.test.ts",
+      "summary": "Confirma a criacao da aplicacao Express e o funcionamento das rotas basicas expostas pela factory.",
+      "tags": [
+        "test",
+        "application-factory",
+        "express"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:src/application/use-cases/delete-menu-subtree.ts",
+      "type": "file",
+      "name": "delete-menu-subtree.ts",
+      "filePath": "src/application/use-cases/delete-menu-subtree.ts",
+      "summary": "Caso de uso que valida a existência do item raiz e remove, via repositório, todo o seu ramo hierárquico do menu.",
+      "tags": [
+        "use-case",
+        "service",
+        "hierarquia",
+        "exclusao",
+        "tested"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:src/application/use-cases/delete-menu-subtree.ts:DeleteMenuSubtree",
+      "type": "class",
+      "name": "DeleteMenuSubtree",
+      "filePath": "src/application/use-cases/delete-menu-subtree.ts",
+      "lineRange": [
+        16,
+        36
+      ],
+      "summary": "Orquestra a exclusão de uma subárvore e converte a ausência do item raiz em um erro de domínio explícito.",
+      "tags": [
+        "use-case",
+        "service",
+        "domain-error",
+        "exclusao"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:src/application/use-cases/get-menu-tree.ts",
+      "type": "file",
+      "name": "get-menu-tree.ts",
+      "filePath": "src/application/use-cases/get-menu-tree.ts",
+      "summary": "Caso de uso de leitura que obtém itens ordenados do repositório e os transforma na árvore pública de menus.",
+      "tags": [
+        "use-case",
+        "service",
+        "hierarquia",
+        "consulta",
+        "tested"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:src/application/use-cases/get-menu-tree.ts:GetMenuTree",
+      "type": "class",
+      "name": "GetMenuTree",
+      "filePath": "src/application/use-cases/get-menu-tree.ts",
+      "lineRange": [
+        16,
+        33
+      ],
+      "summary": "Coordena a consulta da coleção plana e delega ao construtor de árvore a composição recursiva dos submenus.",
+      "tags": [
+        "use-case",
+        "service",
+        "tree-builder",
+        "consulta"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:src/http/controllers/menu-controller.ts",
+      "type": "file",
+      "name": "menu-controller.ts",
+      "filePath": "src/http/controllers/menu-controller.ts",
+      "summary": "Adapta requisições Express aos casos de uso do menu e traduz falhas de validação, domínio e configuração em respostas HTTP consistentes.",
+      "tags": [
+        "api-handler",
+        "controller",
+        "error-handling",
+        "express",
+        "tested"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:src/http/controllers/menu-controller.ts:MenuController",
+      "type": "class",
+      "name": "MenuController",
+      "filePath": "src/http/controllers/menu-controller.ts",
+      "lineRange": [
+        24,
+        154
+      ],
+      "summary": "Expõe handlers assíncronos para criar, consultar e excluir menus, com mapeamento de erros de domínio para status e códigos HTTP.",
+      "tags": [
+        "api-handler",
+        "controller",
+        "error-handling",
+        "express"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:src/http/routes/menu-routes.ts",
+      "type": "file",
+      "name": "menu-routes.ts",
+      "filePath": "src/http/routes/menu-routes.ts",
+      "summary": "Monta o router Express de `/api/v1/menu`, registrando somente os endpoints cujos casos de uso foram fornecidos e aplicando validação ao POST.",
+      "tags": [
+        "routing",
+        "api-handler",
+        "express",
+        "factory"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/http/routes/menu-routes.ts:createMenuRouter",
+      "type": "function",
+      "name": "createMenuRouter",
+      "filePath": "src/http/routes/menu-routes.ts",
+      "lineRange": [
+        31,
+        62
+      ],
+      "summary": "Cria o router do recurso menu e conecta condicionalmente handlers de criação, leitura e exclusão às respectivas rotas.",
+      "tags": [
+        "factory",
+        "routing",
+        "express",
+        "dependency-injection"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:src/http/schemas/create-menu-item.schema.ts",
+      "type": "file",
+      "name": "create-menu-item.schema.ts",
+      "filePath": "src/http/schemas/create-menu-item.schema.ts",
+      "summary": "Define o schema Zod estrito do corpo de criação, exigindo nome não vazio e um `relatedId` inteiro positivo e seguro quando informado.",
+      "tags": [
+        "validation",
+        "schema-definition",
+        "zod",
+        "api-contract",
+        "tested"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:src/http/schemas/menu-item-id.param.ts",
+      "type": "file",
+      "name": "menu-item-id.param.ts",
+      "filePath": "src/http/schemas/menu-item-id.param.ts",
+      "summary": "Valida e converte o parâmetro de rota do item de menu, rejeitando zero, zeros à esquerda e números fora do intervalo seguro.",
+      "tags": [
+        "validation",
+        "parsing",
+        "api-contract",
+        "utility"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/http/schemas/menu-item-id.param.ts:parseMenuItemIdParam",
+      "type": "function",
+      "name": "parseMenuItemIdParam",
+      "filePath": "src/http/schemas/menu-item-id.param.ts",
+      "lineRange": [
+        15,
+        24
+      ],
+      "summary": "Converte uma string decimal canônica em identificador inteiro positivo seguro ou retorna `null` quando inválida.",
+      "tags": [
+        "validation",
+        "parsing",
+        "utility",
+        "api-contract"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:tests/unit/create-menu-item.schema.test.ts",
+      "type": "file",
+      "name": "create-menu-item.schema.test.ts",
+      "filePath": "tests/unit/create-menu-item.schema.test.ts",
+      "summary": "Testa o contrato de criação quanto a normalização do nome, aceitação de pai válido e rejeição de campos ou tipos indevidos.",
+      "tags": [
+        "test",
+        "validation",
+        "zod",
+        "unit-test"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:src/infrastructure/config/env.ts",
+      "type": "file",
+      "name": "env.ts",
+      "filePath": "src/infrastructure/config/env.ts",
+      "summary": "Centraliza defaults e validação fail-fast das variáveis de ambiente necessárias para servidor HTTP, MongoDB, logging e limite de JSON.",
+      "tags": [
+        "configuration",
+        "validation",
+        "zod",
+        "environment",
+        "tested"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/infrastructure/config/env.ts:loadEnv",
+      "type": "function",
+      "name": "loadEnv",
+      "filePath": "src/infrastructure/config/env.ts",
+      "lineRange": [
+        36,
+        45
+      ],
+      "summary": "Resolve valores informados ou defaults operacionais e devolve uma configuração tipada após validação pelo schema Zod.",
+      "tags": [
+        "configuration",
+        "validation",
+        "factory",
+        "environment"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:src/infrastructure/logging/logger.ts",
+      "type": "file",
+      "name": "logger.ts",
+      "filePath": "src/infrastructure/logging/logger.ts",
+      "summary": "Fornece a fábrica do logger Pino com nível configurável e remoção automática de credenciais, cookies e strings de conexão.",
+      "tags": [
+        "logging",
+        "security",
+        "factory",
+        "observability",
+        "tested"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/infrastructure/logging/logger.ts:createLogger",
+      "type": "function",
+      "name": "createLogger",
+      "filePath": "src/infrastructure/logging/logger.ts",
+      "lineRange": [
+        15,
+        31
+      ],
+      "summary": "Cria uma instância Pino com redaction defensivo de headers sensíveis, URIs e connection strings.",
+      "tags": [
+        "logging",
+        "security",
+        "factory",
+        "redaction"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:src/main/server.ts",
+      "type": "file",
+      "name": "server.ts",
+      "filePath": "src/main/server.ts",
+      "summary": "Entry point do processo que valida ambiente, conecta ao MongoDB, sincroniza índices, compõe dependências e controla inicialização e encerramento do servidor.",
+      "tags": [
+        "entry-point",
+        "bootstrap",
+        "dependency-injection",
+        "lifecycle",
+        "tested"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/main/server.ts:bootstrap",
+      "type": "function",
+      "name": "bootstrap",
+      "filePath": "src/main/server.ts",
+      "lineRange": [
+        37,
+        65
+      ],
+      "summary": "Inicializa toda a aplicação, da configuração e conexão MongoDB até a montagem dos casos de uso e abertura da porta HTTP.",
+      "tags": [
+        "bootstrap",
+        "dependency-injection",
+        "database",
+        "entry-point"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/main/server.ts:gracefulShutdown",
+      "type": "function",
+      "name": "gracefulShutdown",
+      "filePath": "src/main/server.ts",
+      "lineRange": [
+        73,
+        78
+      ],
+      "summary": "Encerra o listener HTTP e depois desconecta o Mongoose para liberar recursos de forma ordenada.",
+      "tags": [
+        "lifecycle",
+        "graceful-shutdown",
+        "database",
+        "operational"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/main/server.ts:startServer",
+      "type": "function",
+      "name": "startServer",
+      "filePath": "src/main/server.ts",
+      "lineRange": [
+        87,
+        102
+      ],
+      "summary": "Executa o bootstrap, registra o estado de escuta e instala handlers de SIGINT e SIGTERM com saída coerente ao resultado do shutdown.",
+      "tags": [
+        "entry-point",
+        "lifecycle",
+        "signal-handler",
+        "observability"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:tests/operational/env.test.ts",
+      "type": "file",
+      "name": "env.test.ts",
+      "filePath": "tests/operational/env.test.ts",
+      "summary": "Verifica que a configuração operacional rejeita porta, URI, nível de log e limite de corpo inválidos, além de aceitar um ambiente completo válido.",
+      "tags": [
+        "test",
+        "configuration",
+        "validation",
+        "operational-test"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:tests/operational/server-lifecycle.test.ts",
+      "type": "file",
+      "name": "server-lifecycle.test.ts",
+      "filePath": "tests/operational/server-lifecycle.test.ts",
+      "summary": "Cobre falha de conexão antes do listen e confirma que o shutdown fecha tanto o servidor HTTP quanto a conexão MongoDB.",
+      "tags": [
+        "test",
+        "lifecycle",
+        "database",
+        "operational-test"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "service:.dockerignore",
+      "type": "service",
+      "name": ".dockerignore",
+      "filePath": ".dockerignore",
+      "summary": "Restringe o contexto do Docker, excluindo dependências, builds, cobertura, metadados Git, segredos de ambiente e logs.",
+      "tags": [
+        "containerization",
+        "infrastructure",
+        "build-context",
+        "security"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "service:docker-compose.yml",
+      "type": "service",
+      "name": "docker-compose.yml",
+      "filePath": "docker-compose.yml",
+      "summary": "Orquestra localmente a API e um MongoDB 7 persistente, publicando as portas 3000 e 27017 e injetando a configuração operacional da aplicação.",
+      "tags": [
+        "orchestration",
+        "infrastructure",
+        "mongodb",
+        "development"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "service:Dockerfile",
+      "type": "service",
+      "name": "Dockerfile",
+      "filePath": "Dockerfile",
+      "summary": "Build multi-stage baseado em Node.js 24 que compila TypeScript e produz uma imagem de runtime sem dependências de desenvolvimento, executada como usuário não privilegiado.",
+      "tags": [
+        "containerization",
+        "infrastructure",
+        "deployment",
+        "multi-stage-build"
+      ],
+      "complexity": "simple",
+      "languageNotes": "O estágio de build separa toolchain e fontes do estágio final, que conserva apenas dependências de produção, `dist` e o contrato OpenAPI."
+    },
+    {
+      "id": "service:Dockerfile:build",
+      "type": "service",
+      "name": "build",
+      "filePath": "Dockerfile",
+      "summary": "Estágio Node.js 24 responsável por instalar todas as dependências e compilar os fontes TypeScript para `dist`.",
+      "tags": [
+        "containerization",
+        "build-system",
+        "typescript",
+        "multi-stage-build"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "service:Dockerfile:runtime",
+      "type": "service",
+      "name": "runtime",
+      "filePath": "Dockerfile",
+      "summary": "Estágio final que instala somente dependências de produção, copia os artefatos compilados e inicia o servidor na porta 3000 como usuário `node`.",
+      "tags": [
+        "containerization",
+        "runtime",
+        "deployment",
+        "security"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "pipeline:.github/workflows/ci.yml",
+      "type": "pipeline",
+      "name": "ci.yml",
+      "filePath": ".github/workflows/ci.yml",
+      "summary": "Pipeline principal de qualidade que valida formatação, lint, tipos, testes, documentação, contrato OpenAPI e auditoria de produção em pushes para main e pull requests.",
+      "tags": [
+        "ci-cd",
+        "quality-gate",
+        "test",
+        "security"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "pipeline:.github/workflows/pages.yml",
+      "type": "pipeline",
+      "name": "pages.yml",
+      "filePath": ".github/workflows/pages.yml",
+      "summary": "Workflow que constrói e valida o portal técnico e, fora de pull requests, publica o artefato estático no GitHub Pages com permissões mínimas e deploy serializado.",
+      "tags": [
+        "ci-cd",
+        "documentation",
+        "deployment",
+        "github-pages"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "config:.prettierrc.json",
+      "type": "config",
+      "name": ".prettierrc.json",
+      "filePath": ".prettierrc.json",
+      "summary": "Define o estilo de formatação uniforme do repositório, incluindo aspas simples, largura de 80 colunas, ponto e vírgula e trailing commas.",
+      "tags": [
+        "configuration",
+        "formatting",
+        "prettier"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:.spectral.yaml",
+      "type": "config",
+      "name": ".spectral.yaml",
+      "filePath": ".spectral.yaml",
+      "summary": "Ativa o conjunto de regras recomendado do Spectral para validar qualidade e consistência do contrato OpenAPI.",
+      "tags": [
+        "configuration",
+        "api-schema",
+        "validation"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "document:README.en.md",
+      "type": "document",
+      "name": "README.en.md",
+      "filePath": "README.en.md",
+      "summary": "Documentação principal em inglês com visão do produto, quick start, exemplos HTTP, arquitetura, stack, configuração, métricas de qualidade e acesso ao portal técnico.",
+      "tags": [
+        "documentation",
+        "entry-point",
+        "api-guide",
+        "architecture"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "document:README.md",
+      "type": "document",
+      "name": "README.md",
+      "filePath": "README.md",
+      "summary": "Documentação principal em pt-BR que apresenta a Menu API, ensina sua execução e consumo, explica a arquitetura em camadas e centraliza referências, métricas e comandos de qualidade.",
+      "tags": [
+        "documentation",
+        "entry-point",
+        "api-guide",
+        "architecture"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "document:TSDOC_STYLE.md",
+      "type": "document",
+      "name": "TSDOC_STYLE.md",
+      "filePath": "TSDOC_STYLE.md",
+      "summary": "Guia de estilo para comentários TSDoc, com regras de escrita, tags aceitas e comandos que geram as referências HTML e Markdown.",
+      "tags": [
+        "documentation",
+        "tsdoc",
+        "style-guide",
+        "development"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:package.json",
+      "type": "config",
+      "name": "package.json",
+      "filePath": "package.json",
+      "summary": "Manifesto npm da Menu API que fixa Node.js 24, dependências Express e Mongoose e scripts para build, testes, cobertura, contrato, documentação e portal estático.",
+      "tags": [
+        "configuration",
+        "npm",
+        "build-system",
+        "dependencies"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "document:readme.md",
+      "type": "document",
+      "name": "readme.md",
+      "filePath": "readme.md",
+      "summary": "Enunciado resumido do desafio técnico original, apontando para a descrição externa e identificando a aplicação proposta.",
+      "tags": [
+        "documentation",
+        "challenge",
+        "requirements"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:tsconfig.build.json",
+      "type": "config",
+      "name": "tsconfig.build.json",
+      "filePath": "tsconfig.build.json",
+      "summary": "Configuração TypeScript de produção que estende a base, compila somente src para dist e gera declarations e source maps.",
+      "tags": [
+        "configuration",
+        "typescript",
+        "build-system"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:tsconfig.json",
+      "type": "config",
+      "name": "tsconfig.json",
+      "filePath": "tsconfig.json",
+      "summary": "Configuração TypeScript estrita para NodeNext e ES2024, compartilhada por código-fonte, testes, scripts e configuração do Vitest.",
+      "tags": [
+        "configuration",
+        "typescript",
+        "strict-mode",
+        "build-system"
+      ],
+      "complexity": "simple",
+      "languageNotes": "Ativa noUncheckedIndexedAccess e exactOptionalPropertyTypes para reforçar a segurança estática além de strict."
+    },
+    {
+      "id": "config:typedoc.json",
+      "type": "config",
+      "name": "typedoc.json",
+      "filePath": "typedoc.json",
+      "summary": "Configura a referência HTML do TypeDoc a partir de src, incluindo membros internos, README principal, favicon do portal e ordenação pela fonte.",
+      "tags": [
+        "configuration",
+        "typedoc",
+        "documentation",
+        "build-system"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:typedoc.markdown.json",
+      "type": "config",
+      "name": "typedoc.markdown.json",
+      "filePath": "typedoc.markdown.json",
+      "summary": "Configura a geração alternativa da referência TypeDoc em Markdown por meio do plugin typedoc-plugin-markdown.",
+      "tags": [
+        "configuration",
+        "typedoc",
+        "markdown",
+        "documentation"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:docs-site/.nojekyll",
+      "type": "file",
+      "name": ".nojekyll",
+      "filePath": "docs-site/.nojekyll",
+      "summary": "Marcador vazio que instrui o GitHub Pages a servir o portal técnico diretamente, sem processamento pelo Jekyll.",
+      "tags": [
+        "configuration",
+        "github-pages",
+        "deployment"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:docs-site/assets/styles.css",
+      "type": "file",
+      "name": "styles.css",
+      "filePath": "docs-site/assets/styles.css",
+      "summary": "Sistema visual responsivo do portal de documentação, com tema dark azul e verde, navegação translúcida, hero, terminal, cards, métricas e adaptações mobile.",
+      "tags": [
+        "component",
+        "responsive-design",
+        "documentation",
+        "theme"
+      ],
+      "complexity": "complex",
+      "languageNotes": "Usa custom properties, gradients, backdrop-filter, grid responsivo e media queries para manter o portal sem dependências de UI."
+    },
+    {
+      "id": "file:docs-site/en/index.html",
+      "type": "file",
+      "name": "index.html",
+      "filePath": "docs-site/en/index.html",
+      "summary": "Landing page em inglês do documentation hub, conectando OpenAPI, TypeDoc e Architecture Explorer e exibindo exemplos e métricas de qualidade.",
+      "tags": [
+        "documentation",
+        "entry-point",
+        "markup",
+        "localization"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:docs-site/index.html",
+      "type": "file",
+      "name": "index.html",
+      "filePath": "docs-site/index.html",
+      "summary": "Landing page principal em pt-BR do portal técnico, oferecendo acesso unificado ao contrato HTTP, referência TypeScript e grafo interativo da arquitetura.",
+      "tags": [
+        "documentation",
+        "entry-point",
+        "markup",
+        "portal"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:eslint.config.js",
+      "type": "file",
+      "name": "eslint.config.js",
+      "filePath": "eslint.config.js",
+      "summary": "Configuração flat do ESLint para TypeScript com type checking, validação de sintaxe TSDoc, compatibilidade com Prettier e exclusão de artefatos gerados.",
+      "tags": [
+        "config",
+        "linting",
+        "typescript",
+        "tsdoc"
+      ],
+      "complexity": "simple",
+      "languageNotes": "Compõe configurações ESM por meio de typescript-eslint e habilita projectService para regras com informação de tipos."
+    },
+    {
+      "id": "config:openapi/openapi.yaml",
+      "type": "config",
+      "name": "openapi.yaml",
+      "filePath": "openapi/openapi.yaml",
+      "summary": "Contrato OpenAPI 3.1 da Menu API, documentando criação, consulta e remoção de árvores hierárquicas, schemas recursivos, exemplos e respostas de erro padronizadas.",
+      "tags": [
+        "api-schema",
+        "openapi",
+        "validation",
+        "documentation"
+      ],
+      "complexity": "complex",
+      "languageNotes": "Modela a árvore recursiva com referência de PublicMenuNode para si próprio e mantém ids públicos como strings decimais."
+    },
+    {
+      "id": "file:scripts/build-docs-site.mjs",
+      "type": "file",
+      "name": "build-docs-site.mjs",
+      "filePath": "scripts/build-docs-site.mjs",
+      "summary": "Orquestra o build reproduzível do portal em _site, combinando landing pages, referência TypeDoc, Redoc client-rendered, contrato OpenAPI e viewer do Understand Anything.",
+      "tags": [
+        "build-system",
+        "documentation",
+        "automation",
+        "entry-point"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "Usa APIs nativas ESM e spawnSync para falhar imediatamente quando qualquer gerador externo retorna status diferente de zero."
+    },
+    {
+      "id": "function:scripts/build-docs-site.mjs:run",
+      "type": "function",
+      "name": "run",
+      "filePath": "scripts/build-docs-site.mjs",
+      "lineRange": [
+        19,
+        33
+      ],
+      "summary": "Executa uma ferramenta de build de forma síncrona no repositório, propaga ambiente e saída e transforma falhas de processo em exceções.",
+      "tags": [
+        "utility",
+        "process-runner",
+        "error-handling"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:scripts/build-docs-site.mjs:makeRedocClientRendered",
+      "type": "function",
+      "name": "makeRedocClientRendered",
+      "filePath": "scripts/build-docs-site.mjs",
+      "lineRange": [
+        35,
+        56
+      ],
+      "summary": "Pós-processa o HTML do Redoc para trocar hydration frágil por inicialização client-side e falha se o formato esperado não estiver presente.",
+      "tags": [
+        "documentation",
+        "serialization",
+        "validation",
+        "build-system"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:scripts/build-ua-viewer.mjs",
+      "type": "file",
+      "name": "build-ua-viewer.mjs",
+      "filePath": "scripts/build-ua-viewer.mjs",
+      "summary": "Prepara uma versão pinned do Understand Anything, copia o grafo sanitizado, compila o dashboard com assets relativos e publica o Architecture Explorer no portal.",
+      "tags": [
+        "build-system",
+        "architecture",
+        "automation",
+        "knowledge-graph"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:scripts/build-ua-viewer.mjs:run",
+      "type": "function",
+      "name": "run",
+      "filePath": "scripts/build-ua-viewer.mjs",
+      "lineRange": [
+        22,
+        36
+      ],
+      "summary": "Executa comandos síncronos com diretório e ambiente controlados, encaminhando logs e interrompendo o build diante de erro ou status inválido.",
+      "tags": [
+        "utility",
+        "process-runner",
+        "error-handling"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:scripts/build-ua-viewer.mjs:ensurePinnedSource",
+      "type": "function",
+      "name": "ensurePinnedSource",
+      "filePath": "scripts/build-ua-viewer.mjs",
+      "lineRange": [
+        47,
+        72
+      ],
+      "summary": "Verifica o commit da cópia em cache do Understand Anything e recria um checkout detached e shallow quando a origem local não corresponde à revisão fixada.",
+      "tags": [
+        "dependency-management",
+        "reproducibility",
+        "git",
+        "cache"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:scripts/build-ua-viewer.mjs:copyGraphInputs",
+      "type": "function",
+      "name": "copyGraphInputs",
+      "filePath": "scripts/build-ua-viewer.mjs",
+      "lineRange": [
+        74,
+        92
+      ],
+      "summary": "Copia os artefatos obrigatórios do grafo para o dashboard e rejeita conteúdo que exponha caminhos absolutos da máquina local.",
+      "tags": [
+        "knowledge-graph",
+        "security",
+        "validation",
+        "serialization"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:scripts/build-ua-viewer.mjs:buildViewer",
+      "type": "function",
+      "name": "buildViewer",
+      "filePath": "scripts/build-ua-viewer.mjs",
+      "lineRange": [
+        94,
+        135
+      ],
+      "summary": "Provisiona o pnpm compatível via Corepack, instala e compila o dashboard, injeta o grafo, gera assets portáveis e os copia para o portal.",
+      "tags": [
+        "build-system",
+        "documentation",
+        "automation",
+        "deployment"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:scripts/check-docs-site.mjs",
+      "type": "file",
+      "name": "check-docs-site.mjs",
+      "filePath": "scripts/check-docs-site.mjs",
+      "summary": "Valida a integridade do portal gerado, exigindo páginas e artefatos, assets relativos, Redoc sem hydration, grafo não vazio e ausência de caminhos absolutos.",
+      "tags": [
+        "validation",
+        "documentation",
+        "quality-gate",
+        "security"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:tests/architecture/architecture.test.ts",
+      "type": "file",
+      "name": "architecture.test.ts",
+      "filePath": "tests/architecture/architecture.test.ts",
+      "summary": "Testes arquiteturais que protegem versões da stack, independência do domínio e casos de uso, isolamento do HTTP, conversão de ids e separação entre composição e servidor.",
+      "tags": [
+        "test",
+        "architecture",
+        "quality-gate",
+        "dependency-rules"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:tests/architecture/architecture.test.ts:collectTsFiles",
+      "type": "function",
+      "name": "collectTsFiles",
+      "filePath": "tests/architecture/architecture.test.ts",
+      "lineRange": [
+        10,
+        22
+      ],
+      "summary": "Percorre recursivamente um diretório e reúne arquivos TypeScript para que os testes inspecionem fronteiras arquiteturais em toda a camada.",
+      "tags": [
+        "test-utility",
+        "filesystem",
+        "recursion"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:tests/contract/openapi.test.ts",
+      "type": "file",
+      "name": "openapi.test.ts",
+      "filePath": "tests/contract/openapi.test.ts",
+      "summary": "Testes de contrato que validam versão e superfície OpenAPI, tipos de ids, envelope de erros e compatibilidade dos exemplos de criação.",
+      "tags": [
+        "test",
+        "api-schema",
+        "contract",
+        "validation"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:tests/operational/ops-packaging.test.ts",
+      "type": "file",
+      "name": "ops-packaging.test.ts",
+      "filePath": "tests/operational/ops-packaging.test.ts",
+      "summary": "Teste operacional que garante execução não root no Docker, composição da API com MongoDB sem replica set e instruções essenciais de instalação no README.",
+      "tags": [
+        "test",
+        "containerization",
+        "operations",
+        "security"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:tests/unit/stack-manifest.test.ts",
+      "type": "file",
+      "name": "stack-manifest.test.ts",
+      "filePath": "tests/unit/stack-manifest.test.ts",
+      "summary": "Teste do manifesto que fixa Node.js 24 e as dependências centrais da stack e confirma a ativação do modo strict no TypeScript.",
+      "tags": [
+        "test",
+        "configuration",
+        "dependencies",
+        "typescript"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:vitest.config.ts",
+      "type": "file",
+      "name": "vitest.config.ts",
+      "filePath": "vitest.config.ts",
+      "summary": "Configuração do Vitest para testes Node, timeouts compatíveis com integração e cobertura V8 de 100% em statements, branches, functions e lines.",
+      "tags": [
+        "config",
+        "test",
+        "coverage",
+        "quality-gate"
+      ],
+      "complexity": "simple"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:scripts/benchmark-tree.ts",
+      "target": "function:scripts/benchmark-tree.ts:buildChain",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:scripts/benchmark-tree.ts",
+      "target": "function:scripts/benchmark-tree.ts:run",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/application/ports/menu-ports.ts",
+      "target": "function:src/application/ports/menu-ports.ts:assertMenuRepository",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/application/ports/menu-ports.ts",
+      "target": "function:src/application/ports/menu-ports.ts:assertMenuRepository",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/application/ports/menu-ports.ts",
+      "target": "function:src/application/ports/menu-ports.ts:assertMenuItemIdGenerator",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/application/ports/menu-ports.ts",
+      "target": "function:src/application/ports/menu-ports.ts:assertMenuItemIdGenerator",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/application/use-cases/create-menu-item.ts",
+      "target": "class:src/application/use-cases/create-menu-item.ts:CreateMenuItem",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/application/use-cases/create-menu-item.ts",
+      "target": "class:src/application/use-cases/create-menu-item.ts:CreateMenuItem",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/domain/menu/menu-errors.ts",
+      "target": "class:src/domain/menu/menu-errors.ts:ParentMenuItemNotFoundError",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/domain/menu/menu-errors.ts",
+      "target": "class:src/domain/menu/menu-errors.ts:ParentMenuItemNotFoundError",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/domain/menu/menu-errors.ts",
+      "target": "class:src/domain/menu/menu-errors.ts:MenuItemNotFoundError",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/domain/menu/menu-errors.ts",
+      "target": "class:src/domain/menu/menu-errors.ts:MenuItemNotFoundError",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/domain/menu/menu-errors.ts",
+      "target": "class:src/domain/menu/menu-errors.ts:MenuItemNameAlreadyExistsError",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/domain/menu/menu-errors.ts",
+      "target": "class:src/domain/menu/menu-errors.ts:MenuItemNameAlreadyExistsError",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/domain/menu/menu-errors.ts",
+      "target": "class:src/domain/menu/menu-errors.ts:InvalidMenuItemIdError",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/domain/menu/menu-errors.ts",
+      "target": "class:src/domain/menu/menu-errors.ts:InvalidMenuItemIdError",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/domain/menu/menu-errors.ts",
+      "target": "class:src/domain/menu/menu-errors.ts:InvalidMenuItemNameError",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/domain/menu/menu-errors.ts",
+      "target": "class:src/domain/menu/menu-errors.ts:InvalidMenuItemNameError",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/domain/menu/menu-errors.ts",
+      "target": "class:src/domain/menu/menu-errors.ts:DataIntegrityError",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/domain/menu/menu-errors.ts",
+      "target": "class:src/domain/menu/menu-errors.ts:DataIntegrityError",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/domain/menu/menu-item.ts",
+      "target": "function:src/domain/menu/menu-item.ts:normalizeMenuItemName",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/domain/menu/menu-item.ts",
+      "target": "function:src/domain/menu/menu-item.ts:normalizeMenuItemName",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/domain/menu/menu-item.ts",
+      "target": "function:src/domain/menu/menu-item.ts:createRootMenuItem",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/domain/menu/menu-item.ts",
+      "target": "function:src/domain/menu/menu-item.ts:createRootMenuItem",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/domain/menu/menu-item.ts",
+      "target": "function:src/domain/menu/menu-item.ts:createChildMenuItem",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/domain/menu/menu-item.ts",
+      "target": "function:src/domain/menu/menu-item.ts:createChildMenuItem",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/shared/tree/build-menu-tree.ts",
+      "target": "function:src/shared/tree/build-menu-tree.ts:buildMenuTree",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/shared/tree/build-menu-tree.ts",
+      "target": "function:src/shared/tree/build-menu-tree.ts:buildMenuTree",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/fakes/in-memory-menu.ts",
+      "target": "class:tests/fakes/in-memory-menu.ts:InMemoryMenuRepository",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:tests/fakes/in-memory-menu.ts",
+      "target": "class:tests/fakes/in-memory-menu.ts:InMemoryMenuRepository",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/fakes/in-memory-menu.ts",
+      "target": "class:tests/fakes/in-memory-menu.ts:InMemoryMenuItemIdGenerator",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:tests/fakes/in-memory-menu.ts",
+      "target": "class:tests/fakes/in-memory-menu.ts:InMemoryMenuItemIdGenerator",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/unit/build-menu-tree.test.ts",
+      "target": "function:tests/unit/build-menu-tree.test.ts:collectNodes",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:tests/unit/menu-item.test.ts",
+      "target": "function:tests/unit/menu-item.test.ts:collectTsFiles",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:scripts/benchmark-tree.ts",
+      "target": "file:src/shared/tree/build-menu-tree.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/application/ports/menu-ports.ts",
+      "target": "file:src/application/ports/id-generator.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/application/ports/menu-ports.ts",
+      "target": "file:src/application/ports/menu-repository.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/application/ports/menu-repository.ts",
+      "target": "file:src/domain/menu/menu-item.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/application/use-cases/create-menu-item.ts",
+      "target": "file:src/application/ports/id-generator.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/application/use-cases/create-menu-item.ts",
+      "target": "file:src/application/ports/menu-repository.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/application/use-cases/create-menu-item.ts",
+      "target": "file:src/domain/menu/menu-errors.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/application/use-cases/create-menu-item.ts",
+      "target": "file:src/domain/menu/menu-item.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/domain/menu/menu-item.ts",
+      "target": "file:src/domain/menu/menu-errors.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/shared/tree/build-menu-tree.ts",
+      "target": "file:src/domain/menu/menu-errors.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:tests/fakes/in-memory-menu.ts",
+      "target": "file:src/application/ports/id-generator.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:tests/fakes/in-memory-menu.ts",
+      "target": "file:src/application/ports/menu-repository.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:tests/fakes/in-memory-menu.ts",
+      "target": "file:src/domain/menu/menu-errors.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:tests/fakes/in-memory-menu.ts",
+      "target": "file:src/domain/menu/menu-item.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:tests/unit/build-menu-tree.test.ts",
+      "target": "file:src/domain/menu/menu-errors.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/domain/menu/menu-errors.ts",
+      "target": "file:tests/unit/build-menu-tree.test.ts",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:tests/unit/build-menu-tree.test.ts",
+      "target": "file:src/shared/tree/build-menu-tree.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/shared/tree/build-menu-tree.ts",
+      "target": "file:tests/unit/build-menu-tree.test.ts",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:tests/unit/menu-item.test.ts",
+      "target": "file:src/domain/menu/menu-errors.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/domain/menu/menu-errors.ts",
+      "target": "file:tests/unit/menu-item.test.ts",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:tests/unit/menu-item.test.ts",
+      "target": "file:src/domain/menu/menu-item.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/domain/menu/menu-item.ts",
+      "target": "file:tests/unit/menu-item.test.ts",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:tests/unit/menu-ports.test.ts",
+      "target": "file:src/application/ports/id-generator.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/application/ports/id-generator.ts",
+      "target": "file:tests/unit/menu-ports.test.ts",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:tests/unit/menu-ports.test.ts",
+      "target": "file:src/application/ports/menu-ports.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/application/ports/menu-ports.ts",
+      "target": "file:tests/unit/menu-ports.test.ts",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:tests/unit/menu-ports.test.ts",
+      "target": "file:src/application/ports/menu-repository.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/application/ports/menu-repository.ts",
+      "target": "file:tests/unit/menu-ports.test.ts",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:tests/unit/menu-ports.test.ts",
+      "target": "file:src/domain/menu/menu-item.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/domain/menu/menu-item.ts",
+      "target": "file:tests/unit/menu-ports.test.ts",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:tests/unit/menu-use-cases.test.ts",
+      "target": "file:src/application/use-cases/create-menu-item.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/application/use-cases/create-menu-item.ts",
+      "target": "file:tests/unit/menu-use-cases.test.ts",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:tests/unit/menu-use-cases.test.ts",
+      "target": "file:src/application/use-cases/delete-menu-subtree.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/application/use-cases/delete-menu-subtree.ts",
+      "target": "file:tests/unit/menu-use-cases.test.ts",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:tests/unit/menu-use-cases.test.ts",
+      "target": "file:src/application/use-cases/get-menu-tree.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/application/use-cases/get-menu-tree.ts",
+      "target": "file:tests/unit/menu-use-cases.test.ts",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:tests/unit/menu-use-cases.test.ts",
+      "target": "file:src/domain/menu/menu-errors.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/domain/menu/menu-errors.ts",
+      "target": "file:tests/unit/menu-use-cases.test.ts",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:tests/unit/menu-use-cases.test.ts",
+      "target": "file:tests/fakes/in-memory-menu.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "function:scripts/benchmark-tree.ts:run",
+      "target": "function:src/shared/tree/build-menu-tree.ts:buildMenuTree",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/infrastructure/database/mongo-id-generator.ts",
+      "target": "class:src/infrastructure/database/mongo-id-generator.ts:MongoIdGenerator",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/infrastructure/database/mongo-id-generator.ts",
+      "target": "class:src/infrastructure/database/mongo-id-generator.ts:MongoIdGenerator",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/infrastructure/database/mongoose/ensure-menu-indexes.ts",
+      "target": "function:src/infrastructure/database/mongoose/ensure-menu-indexes.ts:ensureMenuIndexes",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/infrastructure/database/mongoose/ensure-menu-indexes.ts",
+      "target": "function:src/infrastructure/database/mongoose/ensure-menu-indexes.ts:ensureMenuIndexes",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/infrastructure/database/mongoose/mongoose-menu-repository.ts",
+      "target": "function:src/infrastructure/database/mongoose/mongoose-menu-repository.ts:toDomain",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/infrastructure/database/mongoose/mongoose-menu-repository.ts",
+      "target": "class:src/infrastructure/database/mongoose/mongoose-menu-repository.ts:MongooseMenuRepository",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/infrastructure/database/mongoose/mongoose-menu-repository.ts",
+      "target": "class:src/infrastructure/database/mongoose/mongoose-menu-repository.ts:MongooseMenuRepository",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/integration/http-errors-observability.test.ts",
+      "target": "function:tests/integration/http-errors-observability.test.ts:createLogCapture",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:tests/integration/http-get-delete-menu.test.ts",
+      "target": "function:tests/integration/http-get-delete-menu.test.ts:createItem",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:tests/integration/mongo-test-context.ts",
+      "target": "function:tests/integration/mongo-test-context.ts:startMongoTestContext",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:tests/integration/mongo-test-context.ts",
+      "target": "function:tests/integration/mongo-test-context.ts:startMongoTestContext",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/integration/mongo-test-context.ts",
+      "target": "function:tests/integration/mongo-test-context.ts:stopMongoTestContext",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:tests/integration/mongo-test-context.ts",
+      "target": "function:tests/integration/mongo-test-context.ts:stopMongoTestContext",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/integration/mongo-test-context.ts",
+      "target": "function:tests/integration/mongo-test-context.ts:resetMongoCollections",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:tests/integration/mongo-test-context.ts",
+      "target": "function:tests/integration/mongo-test-context.ts:resetMongoCollections",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/infrastructure/database/mongo-id-generator.ts",
+      "target": "file:src/application/ports/id-generator.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/infrastructure/database/mongo-id-generator.ts",
+      "target": "file:src/domain/menu/menu-errors.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/infrastructure/database/mongo-id-generator.ts",
+      "target": "file:src/infrastructure/database/mongoose/counter-model.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/infrastructure/database/mongoose/ensure-menu-indexes.ts",
+      "target": "file:src/infrastructure/database/mongoose/menu-item-model.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/infrastructure/database/mongoose/mongoose-menu-repository.ts",
+      "target": "file:src/application/ports/menu-repository.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/infrastructure/database/mongoose/mongoose-menu-repository.ts",
+      "target": "file:src/domain/menu/menu-errors.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/infrastructure/database/mongoose/mongoose-menu-repository.ts",
+      "target": "file:src/domain/menu/menu-item.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/infrastructure/database/mongoose/mongoose-menu-repository.ts",
+      "target": "file:src/infrastructure/database/mongoose/menu-item-model.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:tests/integration/concurrency.test.ts",
+      "target": "file:src/application/use-cases/create-menu-item.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/application/use-cases/create-menu-item.ts",
+      "target": "file:tests/integration/concurrency.test.ts",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:tests/integration/concurrency.test.ts",
+      "target": "file:src/application/use-cases/delete-menu-subtree.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/application/use-cases/delete-menu-subtree.ts",
+      "target": "file:tests/integration/concurrency.test.ts",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:tests/integration/concurrency.test.ts",
+      "target": "file:src/application/use-cases/get-menu-tree.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/application/use-cases/get-menu-tree.ts",
+      "target": "file:tests/integration/concurrency.test.ts",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:tests/integration/concurrency.test.ts",
+      "target": "file:src/infrastructure/database/mongo-id-generator.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/infrastructure/database/mongo-id-generator.ts",
+      "target": "file:tests/integration/concurrency.test.ts",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:tests/integration/concurrency.test.ts",
+      "target": "file:src/infrastructure/database/mongoose/counter-model.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/infrastructure/database/mongoose/counter-model.ts",
+      "target": "file:tests/integration/concurrency.test.ts",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:tests/integration/concurrency.test.ts",
+      "target": "file:src/infrastructure/database/mongoose/ensure-menu-indexes.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/infrastructure/database/mongoose/ensure-menu-indexes.ts",
+      "target": "file:tests/integration/concurrency.test.ts",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:tests/integration/concurrency.test.ts",
+      "target": "file:src/infrastructure/database/mongoose/menu-item-model.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/infrastructure/database/mongoose/menu-item-model.ts",
+      "target": "file:tests/integration/concurrency.test.ts",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:tests/integration/concurrency.test.ts",
+      "target": "file:src/infrastructure/database/mongoose/mongoose-menu-repository.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/infrastructure/database/mongoose/mongoose-menu-repository.ts",
+      "target": "file:tests/integration/concurrency.test.ts",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:tests/integration/concurrency.test.ts",
+      "target": "file:src/infrastructure/logging/logger.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/infrastructure/logging/logger.ts",
+      "target": "file:tests/integration/concurrency.test.ts",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:tests/integration/concurrency.test.ts",
+      "target": "file:src/main/create-app.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/main/create-app.ts",
+      "target": "file:tests/integration/concurrency.test.ts",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:tests/integration/concurrency.test.ts",
+      "target": "file:tests/integration/mongo-test-context.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:tests/integration/http-create-menu.test.ts",
+      "target": "file:src/application/use-cases/create-menu-item.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/application/use-cases/create-menu-item.ts",
+      "target": "file:tests/integration/http-create-menu.test.ts",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:tests/integration/http-create-menu.test.ts",
+      "target": "file:src/infrastructure/database/mongo-id-generator.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/infrastructure/database/mongo-id-generator.ts",
+      "target": "file:tests/integration/http-create-menu.test.ts",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:tests/integration/http-create-menu.test.ts",
+      "target": "file:src/infrastructure/database/mongoose/counter-model.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/infrastructure/database/mongoose/counter-model.ts",
+      "target": "file:tests/integration/http-create-menu.test.ts",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:tests/integration/http-create-menu.test.ts",
+      "target": "file:src/infrastructure/database/mongoose/ensure-menu-indexes.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/infrastructure/database/mongoose/ensure-menu-indexes.ts",
+      "target": "file:tests/integration/http-create-menu.test.ts",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:tests/integration/http-create-menu.test.ts",
+      "target": "file:src/infrastructure/database/mongoose/menu-item-model.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/infrastructure/database/mongoose/menu-item-model.ts",
+      "target": "file:tests/integration/http-create-menu.test.ts",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:tests/integration/http-create-menu.test.ts",
+      "target": "file:src/infrastructure/database/mongoose/mongoose-menu-repository.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/infrastructure/database/mongoose/mongoose-menu-repository.ts",
+      "target": "file:tests/integration/http-create-menu.test.ts",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:tests/integration/http-create-menu.test.ts",
+      "target": "file:src/main/create-app.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/main/create-app.ts",
+      "target": "file:tests/integration/http-create-menu.test.ts",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:tests/integration/http-create-menu.test.ts",
+      "target": "file:tests/integration/mongo-test-context.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:tests/integration/http-errors-observability.test.ts",
+      "target": "file:src/application/use-cases/create-menu-item.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/application/use-cases/create-menu-item.ts",
+      "target": "file:tests/integration/http-errors-observability.test.ts",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:tests/integration/http-errors-observability.test.ts",
+      "target": "file:src/application/use-cases/delete-menu-subtree.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/application/use-cases/delete-menu-subtree.ts",
+      "target": "file:tests/integration/http-errors-observability.test.ts",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:tests/integration/http-errors-observability.test.ts",
+      "target": "file:src/application/use-cases/get-menu-tree.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/application/use-cases/get-menu-tree.ts",
+      "target": "file:tests/integration/http-errors-observability.test.ts",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:tests/integration/http-errors-observability.test.ts",
+      "target": "file:src/infrastructure/database/mongo-id-generator.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/infrastructure/database/mongo-id-generator.ts",
+      "target": "file:tests/integration/http-errors-observability.test.ts",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:tests/integration/http-errors-observability.test.ts",
+      "target": "file:src/infrastructure/database/mongoose/ensure-menu-indexes.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/infrastructure/database/mongoose/ensure-menu-indexes.ts",
+      "target": "file:tests/integration/http-errors-observability.test.ts",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:tests/integration/http-errors-observability.test.ts",
+      "target": "file:src/infrastructure/database/mongoose/mongoose-menu-repository.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/infrastructure/database/mongoose/mongoose-menu-repository.ts",
+      "target": "file:tests/integration/http-errors-observability.test.ts",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:tests/integration/http-errors-observability.test.ts",
+      "target": "file:src/main/create-app.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/main/create-app.ts",
+      "target": "file:tests/integration/http-errors-observability.test.ts",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:tests/integration/http-errors-observability.test.ts",
+      "target": "file:tests/integration/mongo-test-context.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:tests/integration/http-get-delete-menu.test.ts",
+      "target": "file:src/application/use-cases/create-menu-item.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/application/use-cases/create-menu-item.ts",
+      "target": "file:tests/integration/http-get-delete-menu.test.ts",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:tests/integration/http-get-delete-menu.test.ts",
+      "target": "file:src/application/use-cases/delete-menu-subtree.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/application/use-cases/delete-menu-subtree.ts",
+      "target": "file:tests/integration/http-get-delete-menu.test.ts",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:tests/integration/http-get-delete-menu.test.ts",
+      "target": "file:src/application/use-cases/get-menu-tree.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/application/use-cases/get-menu-tree.ts",
+      "target": "file:tests/integration/http-get-delete-menu.test.ts",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:tests/integration/http-get-delete-menu.test.ts",
+      "target": "file:src/infrastructure/database/mongo-id-generator.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/infrastructure/database/mongo-id-generator.ts",
+      "target": "file:tests/integration/http-get-delete-menu.test.ts",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:tests/integration/http-get-delete-menu.test.ts",
+      "target": "file:src/infrastructure/database/mongoose/ensure-menu-indexes.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/infrastructure/database/mongoose/ensure-menu-indexes.ts",
+      "target": "file:tests/integration/http-get-delete-menu.test.ts",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:tests/integration/http-get-delete-menu.test.ts",
+      "target": "file:src/infrastructure/database/mongoose/menu-item-model.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/infrastructure/database/mongoose/menu-item-model.ts",
+      "target": "file:tests/integration/http-get-delete-menu.test.ts",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:tests/integration/http-get-delete-menu.test.ts",
+      "target": "file:src/infrastructure/database/mongoose/mongoose-menu-repository.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/infrastructure/database/mongoose/mongoose-menu-repository.ts",
+      "target": "file:tests/integration/http-get-delete-menu.test.ts",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:tests/integration/http-get-delete-menu.test.ts",
+      "target": "file:src/main/create-app.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/main/create-app.ts",
+      "target": "file:tests/integration/http-get-delete-menu.test.ts",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:tests/integration/http-get-delete-menu.test.ts",
+      "target": "file:tests/integration/mongo-test-context.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:tests/integration/mongo-menu-persistence.test.ts",
+      "target": "file:src/application/use-cases/create-menu-item.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/application/use-cases/create-menu-item.ts",
+      "target": "file:tests/integration/mongo-menu-persistence.test.ts",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:tests/integration/mongo-menu-persistence.test.ts",
+      "target": "file:src/infrastructure/database/mongo-id-generator.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/infrastructure/database/mongo-id-generator.ts",
+      "target": "file:tests/integration/mongo-menu-persistence.test.ts",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:tests/integration/mongo-menu-persistence.test.ts",
+      "target": "file:src/infrastructure/database/mongoose/ensure-menu-indexes.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/infrastructure/database/mongoose/ensure-menu-indexes.ts",
+      "target": "file:tests/integration/mongo-menu-persistence.test.ts",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:tests/integration/mongo-menu-persistence.test.ts",
+      "target": "file:src/infrastructure/database/mongoose/menu-item-model.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/infrastructure/database/mongoose/menu-item-model.ts",
+      "target": "file:tests/integration/mongo-menu-persistence.test.ts",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:tests/integration/mongo-menu-persistence.test.ts",
+      "target": "file:src/infrastructure/database/mongoose/mongoose-menu-repository.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/infrastructure/database/mongoose/mongoose-menu-repository.ts",
+      "target": "file:tests/integration/mongo-menu-persistence.test.ts",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:tests/integration/mongo-menu-persistence.test.ts",
+      "target": "file:tests/integration/mongo-test-context.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/http/middlewares/error-handler.ts",
+      "target": "function:src/http/middlewares/error-handler.ts:isDatabaseUnavailable",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/http/middlewares/error-handler.ts",
+      "target": "function:src/http/middlewares/error-handler.ts:errorHandler",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/http/middlewares/error-handler.ts",
+      "target": "function:src/http/middlewares/error-handler.ts:errorHandler",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/http/middlewares/http-logger.ts",
+      "target": "function:src/http/middlewares/http-logger.ts:createHttpLogger",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/http/middlewares/http-logger.ts",
+      "target": "function:src/http/middlewares/http-logger.ts:createHttpLogger",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/http/middlewares/http-logger.ts",
+      "target": "function:src/http/middlewares/http-logger.ts:httpLoggerMiddleware",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/http/middlewares/http-logger.ts",
+      "target": "function:src/http/middlewares/http-logger.ts:httpLoggerMiddleware",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/http/middlewares/json-body-guards.ts",
+      "target": "function:src/http/middlewares/json-body-guards.ts:requireJsonContentType",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/http/middlewares/json-body-guards.ts",
+      "target": "function:src/http/middlewares/json-body-guards.ts:requireJsonContentType",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/http/middlewares/json-body-guards.ts",
+      "target": "function:src/http/middlewares/json-body-guards.ts:mapBodyParserErrors",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/http/middlewares/json-body-guards.ts",
+      "target": "function:src/http/middlewares/json-body-guards.ts:mapBodyParserErrors",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/http/middlewares/not-found.ts",
+      "target": "function:src/http/middlewares/not-found.ts:notFoundMiddleware",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/http/middlewares/not-found.ts",
+      "target": "function:src/http/middlewares/not-found.ts:notFoundMiddleware",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/http/middlewares/request-id.ts",
+      "target": "function:src/http/middlewares/request-id.ts:requestIdMiddleware",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/http/middlewares/request-id.ts",
+      "target": "function:src/http/middlewares/request-id.ts:requestIdMiddleware",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/http/middlewares/validate-body.ts",
+      "target": "function:src/http/middlewares/validate-body.ts:validateBody",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/http/middlewares/validate-body.ts",
+      "target": "function:src/http/middlewares/validate-body.ts:validateBody",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/http/presenters/error-presenter.ts",
+      "target": "function:src/http/presenters/error-presenter.ts:buildErrorBody",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/http/presenters/error-presenter.ts",
+      "target": "function:src/http/presenters/error-presenter.ts:buildErrorBody",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/http/presenters/error-presenter.ts",
+      "target": "function:src/http/presenters/error-presenter.ts:sendError",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/http/presenters/error-presenter.ts",
+      "target": "function:src/http/presenters/error-presenter.ts:sendError",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/main/create-app.ts",
+      "target": "function:src/main/create-app.ts:createApp",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/main/create-app.ts",
+      "target": "function:src/main/create-app.ts:createApp",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/unit/coverage-fillers.test.ts",
+      "target": "function:tests/unit/coverage-fillers.test.ts:mockRes",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/http/middlewares/error-handler.ts",
+      "target": "file:src/domain/menu/menu-errors.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/http/middlewares/error-handler.ts",
+      "target": "file:src/http/presenters/error-presenter.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/http/middlewares/json-body-guards.ts",
+      "target": "file:src/http/presenters/error-presenter.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/http/middlewares/not-found.ts",
+      "target": "file:src/http/presenters/error-presenter.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/http/middlewares/validate-body.ts",
+      "target": "file:src/http/presenters/error-presenter.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/main/create-app.ts",
+      "target": "file:src/application/use-cases/create-menu-item.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/main/create-app.ts",
+      "target": "file:src/application/use-cases/delete-menu-subtree.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/main/create-app.ts",
+      "target": "file:src/application/use-cases/get-menu-tree.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/main/create-app.ts",
+      "target": "file:src/http/middlewares/error-handler.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/main/create-app.ts",
+      "target": "file:src/http/middlewares/http-logger.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/main/create-app.ts",
+      "target": "file:src/http/middlewares/json-body-guards.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/main/create-app.ts",
+      "target": "file:src/http/middlewares/not-found.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/main/create-app.ts",
+      "target": "file:src/http/middlewares/request-id.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/main/create-app.ts",
+      "target": "file:src/http/routes/menu-routes.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/main/create-app.ts",
+      "target": "file:src/infrastructure/logging/logger.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:tests/unit/coverage-fillers.test.ts",
+      "target": "file:src/domain/menu/menu-errors.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/domain/menu/menu-errors.ts",
+      "target": "file:tests/unit/coverage-fillers.test.ts",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:tests/unit/coverage-fillers.test.ts",
+      "target": "file:src/domain/menu/menu-item.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/domain/menu/menu-item.ts",
+      "target": "file:tests/unit/coverage-fillers.test.ts",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:tests/unit/coverage-fillers.test.ts",
+      "target": "file:src/http/controllers/menu-controller.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/http/controllers/menu-controller.ts",
+      "target": "file:tests/unit/coverage-fillers.test.ts",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:tests/unit/coverage-fillers.test.ts",
+      "target": "file:src/http/middlewares/error-handler.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/http/middlewares/error-handler.ts",
+      "target": "file:tests/unit/coverage-fillers.test.ts",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:tests/unit/coverage-fillers.test.ts",
+      "target": "file:src/http/middlewares/json-body-guards.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/http/middlewares/json-body-guards.ts",
+      "target": "file:tests/unit/coverage-fillers.test.ts",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:tests/unit/coverage-fillers.test.ts",
+      "target": "file:src/http/middlewares/request-id.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/http/middlewares/request-id.ts",
+      "target": "file:tests/unit/coverage-fillers.test.ts",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:tests/unit/coverage-fillers.test.ts",
+      "target": "file:src/http/presenters/error-presenter.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/http/presenters/error-presenter.ts",
+      "target": "file:tests/unit/coverage-fillers.test.ts",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:tests/unit/coverage-fillers.test.ts",
+      "target": "file:src/infrastructure/database/mongoose/mongoose-menu-repository.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/infrastructure/database/mongoose/mongoose-menu-repository.ts",
+      "target": "file:tests/unit/coverage-fillers.test.ts",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:tests/unit/coverage-fillers.test.ts",
+      "target": "file:src/main/create-app.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/main/create-app.ts",
+      "target": "file:tests/unit/coverage-fillers.test.ts",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:tests/unit/create-app.test.ts",
+      "target": "file:src/main/create-app.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/main/create-app.ts",
+      "target": "file:tests/unit/create-app.test.ts",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:src/application/use-cases/delete-menu-subtree.ts",
+      "target": "class:src/application/use-cases/delete-menu-subtree.ts:DeleteMenuSubtree",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/application/use-cases/delete-menu-subtree.ts",
+      "target": "class:src/application/use-cases/delete-menu-subtree.ts:DeleteMenuSubtree",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/application/use-cases/get-menu-tree.ts",
+      "target": "class:src/application/use-cases/get-menu-tree.ts:GetMenuTree",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/application/use-cases/get-menu-tree.ts",
+      "target": "class:src/application/use-cases/get-menu-tree.ts:GetMenuTree",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/http/controllers/menu-controller.ts",
+      "target": "class:src/http/controllers/menu-controller.ts:MenuController",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/http/controllers/menu-controller.ts",
+      "target": "class:src/http/controllers/menu-controller.ts:MenuController",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/http/routes/menu-routes.ts",
+      "target": "function:src/http/routes/menu-routes.ts:createMenuRouter",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/http/routes/menu-routes.ts",
+      "target": "function:src/http/routes/menu-routes.ts:createMenuRouter",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/http/schemas/menu-item-id.param.ts",
+      "target": "function:src/http/schemas/menu-item-id.param.ts:parseMenuItemIdParam",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/http/schemas/menu-item-id.param.ts",
+      "target": "function:src/http/schemas/menu-item-id.param.ts:parseMenuItemIdParam",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/application/use-cases/delete-menu-subtree.ts",
+      "target": "file:src/application/ports/menu-repository.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/application/use-cases/delete-menu-subtree.ts",
+      "target": "file:src/domain/menu/menu-errors.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/application/use-cases/get-menu-tree.ts",
+      "target": "file:src/application/ports/menu-repository.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/application/use-cases/get-menu-tree.ts",
+      "target": "file:src/shared/tree/build-menu-tree.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/http/controllers/menu-controller.ts",
+      "target": "file:src/application/use-cases/create-menu-item.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/http/controllers/menu-controller.ts",
+      "target": "file:src/application/use-cases/delete-menu-subtree.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/http/controllers/menu-controller.ts",
+      "target": "file:src/application/use-cases/get-menu-tree.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/http/controllers/menu-controller.ts",
+      "target": "file:src/domain/menu/menu-errors.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/http/controllers/menu-controller.ts",
+      "target": "file:src/http/presenters/error-presenter.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/http/controllers/menu-controller.ts",
+      "target": "file:src/http/schemas/create-menu-item.schema.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/http/controllers/menu-controller.ts",
+      "target": "file:src/http/schemas/menu-item-id.param.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/http/routes/menu-routes.ts",
+      "target": "file:src/application/use-cases/create-menu-item.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/http/routes/menu-routes.ts",
+      "target": "file:src/application/use-cases/delete-menu-subtree.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/http/routes/menu-routes.ts",
+      "target": "file:src/application/use-cases/get-menu-tree.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/http/routes/menu-routes.ts",
+      "target": "file:src/http/controllers/menu-controller.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/http/routes/menu-routes.ts",
+      "target": "file:src/http/middlewares/validate-body.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/http/routes/menu-routes.ts",
+      "target": "file:src/http/schemas/create-menu-item.schema.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:tests/unit/create-menu-item.schema.test.ts",
+      "target": "file:src/http/schemas/create-menu-item.schema.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "class:src/application/use-cases/get-menu-tree.ts:GetMenuTree",
+      "target": "function:src/shared/tree/build-menu-tree.ts:buildMenuTree",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "class:src/http/controllers/menu-controller.ts:MenuController",
+      "target": "function:src/http/presenters/error-presenter.ts:sendError",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "class:src/http/controllers/menu-controller.ts:MenuController",
+      "target": "function:src/http/schemas/menu-item-id.param.ts:parseMenuItemIdParam",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:src/http/routes/menu-routes.ts:createMenuRouter",
+      "target": "function:src/http/middlewares/validate-body.ts:validateBody",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/http/schemas/create-menu-item.schema.ts",
+      "target": "file:tests/unit/create-menu-item.schema.test.ts",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:src/infrastructure/config/env.ts",
+      "target": "function:src/infrastructure/config/env.ts:loadEnv",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/infrastructure/config/env.ts",
+      "target": "function:src/infrastructure/config/env.ts:loadEnv",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/infrastructure/logging/logger.ts",
+      "target": "function:src/infrastructure/logging/logger.ts:createLogger",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/infrastructure/logging/logger.ts",
+      "target": "function:src/infrastructure/logging/logger.ts:createLogger",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/main/server.ts",
+      "target": "function:src/main/server.ts:bootstrap",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/main/server.ts",
+      "target": "function:src/main/server.ts:bootstrap",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/main/server.ts",
+      "target": "function:src/main/server.ts:gracefulShutdown",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/main/server.ts",
+      "target": "function:src/main/server.ts:gracefulShutdown",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/main/server.ts",
+      "target": "function:src/main/server.ts:startServer",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/main/server.ts",
+      "target": "function:src/main/server.ts:startServer",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/main/server.ts",
+      "target": "file:src/application/use-cases/create-menu-item.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/main/server.ts",
+      "target": "file:src/application/use-cases/delete-menu-subtree.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/main/server.ts",
+      "target": "file:src/application/use-cases/get-menu-tree.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/main/server.ts",
+      "target": "file:src/infrastructure/config/env.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/main/server.ts",
+      "target": "file:src/infrastructure/database/mongo-id-generator.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/main/server.ts",
+      "target": "file:src/infrastructure/database/mongoose/ensure-menu-indexes.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/main/server.ts",
+      "target": "file:src/infrastructure/database/mongoose/mongoose-menu-repository.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/main/server.ts",
+      "target": "file:src/infrastructure/logging/logger.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/main/server.ts",
+      "target": "file:src/main/create-app.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:tests/operational/env.test.ts",
+      "target": "file:src/infrastructure/config/env.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:tests/operational/server-lifecycle.test.ts",
+      "target": "file:src/main/server.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "function:src/main/server.ts:bootstrap",
+      "target": "function:src/infrastructure/config/env.ts:loadEnv",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:src/main/server.ts:bootstrap",
+      "target": "function:src/infrastructure/logging/logger.ts:createLogger",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:src/main/server.ts:bootstrap",
+      "target": "function:src/infrastructure/database/mongoose/ensure-menu-indexes.ts:ensureMenuIndexes",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:src/main/server.ts:bootstrap",
+      "target": "function:src/main/create-app.ts:createApp",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:src/main/server.ts:startServer",
+      "target": "function:src/main/server.ts:bootstrap",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/infrastructure/config/env.ts",
+      "target": "file:tests/operational/env.test.ts",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:src/main/server.ts",
+      "target": "file:tests/operational/server-lifecycle.test.ts",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "service:Dockerfile",
+      "target": "service:Dockerfile:build",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "service:Dockerfile",
+      "target": "service:Dockerfile:runtime",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "service:.dockerignore",
+      "target": "service:Dockerfile",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "service:docker-compose.yml",
+      "target": "service:Dockerfile",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "pipeline:.github/workflows/pages.yml",
+      "target": "pipeline:.github/workflows/ci.yml",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:README.en.md",
+      "target": "config:package.json",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:README.md",
+      "target": "config:package.json",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:TSDOC_STYLE.md",
+      "target": "config:typedoc.json",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:TSDOC_STYLE.md",
+      "target": "config:typedoc.markdown.json",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:readme.md",
+      "target": "document:README.md",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "config:tsconfig.build.json",
+      "target": "config:tsconfig.json",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:typedoc.json",
+      "target": "config:tsconfig.build.json",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:typedoc.json",
+      "target": "document:README.md",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:typedoc.markdown.json",
+      "target": "config:tsconfig.build.json",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:package.json",
+      "target": "config:tsconfig.build.json",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:package.json",
+      "target": "config:typedoc.json",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "file:docs-site/en/index.html",
+      "target": "file:docs-site/assets/styles.css",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "file:docs-site/index.html",
+      "target": "file:docs-site/assets/styles.css",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "file:scripts/build-docs-site.mjs",
+      "target": "function:scripts/build-docs-site.mjs:run",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:scripts/build-docs-site.mjs",
+      "target": "function:scripts/build-docs-site.mjs:makeRedocClientRendered",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:scripts/build-docs-site.mjs",
+      "target": "file:scripts/build-ua-viewer.mjs",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "file:scripts/build-ua-viewer.mjs",
+      "target": "function:scripts/build-ua-viewer.mjs:run",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:scripts/build-ua-viewer.mjs",
+      "target": "function:scripts/build-ua-viewer.mjs:ensurePinnedSource",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:scripts/build-ua-viewer.mjs",
+      "target": "function:scripts/build-ua-viewer.mjs:copyGraphInputs",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:scripts/build-ua-viewer.mjs",
+      "target": "function:scripts/build-ua-viewer.mjs:buildViewer",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:scripts/check-docs-site.mjs",
+      "target": "file:scripts/build-docs-site.mjs",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:openapi/openapi.yaml",
+      "target": "file:tests/contract/openapi.test.ts",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:tests/architecture/architecture.test.ts",
+      "target": "function:tests/architecture/architecture.test.ts:collectTsFiles",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:tests/architecture/architecture.test.ts",
+      "target": "config:openapi/openapi.yaml",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "file:vitest.config.ts",
+      "target": "file:tests/architecture/architecture.test.ts",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "file:vitest.config.ts",
+      "target": "file:tests/contract/openapi.test.ts",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "file:vitest.config.ts",
+      "target": "file:tests/operational/ops-packaging.test.ts",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "file:vitest.config.ts",
+      "target": "file:tests/unit/stack-manifest.test.ts",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:.prettierrc.json",
+      "target": "file:src/main/server.ts",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:.spectral.yaml",
+      "target": "config:openapi/openapi.yaml",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "file:docs-site/.nojekyll",
+      "target": "file:docs-site/index.html",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:eslint.config.js",
+      "target": "file:src/main/server.ts",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "service:Dockerfile:build",
+      "target": "file:src/main/server.ts",
+      "type": "deploys",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "service:Dockerfile:runtime",
+      "target": "file:src/main/server.ts",
+      "type": "deploys",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "pipeline:.github/workflows/ci.yml",
+      "target": "file:tests/architecture/architecture.test.ts",
+      "type": "triggers",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "pipeline:.github/workflows/pages.yml",
+      "target": "file:docs-site/index.html",
+      "type": "triggers",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "document:readme.md",
+      "target": "file:src/main/server.ts",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    }
+  ],
+  "layers": [
+    {
+      "id": "layer:domain",
+      "name": "Domínio de Menu",
+      "description": "Entidades, invariantes e erros que expressam as regras centrais da hierarquia de menus sem dependências de framework.",
+      "nodeIds": [
+        "file:src/domain/menu/menu-errors.ts",
+        "file:src/domain/menu/menu-item.ts"
+      ]
+    },
+    {
+      "id": "layer:application",
+      "name": "Aplicação e Casos de Uso",
+      "description": "Portas e casos de uso que orquestram criação, consulta e exclusão de subárvores por meio de contratos injetáveis.",
+      "nodeIds": [
+        "file:src/application/ports/id-generator.ts",
+        "file:src/application/ports/menu-ports.ts",
+        "file:src/application/ports/menu-repository.ts",
+        "file:src/application/use-cases/create-menu-item.ts",
+        "file:src/application/use-cases/delete-menu-subtree.ts",
+        "file:src/application/use-cases/get-menu-tree.ts"
+      ]
+    },
+    {
+      "id": "layer:api",
+      "name": "API HTTP",
+      "description": "Rotas, controller, schemas e presenters que expõem o contrato REST do menu e traduzem dados entre HTTP e aplicação.",
+      "nodeIds": [
+        "file:src/http/presenters/error-presenter.ts",
+        "file:src/http/controllers/menu-controller.ts",
+        "file:src/http/routes/menu-routes.ts",
+        "file:src/http/schemas/create-menu-item.schema.ts",
+        "file:src/http/schemas/menu-item-id.param.ts"
+      ]
+    },
+    {
+      "id": "layer:middleware",
+      "name": "Middleware e Observabilidade HTTP",
+      "description": "Pipeline Express para validação, request ID, logging estruturado, respostas 404 e tratamento uniforme de erros.",
+      "nodeIds": [
+        "file:src/http/middlewares/error-handler.ts",
+        "file:src/http/middlewares/http-logger.ts",
+        "file:src/http/middlewares/json-body-guards.ts",
+        "file:src/http/middlewares/not-found.ts",
+        "file:src/http/middlewares/request-id.ts",
+        "file:src/http/middlewares/validate-body.ts"
+      ]
+    },
+    {
+      "id": "layer:data",
+      "name": "Persistência MongoDB",
+      "description": "Adapters Mongoose que implementam repositório, geração atômica de IDs, modelos e índices necessários à persistência hierárquica.",
+      "nodeIds": [
+        "file:src/infrastructure/database/mongo-id-generator.ts",
+        "file:src/infrastructure/database/mongoose/counter-model.ts",
+        "file:src/infrastructure/database/mongoose/ensure-menu-indexes.ts",
+        "file:src/infrastructure/database/mongoose/menu-item-model.ts",
+        "file:src/infrastructure/database/mongoose/mongoose-menu-repository.ts"
+      ]
+    },
+    {
+      "id": "layer:composition",
+      "name": "Composição e Runtime",
+      "description": "Bootstrap do servidor, fábrica Express, configuração de ambiente e logger que conectam as dependências da aplicação em execução.",
+      "nodeIds": [
+        "file:src/main/create-app.ts",
+        "file:src/infrastructure/config/env.ts",
+        "file:src/infrastructure/logging/logger.ts",
+        "file:src/main/server.ts"
+      ]
+    },
+    {
+      "id": "layer:utility",
+      "name": "Construção de Árvore",
+      "description": "Algoritmo compartilhado que transforma itens planos em uma árvore de menu ordenada com complexidade linear.",
+      "nodeIds": [
+        "file:src/shared/tree/build-menu-tree.ts"
+      ]
+    },
+    {
+      "id": "layer:test",
+      "name": "Qualidade e Verificação",
+      "description": "Testes unitários, de integração, contrato, arquitetura e operação, além do benchmark e da configuração Vitest.",
+      "nodeIds": [
+        "file:scripts/benchmark-tree.ts",
+        "file:tests/fakes/in-memory-menu.ts",
+        "file:tests/unit/build-menu-tree.test.ts",
+        "file:tests/unit/menu-item.test.ts",
+        "file:tests/unit/menu-ports.test.ts",
+        "file:tests/unit/menu-use-cases.test.ts",
+        "file:tests/integration/concurrency.test.ts",
+        "file:tests/integration/http-create-menu.test.ts",
+        "file:tests/integration/http-errors-observability.test.ts",
+        "file:tests/integration/http-get-delete-menu.test.ts",
+        "file:tests/integration/mongo-menu-persistence.test.ts",
+        "file:tests/integration/mongo-test-context.ts",
+        "file:tests/unit/coverage-fillers.test.ts",
+        "file:tests/unit/create-app.test.ts",
+        "file:tests/unit/create-menu-item.schema.test.ts",
+        "file:tests/operational/env.test.ts",
+        "file:tests/operational/server-lifecycle.test.ts",
+        "file:tests/architecture/architecture.test.ts",
+        "file:tests/contract/openapi.test.ts",
+        "file:tests/operational/ops-packaging.test.ts",
+        "file:tests/unit/stack-manifest.test.ts",
+        "file:vitest.config.ts"
+      ]
+    },
+    {
+      "id": "layer:documentation",
+      "name": "Documentação e Portal",
+      "description": "READMEs, contrato OpenAPI, configuração TypeDoc e portal bilíngue que publicam referências técnicas e o grafo arquitetural.",
+      "nodeIds": [
+        "config:.spectral.yaml",
+        "document:README.en.md",
+        "document:README.md",
+        "document:TSDOC_STYLE.md",
+        "document:readme.md",
+        "config:typedoc.json",
+        "config:typedoc.markdown.json",
+        "file:docs-site/.nojekyll",
+        "file:docs-site/assets/styles.css",
+        "file:docs-site/en/index.html",
+        "file:docs-site/index.html",
+        "config:openapi/openapi.yaml",
+        "file:scripts/build-docs-site.mjs",
+        "file:scripts/build-ua-viewer.mjs",
+        "file:scripts/check-docs-site.mjs"
+      ]
+    },
+    {
+      "id": "layer:infrastructure",
+      "name": "Infraestrutura e Toolchain",
+      "description": "Containers, CI/CD, GitHub Pages e configurações de build, lint e formatação que sustentam entrega e manutenção do projeto.",
+      "nodeIds": [
+        "service:.dockerignore",
+        "service:docker-compose.yml",
+        "service:Dockerfile",
+        "service:Dockerfile:build",
+        "service:Dockerfile:runtime",
+        "pipeline:.github/workflows/ci.yml",
+        "pipeline:.github/workflows/pages.yml",
+        "config:.prettierrc.json",
+        "config:package.json",
+        "config:tsconfig.build.json",
+        "config:tsconfig.json",
+        "file:eslint.config.js"
+      ]
+    }
+  ],
+  "tour": [
+    {
+      "order": 1,
+      "title": "Visão Geral do Projeto",
+      "description": "Comece pelo README para entender o problema de menus hierárquicos, a experiência de consumo da API e os compromissos de qualidade assumidos pelo projeto. Essa visão estabelece o vocabulário e o mapa arquitetural que orientarão os próximos passos.",
+      "nodeIds": [
+        "document:README.md"
+      ]
+    },
+    {
+      "order": 2,
+      "title": "Bootstrap e Composição",
+      "description": "Partindo da visão geral, o entry point valida o ambiente, conecta o MongoDB e controla o ciclo de vida do processo. A factory Express, a configuração fail-fast e o logger estruturado mostram onde as dependências são reunidas sem contaminar as camadas internas.",
+      "nodeIds": [
+        "file:src/main/server.ts",
+        "file:src/main/create-app.ts",
+        "file:src/infrastructure/config/env.ts",
+        "file:src/infrastructure/logging/logger.ts"
+      ]
+    },
+    {
+      "order": 3,
+      "title": "Núcleo de Domínio",
+      "description": "Antes de seguir a execução iniciada no bootstrap, conheça as invariantes que tornam um item de menu válido e os erros tipados que dão significado às falhas. Esse núcleo não depende de Express ou MongoDB e fornece a linguagem estável usada por todas as camadas seguintes.",
+      "nodeIds": [
+        "file:src/domain/menu/menu-item.ts",
+        "file:src/domain/menu/menu-errors.ts"
+      ],
+      "languageLesson": "Em TypeScript, tipos e factory methods podem concentrar invariantes na criação da entidade, enquanto classes de erro com códigos estáveis formam uma discriminated error model para as camadas externas."
+    },
+    {
+      "order": 4,
+      "title": "Portas e Casos de Uso",
+      "description": "Sobre o domínio do passo anterior, as portas definem o que a aplicação precisa para gerar IDs e persistir menus, sem escolher uma tecnologia concreta. Os três casos de uso coordenam criação, leitura da árvore e exclusão de subárvore, mantendo as decisões de negócio separadas dos adapters.",
+      "nodeIds": [
+        "file:src/application/ports/id-generator.ts",
+        "file:src/application/ports/menu-repository.ts",
+        "file:src/application/use-cases/create-menu-item.ts",
+        "file:src/application/use-cases/get-menu-tree.ts",
+        "file:src/application/use-cases/delete-menu-subtree.ts"
+      ],
+      "languageLesson": "Interfaces TypeScript funcionam aqui como ports: os casos de uso dependem de contratos estruturais, permitindo trocar adapters e usar fakes sem alterar a regra de negócio."
+    },
+    {
+      "order": 5,
+      "title": "Construção da Árvore",
+      "description": "O caso de uso de leitura delega a transformação dos registros planos a um algoritmo compartilhado de tempo linear. Ele preserva a ordenação e detecta referências parentais inválidas, convertendo dados persistidos na hierarquia pública prometida pela API.",
+      "nodeIds": [
+        "file:src/shared/tree/build-menu-tree.ts"
+      ]
+    },
+    {
+      "order": 6,
+      "title": "Persistência com MongoDB",
+      "description": "Agora as portas da aplicação ganham adapters concretos: o repositório converte documentos Mongoose para o domínio, enquanto models e índices representam a relação entre pai, filhos e ancestrais. Um contador atômico produz IDs sequenciais seguros antes que o servidor do passo 2 aceite requisições.",
+      "nodeIds": [
+        "file:src/infrastructure/database/mongoose/mongoose-menu-repository.ts",
+        "file:src/infrastructure/database/mongoose/menu-item-model.ts",
+        "file:src/infrastructure/database/mongoose/counter-model.ts",
+        "file:src/infrastructure/database/mongo-id-generator.ts",
+        "file:src/infrastructure/database/mongoose/ensure-menu-indexes.ts"
+      ]
+    },
+    {
+      "order": 7,
+      "title": "Contrato da API",
+      "description": "Com domínio, casos de uso e persistência compreendidos, a camada HTTP expõe criação, consulta e remoção em `/api/v1/menu`. Rotas e controller adaptam Express à aplicação, enquanto schemas Zod validam corpo e parâmetros de acordo com o contrato OpenAPI 3.1.",
+      "nodeIds": [
+        "config:openapi/openapi.yaml",
+        "file:src/http/routes/menu-routes.ts",
+        "file:src/http/controllers/menu-controller.ts",
+        "file:src/http/schemas/create-menu-item.schema.ts",
+        "file:src/http/schemas/menu-item-id.param.ts"
+      ],
+      "languageLesson": "Zod complementa o type system estático do TypeScript com validação em runtime; o OpenAPI, por sua vez, publica o contrato independente da implementação para consumidores e ferramentas."
+    },
+    {
+      "order": 8,
+      "title": "Observabilidade e Erros",
+      "description": "Ao redor das rotas do passo anterior, o pipeline de middleware correlaciona cada requisição, registra eventos estruturados e protege o parsing de JSON. Erros de domínio, validação, banco ou falhas inesperadas convergem para um presenter com envelope HTTP uniforme e rastreável.",
+      "nodeIds": [
+        "file:src/http/middlewares/request-id.ts",
+        "file:src/http/middlewares/http-logger.ts",
+        "file:src/http/middlewares/json-body-guards.ts",
+        "file:src/http/middlewares/error-handler.ts",
+        "file:src/http/presenters/error-presenter.ts"
+      ]
+    },
+    {
+      "order": 9,
+      "title": "Qualidade como Arquitetura",
+      "description": "A estrutura percorrida até aqui é protegida por testes que verificam regras de dependência, contrato OpenAPI, orquestração dos casos de uso e comportamento observável da API. Essa combinação testa tanto unidades isoladas quanto fronteiras reais, impedindo regressões silenciosas na arquitetura e no protocolo HTTP.",
+      "nodeIds": [
+        "file:tests/architecture/architecture.test.ts",
+        "file:tests/contract/openapi.test.ts",
+        "file:tests/unit/menu-use-cases.test.ts",
+        "file:tests/integration/http-errors-observability.test.ts"
+      ]
+    },
+    {
+      "order": 10,
+      "title": "Containers e Execução Local",
+      "description": "Depois de validar o comportamento, o Dockerfile empacota o build TypeScript em uma imagem Node.js 24 sem dependências de desenvolvimento e executada por usuário não privilegiado. O Docker Compose conecta essa API a um MongoDB 7 persistente, enquanto o `.dockerignore` reduz o contexto e evita incluir artefatos ou segredos.",
+      "nodeIds": [
+        "service:Dockerfile",
+        "service:docker-compose.yml",
+        "service:.dockerignore"
+      ],
+      "languageLesson": "Multi-stage builds separam compilação e runtime para reduzir a imagem final; a ordem das layers também influencia o reaproveitamento do cache do Docker."
+    },
+    {
+      "order": 11,
+      "title": "Portal de Documentação",
+      "description": "O conhecimento do projeto é publicado em um portal que reúne a landing page, a referência TypeDoc, o contrato OpenAPI e o Architecture Explorer. O guia TSDoc mantém os comentários consistentes, e os scripts de build tornam a geração do site e do grafo reproduzível.",
+      "nodeIds": [
+        "document:TSDOC_STYLE.md",
+        "config:typedoc.json",
+        "file:docs-site/index.html",
+        "file:scripts/build-docs-site.mjs",
+        "file:scripts/build-ua-viewer.mjs"
+      ]
+    },
+    {
+      "order": 12,
+      "title": "CI e Publicação",
+      "description": "Para fechar a jornada, o manifesto npm centraliza os comandos usados localmente e na automação. O workflow principal verifica formatação, lint, tipos, testes, documentação, OpenAPI e auditoria, enquanto o workflow de Pages constrói e publica o portal com permissões mínimas e deploy serializado.",
+      "nodeIds": [
+        "config:package.json",
+        "pipeline:.github/workflows/ci.yml",
+        "pipeline:.github/workflows/pages.yml"
+      ],
+      "languageLesson": "Em GitHub Actions, `jobs` podem executar em paralelo, mas os `steps` de cada job são sequenciais; permissions explícitas e concurrency control reduzem privilégios e evitam deploys concorrentes."
+    }
+  ]
+}
