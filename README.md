@@ -31,7 +31,23 @@
   <a href="#-documentação-viva">Documentação</a>
 </p>
 
-<img width="100%" src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif" alt="" />
+<p>
+  <a href="https://this-rafael.github.io/paketa-credito-challange/">
+    <img
+      src="docs-site/assets/docs-portal.png"
+      alt="Portal de documentação interativa — OpenAPI, TypeDoc e Architecture Explorer"
+      width="920"
+    />
+  </a>
+</p>
+
+<p>
+  <a href="https://this-rafael.github.io/paketa-credito-challange/">
+    <strong>📚 Veja a documentação interativa →</strong>
+  </a>
+  <br />
+  <sub>OpenAPI · TypeDoc · Architecture Explorer — gerados a partir do repositório</sub>
+</p>
 
 </div>
 

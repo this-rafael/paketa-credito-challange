@@ -1,0 +1,8 @@
+allowBuilds:
+  '@scarf/scarf': true
+  cpu-features: true
+  esbuild: true
+  protobufjs: true
+  ssh2: true
+minimumReleaseAgeExclude:
+  - mongoose@9.9.0
