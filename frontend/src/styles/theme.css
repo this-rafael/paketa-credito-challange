@@ -1,0 +1,73 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  font-family: var(--font-sans);
+  background:
+    radial-gradient(1200px 600px at 10% -10%, oklch(35% 0.08 280 / 0.35), transparent 60%),
+    radial-gradient(900px 500px at 90% 0%, oklch(40% 0.12 155 / 0.12), transparent 55%),
+    var(--background);
+  color: var(--foreground);
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.5;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+  color: inherit;
+}
+
+a {
+  color: inherit;
+}
+
+.text-gradient {
+  background: linear-gradient(120deg, oklch(92% 0.04 260), var(--neon-green));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.glass {
+  background: var(--glass);
+  border: 1px solid var(--border);
+  backdrop-filter: blur(16px);
+  box-shadow: var(--shadow-panel);
+}
+
+.glass-strong {
+  background: var(--glass-strong);
+  border: 1px solid var(--border);
+  backdrop-filter: blur(20px);
+  box-shadow: var(--shadow-panel);
+}
+
+.neon-border {
+  box-shadow: var(--shadow-glow), inset 0 0 0 1px oklch(79% 0.18 155 / 0.25);
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: oklch(50% 0.04 275 / 0.6);
+  border-radius: 999px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}

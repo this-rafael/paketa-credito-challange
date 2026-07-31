@@ -6,10 +6,15 @@ docs-md/
 _site/
 .cache/
 .playwright-mcp/
+.angular/
 .ua/.trash-*/
 .ua/tmp/
 .ua/intermediate/*
 !.ua/intermediate/scan-result.json
+backend/.ua/.trash-*/
+backend/.ua/tmp/
+backend/.ua/intermediate/*
+!backend/.ua/intermediate/scan-result.json
 .env
 *.log
 .DS_Store

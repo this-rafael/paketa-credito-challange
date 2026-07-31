@@ -209,9 +209,9 @@ exist only where they solve a concrete problem.
 
 Menu rules do not import Express, Mongoose, or MongoDB. That lets us:
 
-* test use cases without a server or database;
-* swap persistence without touching rules;
-* keep controllers limited to HTTP.
+- test use cases without a server or database;
+- swap persistence without touching rules;
+- keep controllers limited to HTTP.
 
 ```text
 HTTP → Controller → Use Case → Repository Port → MongoDB Adapter
@@ -275,12 +275,12 @@ hidden `new` inside controllers.
 
 #### Tests by risk, not by endpoint count
 
-* unit: domain and use cases;
-* integration: MongoDB adapters;
-* HTTP: API contract;
-* concurrency: ID generation;
-* architecture: layer boundaries;
-* documentation: OpenAPI aligned with code.
+- unit: domain and use cases;
+- integration: MongoDB adapters;
+- HTTP: API contract;
+- concurrency: ID generation;
+- architecture: layer boundaries;
+- documentation: OpenAPI aligned with code.
 
 Each layer catches failures close to the source.
 
@@ -522,15 +522,15 @@ The solution was built in **red → green** cycles: failing tests first, then
 the implementation until green. The history below preserves that sequence in
 Git.
 
-| # | Capability | Red | Green |
-| :-: | :--- | :--- | :--- |
-| 01 | Bootstrap (Express + Vitest) | [`d114801`](https://github.com/this-rafael/paketa-credito-challange/commit/d114801) | [`#1`](https://github.com/this-rafael/paketa-credito-challange/pull/1) |
-| 02 | Create menu item | [`e6b0297`](https://github.com/this-rafael/paketa-credito-challange/commit/e6b0297) | [`#2`](https://github.com/this-rafael/paketa-credito-challange/pull/2) |
-| 03 | Get menu tree | [`129e1e1`](https://github.com/this-rafael/paketa-credito-challange/commit/129e1e1) | [`#3`](https://github.com/this-rafael/paketa-credito-challange/pull/3) |
-| 04 | Delete subtree | [`4f1743b`](https://github.com/this-rafael/paketa-credito-challange/commit/4f1743b) | [`#4`](https://github.com/this-rafael/paketa-credito-challange/pull/4) |
-| 05 | Errors and observability | [`5d0571d`](https://github.com/this-rafael/paketa-credito-challange/commit/5d0571d) | [`#5`](https://github.com/this-rafael/paketa-credito-challange/pull/5) |
-| 06 | Ops and concurrency | [`53ed9e3`](https://github.com/this-rafael/paketa-credito-challange/commit/53ed9e3) | [`#6`](https://github.com/this-rafael/paketa-credito-challange/pull/6) |
-| 07 | OpenAPI and quality gates | [`97323c1`](https://github.com/this-rafael/paketa-credito-challange/commit/97323c1) | [`#7`](https://github.com/this-rafael/paketa-credito-challange/pull/7) |
+|  #  | Capability                   | Red                                                                                 | Green                                                                  |
+| :-: | :--------------------------- | :---------------------------------------------------------------------------------- | :--------------------------------------------------------------------- |
+| 01  | Bootstrap (Express + Vitest) | [`d114801`](https://github.com/this-rafael/paketa-credito-challange/commit/d114801) | [`#1`](https://github.com/this-rafael/paketa-credito-challange/pull/1) |
+| 02  | Create menu item             | [`e6b0297`](https://github.com/this-rafael/paketa-credito-challange/commit/e6b0297) | [`#2`](https://github.com/this-rafael/paketa-credito-challange/pull/2) |
+| 03  | Get menu tree                | [`129e1e1`](https://github.com/this-rafael/paketa-credito-challange/commit/129e1e1) | [`#3`](https://github.com/this-rafael/paketa-credito-challange/pull/3) |
+| 04  | Delete subtree               | [`4f1743b`](https://github.com/this-rafael/paketa-credito-challange/commit/4f1743b) | [`#4`](https://github.com/this-rafael/paketa-credito-challange/pull/4) |
+| 05  | Errors and observability     | [`5d0571d`](https://github.com/this-rafael/paketa-credito-challange/commit/5d0571d) | [`#5`](https://github.com/this-rafael/paketa-credito-challange/pull/5) |
+| 06  | Ops and concurrency          | [`53ed9e3`](https://github.com/this-rafael/paketa-credito-challange/commit/53ed9e3) | [`#6`](https://github.com/this-rafael/paketa-credito-challange/pull/6) |
+| 07  | OpenAPI and quality gates    | [`97323c1`](https://github.com/this-rafael/paketa-credito-challange/commit/97323c1) | [`#7`](https://github.com/this-rafael/paketa-credito-challange/pull/7) |
 
 The `feature/*/red` and `feature/*/green` branches remain in the repository so
 each cycle can be inspected.

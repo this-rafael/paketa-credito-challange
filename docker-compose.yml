@@ -7,7 +7,9 @@ services:
       - mongodb_data:/data/db
 
   api:
-    build: .
+    build:
+      context: ./backend
+      dockerfile: ../Dockerfile
     ports:
       - '3000:3000'
     environment:
@@ -17,6 +19,15 @@ services:
       JSON_BODY_LIMIT: 100kb
     depends_on:
       - mongodb
+
+  web:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - '4200:80'
+    depends_on:
+      - api
 
 volumes:
   mongodb_data:
