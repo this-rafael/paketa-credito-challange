@@ -108,6 +108,26 @@ Não altera o contrato nem a arquitetura da API em `main`.
   </p>
 </div>
 
+## 📡 Addon opcional: OpenTelemetry
+
+*Essa branch foi implementada após o envio do projeto — pode desconsiderá-la, mas caso tenha curiosidade ela contém o equivalente a este projeto instrumentado com OpenTelemetry.*
+
+Se quiser inspecionar traces, métricas e correlação com logs estruturados, a branch
+[`experiments/opentelemetry`](https://github.com/this-rafael/paketa-credito-challange/tree/experiments/opentelemetry)
+estende o monorepo (API + Studio) com Collector → Tempo/Prometheus + Grafana,
+spans de domínio (`menu.create` / `menu.get_tree` / `menu.delete_subtree`) e
+propagação W3C a partir do Angular. Não altera o contrato nem a arquitetura da
+API em `main`.
+
+<p>
+  <sub>
+    Branch
+    <a href="https://github.com/this-rafael/paketa-credito-challange/tree/experiments/opentelemetry"><code>experiments/opentelemetry</code></a>
+    · <code>docker compose up --build</code>
+    · Grafana em <code>http://localhost:3001</code> (<code>admin</code>/<code>admin</code>)
+  </sub>
+</p>
+
 ## 🚀 Comece em 60 segundos
 
 ### Com Docker: caminho recomendado
