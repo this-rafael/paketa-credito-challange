@@ -1,3 +1,10 @@
+/**
+ * @packageDocumentation
+ *
+ * Composes the Express application: security headers, request id, logging, JSON
+ * body handling, the menu router, the OpenAPI/Swagger endpoint and the error
+ * handlers. Kept free of process/I/O so it can be reused in tests.
+ */
 import { readFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -20,11 +27,17 @@ import { requestIdMiddleware } from '../http/middlewares/request-id.js';
 import { createMenuRouter } from '../http/routes/menu-routes.js';
 import { createLogger } from '../infrastructure/logging/logger.js';
 
+/** Configuration for `createApp`. All fields are optional. */
 export type CreateAppOptions = {
+  /** Maximum JSON body size passed to the body parser (e.g. `"100kb"`). */
   jsonBodyLimit?: string;
+  /** Logger used by the HTTP logging middleware. */
   logger?: Logger;
+  /** When provided, enables `POST /api/v1/menu`. */
   createMenuItem?: CreateMenuItem;
+  /** When provided, enables `GET /api/v1/menu`. */
   getMenuTree?: GetMenuTree;
+  /** When provided, enables `DELETE /api/v1/menu/:id`. */
   deleteMenuSubtree?: DeleteMenuSubtree;
 };
 
@@ -35,6 +48,13 @@ const openApiDocument = YAML.parse(
   ),
 ) as Record<string, unknown>;
 
+/**
+ * Builds the Express application.
+ *
+ * @param options - Optional `CreateAppOptions`; defaults to an info-level
+ *   logger and no menu routes wired.
+ * @returns A configured `Express` instance (not yet listening).
+ */
 export function createApp(options: CreateAppOptions = {}): Express {
   const app = express();
   const logger =

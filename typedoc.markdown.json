@@ -1,0 +1,14 @@
+{
+  "$schema": "https://typedoc.org/schema.json",
+  "entryPoints": ["src"],
+  "entryPointStrategy": "expand",
+  "plugin": ["typedoc-plugin-markdown"],
+  "out": "docs-md",
+  "tsconfig": "tsconfig.build.json",
+  "exclude": ["**/*.test.ts", "**/*.spec.ts"],
+  "excludePrivate": false,
+  "excludeProtected": false,
+  "excludeInternal": false,
+  "readme": "none",
+  "sort": ["source-order"]
+}

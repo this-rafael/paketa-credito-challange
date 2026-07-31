@@ -1,6 +1,15 @@
 node_modules/
 dist/
 coverage/
+docs/
+docs-md/
+_site/
+.cache/
+.playwright-mcp/
+.ua/.trash-*/
+.ua/tmp/
+.ua/intermediate/*
+!.ua/intermediate/scan-result.json
 .env
 *.log
 .DS_Store

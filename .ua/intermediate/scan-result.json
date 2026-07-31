@@ -1,0 +1,727 @@
+{
+  "name": "menu-api",
+  "description": "API REST hierárquica para gerenciar menus com montagem de árvores em tempo linear, construída com Clean Architecture, Express 5 e MongoDB.",
+  "languages": [
+    "css",
+    "dockerfile",
+    "html",
+    "javascript",
+    "json",
+    "markdown",
+    "typescript",
+    "unknown",
+    "yaml"
+  ],
+  "frameworks": [
+    "Docker",
+    "Docker Compose",
+    "Express",
+    "GitHub Actions",
+    "Mongoose",
+    "Vitest"
+  ],
+  "files": [
+    {
+      "path": ".dockerignore",
+      "language": "unknown",
+      "sizeLines": 7,
+      "fileCategory": "infra"
+    },
+    {
+      "path": ".github/workflows/ci.yml",
+      "language": "yaml",
+      "sizeLines": 25,
+      "fileCategory": "infra"
+    },
+    {
+      "path": ".github/workflows/pages.yml",
+      "language": "yaml",
+      "sizeLines": 59,
+      "fileCategory": "infra"
+    },
+    {
+      "path": ".prettierrc.json",
+      "language": "json",
+      "sizeLines": 6,
+      "fileCategory": "config"
+    },
+    {
+      "path": ".spectral.yaml",
+      "language": "yaml",
+      "sizeLines": 1,
+      "fileCategory": "config"
+    },
+    {
+      "path": "docker-compose.yml",
+      "language": "yaml",
+      "sizeLines": 22,
+      "fileCategory": "infra"
+    },
+    {
+      "path": "Dockerfile",
+      "language": "dockerfile",
+      "sizeLines": 18,
+      "fileCategory": "infra"
+    },
+    {
+      "path": "docs-site/.nojekyll",
+      "language": "unknown",
+      "sizeLines": 1,
+      "fileCategory": "code"
+    },
+    {
+      "path": "docs-site/assets/styles.css",
+      "language": "css",
+      "sizeLines": 510,
+      "fileCategory": "markup"
+    },
+    {
+      "path": "docs-site/en/index.html",
+      "language": "html",
+      "sizeLines": 138,
+      "fileCategory": "markup"
+    },
+    {
+      "path": "docs-site/index.html",
+      "language": "html",
+      "sizeLines": 140,
+      "fileCategory": "markup"
+    },
+    {
+      "path": "eslint.config.js",
+      "language": "javascript",
+      "sizeLines": 35,
+      "fileCategory": "code"
+    },
+    {
+      "path": "openapi/openapi.yaml",
+      "language": "yaml",
+      "sizeLines": 256,
+      "fileCategory": "config"
+    },
+    {
+      "path": "package.json",
+      "language": "json",
+      "sizeLines": 69,
+      "fileCategory": "config"
+    },
+    {
+      "path": "README.en.md",
+      "language": "markdown",
+      "sizeLines": 403,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "readme.md",
+      "language": "markdown",
+      "sizeLines": 5,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "README.md",
+      "language": "markdown",
+      "sizeLines": 403,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "scripts/benchmark-tree.ts",
+      "language": "typescript",
+      "sizeLines": 42,
+      "fileCategory": "code"
+    },
+    {
+      "path": "scripts/build-docs-site.mjs",
+      "language": "javascript",
+      "sizeLines": 90,
+      "fileCategory": "code"
+    },
+    {
+      "path": "scripts/build-ua-viewer.mjs",
+      "language": "javascript",
+      "sizeLines": 138,
+      "fileCategory": "code"
+    },
+    {
+      "path": "scripts/check-docs-site.mjs",
+      "language": "javascript",
+      "sizeLines": 76,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/application/ports/id-generator.ts",
+      "language": "typescript",
+      "sizeLines": 17,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/application/ports/menu-ports.ts",
+      "language": "typescript",
+      "sizeLines": 32,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/application/ports/menu-repository.ts",
+      "language": "typescript",
+      "sizeLines": 54,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/application/use-cases/create-menu-item.ts",
+      "language": "typescript",
+      "sizeLines": 64,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/application/use-cases/delete-menu-subtree.ts",
+      "language": "typescript",
+      "sizeLines": 36,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/application/use-cases/get-menu-tree.ts",
+      "language": "typescript",
+      "sizeLines": 33,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/domain/menu/menu-errors.ts",
+      "language": "typescript",
+      "sizeLines": 84,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/domain/menu/menu-item.ts",
+      "language": "typescript",
+      "sizeLines": 101,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/http/controllers/menu-controller.ts",
+      "language": "typescript",
+      "sizeLines": 154,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/http/middlewares/error-handler.ts",
+      "language": "typescript",
+      "sizeLines": 98,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/http/middlewares/http-logger.ts",
+      "language": "typescript",
+      "sizeLines": 65,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/http/middlewares/json-body-guards.ts",
+      "language": "typescript",
+      "sizeLines": 78,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/http/middlewares/not-found.ts",
+      "language": "typescript",
+      "sizeLines": 17,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/http/middlewares/request-id.ts",
+      "language": "typescript",
+      "sizeLines": 31,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/http/middlewares/validate-body.ts",
+      "language": "typescript",
+      "sizeLines": 30,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/http/presenters/error-presenter.ts",
+      "language": "typescript",
+      "sizeLines": 67,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/http/routes/menu-routes.ts",
+      "language": "typescript",
+      "sizeLines": 62,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/http/schemas/create-menu-item.schema.ts",
+      "language": "typescript",
+      "sizeLines": 30,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/http/schemas/menu-item-id.param.ts",
+      "language": "typescript",
+      "sizeLines": 24,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/infrastructure/config/env.ts",
+      "language": "typescript",
+      "sizeLines": 45,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/infrastructure/database/mongo-id-generator.ts",
+      "language": "typescript",
+      "sizeLines": 50,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/infrastructure/database/mongoose/counter-model.ts",
+      "language": "typescript",
+      "sizeLines": 20,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/infrastructure/database/mongoose/ensure-menu-indexes.ts",
+      "language": "typescript",
+      "sizeLines": 16,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/infrastructure/database/mongoose/menu-item-model.ts",
+      "language": "typescript",
+      "sizeLines": 30,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/infrastructure/database/mongoose/mongoose-menu-repository.ts",
+      "language": "typescript",
+      "sizeLines": 109,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/infrastructure/logging/logger.ts",
+      "language": "typescript",
+      "sizeLines": 31,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/main/create-app.ts",
+      "language": "typescript",
+      "sizeLines": 112,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/main/server.ts",
+      "language": "typescript",
+      "sizeLines": 116,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/shared/tree/build-menu-tree.ts",
+      "language": "typescript",
+      "sizeLines": 77,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tests/architecture/architecture.test.ts",
+      "language": "typescript",
+      "sizeLines": 103,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tests/contract/openapi.test.ts",
+      "language": "typescript",
+      "sizeLines": 68,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tests/fakes/in-memory-menu.ts",
+      "language": "typescript",
+      "sizeLines": 69,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tests/integration/concurrency.test.ts",
+      "language": "typescript",
+      "sizeLines": 101,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tests/integration/http-create-menu.test.ts",
+      "language": "typescript",
+      "sizeLines": 286,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tests/integration/http-errors-observability.test.ts",
+      "language": "typescript",
+      "sizeLines": 206,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tests/integration/http-get-delete-menu.test.ts",
+      "language": "typescript",
+      "sizeLines": 204,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tests/integration/mongo-menu-persistence.test.ts",
+      "language": "typescript",
+      "sizeLines": 185,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tests/integration/mongo-test-context.ts",
+      "language": "typescript",
+      "sizeLines": 43,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tests/operational/env.test.ts",
+      "language": "typescript",
+      "sizeLines": 36,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tests/operational/ops-packaging.test.ts",
+      "language": "typescript",
+      "sizeLines": 24,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tests/operational/server-lifecycle.test.ts",
+      "language": "typescript",
+      "sizeLines": 33,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tests/unit/build-menu-tree.test.ts",
+      "language": "typescript",
+      "sizeLines": 199,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tests/unit/coverage-fillers.test.ts",
+      "language": "typescript",
+      "sizeLines": 284,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tests/unit/create-app.test.ts",
+      "language": "typescript",
+      "sizeLines": 45,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tests/unit/create-menu-item.schema.test.ts",
+      "language": "typescript",
+      "sizeLines": 26,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tests/unit/menu-item.test.ts",
+      "language": "typescript",
+      "sizeLines": 131,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tests/unit/menu-ports.test.ts",
+      "language": "typescript",
+      "sizeLines": 44,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tests/unit/menu-use-cases.test.ts",
+      "language": "typescript",
+      "sizeLines": 139,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tests/unit/stack-manifest.test.ts",
+      "language": "typescript",
+      "sizeLines": 36,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tsconfig.build.json",
+      "language": "json",
+      "sizeLines": 11,
+      "fileCategory": "config"
+    },
+    {
+      "path": "tsconfig.json",
+      "language": "json",
+      "sizeLines": 22,
+      "fileCategory": "config"
+    },
+    {
+      "path": "TSDOC_STYLE.md",
+      "language": "markdown",
+      "sizeLines": 43,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "typedoc.json",
+      "language": "json",
+      "sizeLines": 14,
+      "fileCategory": "config"
+    },
+    {
+      "path": "typedoc.markdown.json",
+      "language": "json",
+      "sizeLines": 13,
+      "fileCategory": "config"
+    },
+    {
+      "path": "vitest.config.ts",
+      "language": "typescript",
+      "sizeLines": 25,
+      "fileCategory": "code"
+    }
+  ],
+  "totalFiles": 76,
+  "filteredByIgnore": 72,
+  "estimatedComplexity": "moderate",
+  "importMap": {
+    ".dockerignore": [],
+    ".github/workflows/ci.yml": [],
+    ".github/workflows/pages.yml": [],
+    ".prettierrc.json": [],
+    ".spectral.yaml": [],
+    "docker-compose.yml": [],
+    "Dockerfile": [],
+    "docs-site/.nojekyll": [],
+    "docs-site/assets/styles.css": [],
+    "docs-site/en/index.html": [],
+    "docs-site/index.html": [],
+    "eslint.config.js": [],
+    "openapi/openapi.yaml": [],
+    "package.json": [],
+    "README.en.md": [],
+    "readme.md": [],
+    "README.md": [],
+    "scripts/benchmark-tree.ts": [
+      "src/shared/tree/build-menu-tree.ts"
+    ],
+    "scripts/build-docs-site.mjs": [],
+    "scripts/build-ua-viewer.mjs": [],
+    "scripts/check-docs-site.mjs": [],
+    "src/application/ports/id-generator.ts": [],
+    "src/application/ports/menu-ports.ts": [
+      "src/application/ports/id-generator.ts",
+      "src/application/ports/menu-repository.ts"
+    ],
+    "src/application/ports/menu-repository.ts": [
+      "src/domain/menu/menu-item.ts"
+    ],
+    "src/application/use-cases/create-menu-item.ts": [
+      "src/application/ports/id-generator.ts",
+      "src/application/ports/menu-repository.ts",
+      "src/domain/menu/menu-errors.ts",
+      "src/domain/menu/menu-item.ts"
+    ],
+    "src/application/use-cases/delete-menu-subtree.ts": [
+      "src/application/ports/menu-repository.ts",
+      "src/domain/menu/menu-errors.ts"
+    ],
+    "src/application/use-cases/get-menu-tree.ts": [
+      "src/application/ports/menu-repository.ts",
+      "src/shared/tree/build-menu-tree.ts"
+    ],
+    "src/domain/menu/menu-errors.ts": [],
+    "src/domain/menu/menu-item.ts": [
+      "src/domain/menu/menu-errors.ts"
+    ],
+    "src/http/controllers/menu-controller.ts": [
+      "src/application/use-cases/create-menu-item.ts",
+      "src/application/use-cases/delete-menu-subtree.ts",
+      "src/application/use-cases/get-menu-tree.ts",
+      "src/domain/menu/menu-errors.ts",
+      "src/http/presenters/error-presenter.ts",
+      "src/http/schemas/create-menu-item.schema.ts",
+      "src/http/schemas/menu-item-id.param.ts"
+    ],
+    "src/http/middlewares/error-handler.ts": [
+      "src/domain/menu/menu-errors.ts",
+      "src/http/presenters/error-presenter.ts"
+    ],
+    "src/http/middlewares/http-logger.ts": [],
+    "src/http/middlewares/json-body-guards.ts": [
+      "src/http/presenters/error-presenter.ts"
+    ],
+    "src/http/middlewares/not-found.ts": [
+      "src/http/presenters/error-presenter.ts"
+    ],
+    "src/http/middlewares/request-id.ts": [],
+    "src/http/middlewares/validate-body.ts": [
+      "src/http/presenters/error-presenter.ts"
+    ],
+    "src/http/presenters/error-presenter.ts": [],
+    "src/http/routes/menu-routes.ts": [
+      "src/application/use-cases/create-menu-item.ts",
+      "src/application/use-cases/delete-menu-subtree.ts",
+      "src/application/use-cases/get-menu-tree.ts",
+      "src/http/controllers/menu-controller.ts",
+      "src/http/middlewares/validate-body.ts",
+      "src/http/schemas/create-menu-item.schema.ts"
+    ],
+    "src/http/schemas/create-menu-item.schema.ts": [],
+    "src/http/schemas/menu-item-id.param.ts": [],
+    "src/infrastructure/config/env.ts": [],
+    "src/infrastructure/database/mongo-id-generator.ts": [
+      "src/application/ports/id-generator.ts",
+      "src/domain/menu/menu-errors.ts",
+      "src/infrastructure/database/mongoose/counter-model.ts"
+    ],
+    "src/infrastructure/database/mongoose/counter-model.ts": [],
+    "src/infrastructure/database/mongoose/ensure-menu-indexes.ts": [
+      "src/infrastructure/database/mongoose/menu-item-model.ts"
+    ],
+    "src/infrastructure/database/mongoose/menu-item-model.ts": [],
+    "src/infrastructure/database/mongoose/mongoose-menu-repository.ts": [
+      "src/application/ports/menu-repository.ts",
+      "src/domain/menu/menu-errors.ts",
+      "src/domain/menu/menu-item.ts",
+      "src/infrastructure/database/mongoose/menu-item-model.ts"
+    ],
+    "src/infrastructure/logging/logger.ts": [],
+    "src/main/create-app.ts": [
+      "src/application/use-cases/create-menu-item.ts",
+      "src/application/use-cases/delete-menu-subtree.ts",
+      "src/application/use-cases/get-menu-tree.ts",
+      "src/http/middlewares/error-handler.ts",
+      "src/http/middlewares/http-logger.ts",
+      "src/http/middlewares/json-body-guards.ts",
+      "src/http/middlewares/not-found.ts",
+      "src/http/middlewares/request-id.ts",
+      "src/http/routes/menu-routes.ts",
+      "src/infrastructure/logging/logger.ts"
+    ],
+    "src/main/server.ts": [
+      "src/application/use-cases/create-menu-item.ts",
+      "src/application/use-cases/delete-menu-subtree.ts",
+      "src/application/use-cases/get-menu-tree.ts",
+      "src/infrastructure/config/env.ts",
+      "src/infrastructure/database/mongo-id-generator.ts",
+      "src/infrastructure/database/mongoose/ensure-menu-indexes.ts",
+      "src/infrastructure/database/mongoose/mongoose-menu-repository.ts",
+      "src/infrastructure/logging/logger.ts",
+      "src/main/create-app.ts"
+    ],
+    "src/shared/tree/build-menu-tree.ts": [
+      "src/domain/menu/menu-errors.ts"
+    ],
+    "tests/architecture/architecture.test.ts": [],
+    "tests/contract/openapi.test.ts": [],
+    "tests/fakes/in-memory-menu.ts": [
+      "src/application/ports/id-generator.ts",
+      "src/application/ports/menu-repository.ts",
+      "src/domain/menu/menu-errors.ts",
+      "src/domain/menu/menu-item.ts"
+    ],
+    "tests/integration/concurrency.test.ts": [
+      "src/application/use-cases/create-menu-item.ts",
+      "src/application/use-cases/delete-menu-subtree.ts",
+      "src/application/use-cases/get-menu-tree.ts",
+      "src/infrastructure/database/mongo-id-generator.ts",
+      "src/infrastructure/database/mongoose/counter-model.ts",
+      "src/infrastructure/database/mongoose/ensure-menu-indexes.ts",
+      "src/infrastructure/database/mongoose/menu-item-model.ts",
+      "src/infrastructure/database/mongoose/mongoose-menu-repository.ts",
+      "src/infrastructure/logging/logger.ts",
+      "src/main/create-app.ts",
+      "tests/integration/mongo-test-context.ts"
+    ],
+    "tests/integration/http-create-menu.test.ts": [
+      "src/application/use-cases/create-menu-item.ts",
+      "src/infrastructure/database/mongo-id-generator.ts",
+      "src/infrastructure/database/mongoose/counter-model.ts",
+      "src/infrastructure/database/mongoose/ensure-menu-indexes.ts",
+      "src/infrastructure/database/mongoose/menu-item-model.ts",
+      "src/infrastructure/database/mongoose/mongoose-menu-repository.ts",
+      "src/main/create-app.ts",
+      "tests/integration/mongo-test-context.ts"
+    ],
+    "tests/integration/http-errors-observability.test.ts": [
+      "src/application/use-cases/create-menu-item.ts",
+      "src/application/use-cases/delete-menu-subtree.ts",
+      "src/application/use-cases/get-menu-tree.ts",
+      "src/infrastructure/database/mongo-id-generator.ts",
+      "src/infrastructure/database/mongoose/ensure-menu-indexes.ts",
+      "src/infrastructure/database/mongoose/mongoose-menu-repository.ts",
+      "src/main/create-app.ts",
+      "tests/integration/mongo-test-context.ts"
+    ],
+    "tests/integration/http-get-delete-menu.test.ts": [
+      "src/application/use-cases/create-menu-item.ts",
+      "src/application/use-cases/delete-menu-subtree.ts",
+      "src/application/use-cases/get-menu-tree.ts",
+      "src/infrastructure/database/mongo-id-generator.ts",
+      "src/infrastructure/database/mongoose/ensure-menu-indexes.ts",
+      "src/infrastructure/database/mongoose/menu-item-model.ts",
+      "src/infrastructure/database/mongoose/mongoose-menu-repository.ts",
+      "src/main/create-app.ts",
+      "tests/integration/mongo-test-context.ts"
+    ],
+    "tests/integration/mongo-menu-persistence.test.ts": [
+      "src/application/use-cases/create-menu-item.ts",
+      "src/infrastructure/database/mongo-id-generator.ts",
+      "src/infrastructure/database/mongoose/ensure-menu-indexes.ts",
+      "src/infrastructure/database/mongoose/menu-item-model.ts",
+      "src/infrastructure/database/mongoose/mongoose-menu-repository.ts",
+      "tests/integration/mongo-test-context.ts"
+    ],
+    "tests/integration/mongo-test-context.ts": [],
+    "tests/operational/env.test.ts": [
+      "src/infrastructure/config/env.ts"
+    ],
+    "tests/operational/ops-packaging.test.ts": [],
+    "tests/operational/server-lifecycle.test.ts": [
+      "src/main/server.ts"
+    ],
+    "tests/unit/build-menu-tree.test.ts": [
+      "src/domain/menu/menu-errors.ts",
+      "src/shared/tree/build-menu-tree.ts"
+    ],
+    "tests/unit/coverage-fillers.test.ts": [
+      "src/domain/menu/menu-errors.ts",
+      "src/domain/menu/menu-item.ts",
+      "src/http/controllers/menu-controller.ts",
+      "src/http/middlewares/error-handler.ts",
+      "src/http/middlewares/json-body-guards.ts",
+      "src/http/middlewares/request-id.ts",
+      "src/http/presenters/error-presenter.ts",
+      "src/infrastructure/database/mongoose/mongoose-menu-repository.ts",
+      "src/main/create-app.ts"
+    ],
+    "tests/unit/create-app.test.ts": [
+      "src/main/create-app.ts"
+    ],
+    "tests/unit/create-menu-item.schema.test.ts": [
+      "src/http/schemas/create-menu-item.schema.ts"
+    ],
+    "tests/unit/menu-item.test.ts": [
+      "src/domain/menu/menu-errors.ts",
+      "src/domain/menu/menu-item.ts"
+    ],
+    "tests/unit/menu-ports.test.ts": [
+      "src/application/ports/id-generator.ts",
+      "src/application/ports/menu-ports.ts",
+      "src/application/ports/menu-repository.ts",
+      "src/domain/menu/menu-item.ts"
+    ],
+    "tests/unit/menu-use-cases.test.ts": [
+      "src/application/use-cases/create-menu-item.ts",
+      "src/application/use-cases/delete-menu-subtree.ts",
+      "src/application/use-cases/get-menu-tree.ts",
+      "src/domain/menu/menu-errors.ts",
+      "tests/fakes/in-memory-menu.ts"
+    ],
+    "tests/unit/stack-manifest.test.ts": [],
+    "tsconfig.build.json": [],
+    "tsconfig.json": [],
+    "TSDOC_STYLE.md": [],
+    "typedoc.json": [],
+    "typedoc.markdown.json": [],
+    "vitest.config.ts": []
+  }
+}
