@@ -37,7 +37,7 @@
   <a href="https://this-rafael.github.io/paketa-credito-challange/">
     <img
       src="docs-site/assets/docs-portal.png"
-      alt="Portal de documentação interativa — OpenAPI, TypeDoc e Architecture Explorer"
+      alt="Portal de documentação interativa: OpenAPI, TypeDoc e Architecture Explorer"
       width="920"
     />
   </a>
@@ -48,7 +48,7 @@
     <strong>📚 Veja a documentação interativa →</strong>
   </a>
   <br />
-  <sub>OpenAPI · TypeDoc · Architecture Explorer — gerados a partir do repositório</sub>
+  <sub>OpenAPI · TypeDoc · Architecture Explorer: gerados a partir do repositório</sub>
 </p>
 
 </div>
@@ -69,7 +69,7 @@ mensurável.
 |                     | O que foi construído                                                             |
 | :-----------------: | :------------------------------------------------------------------------------- |
 |  🌳 **Hierarquia**  | Floresta de menus de profundidade arbitrária, com ordenação determinística       |
-|  ⚡ **Desempenho**  | Montagem da árvore em duas passagens — tempo e memória `O(n)`                    |
+|  ⚡ **Desempenho**  | Montagem da árvore em duas passagens: tempo e memória `O(n)`                     |
 | 🧭 **Arquitetura**  | Domínio, aplicação, HTTP e infraestrutura com dependências apontando para dentro |
 | 🛡️ **Resiliência**  | Validação fail-fast, erros tipados, request ID e graceful shutdown               |
 |  🧪 **Confiança**   | 18 suites, 111 testes e 100% de cobertura nas quatro métricas                    |
@@ -83,7 +83,7 @@ mensurável.
 
 ## 🚀 Comece em 60 segundos
 
-### Com Docker — caminho recomendado
+### Com Docker: caminho recomendado
 
 ```bash
 git clone https://github.com/this-rafael/paketa-credito-challange.git
@@ -198,221 +198,111 @@ detalhes operacionais. As implementações externas satisfazem portas definidas
 pela aplicação.
 
 <details>
-<summary><strong>Decisões arquiteturais — por que essa estrutura?</strong></summary>
+<summary><strong>Decisões arquiteturais: por que essa estrutura?</strong></summary>
 <br />
 
-Embora o desafio possua apenas três endpoints, a implementação foi estruturada para
-demonstrar como uma API pequena pode permanecer testável, previsível e evolutiva
-sem acoplar regras de negócio ao framework HTTP ou ao banco de dados.
+São só três endpoints. A estrutura existe para manter regras testáveis e
+desacopladas de Express/MongoDB, não para simular um sistema corporativo completo.
+As fronteiras aparecem só onde resolvem um problema concreto.
 
-A intenção não foi reproduzir toda a complexidade de um sistema corporativo, mas
-aplicar fronteiras arquiteturais apenas nos pontos em que elas resolvem problemas
-concretos.
+#### Domínio, aplicação e infraestrutura
 
-#### Separação entre domínio, aplicação e infraestrutura
+Regras de menu não importam Express, Mongoose nem MongoDB. Isso permite:
 
-As regras relacionadas ao menu não dependem diretamente de Express, Mongoose ou
-MongoDB.
-
-Essa separação permite:
-
-* testar os casos de uso sem iniciar servidor ou banco;
-* substituir detalhes de persistência sem alterar regras de negócio;
-* impedir que particularidades do framework contaminem a aplicação;
-* manter controllers responsáveis apenas pelo protocolo HTTP.
-
-O fluxo principal é:
+* testar casos de uso sem servidor ou banco;
+* trocar persistência sem mexer nas regras;
+* deixar controllers só no protocolo HTTP.
 
 ```text
 HTTP → Controller → Use Case → Repository Port → MongoDB Adapter
 ```
 
-#### Casos de uso explícitos
+#### Um caso de uso por operação
 
-Cada operação da API é representada por um caso de uso específico:
-
-* criação de item;
-* exclusão de item;
-* consulta da árvore completa.
-
-Essa divisão evita services genéricos com múltiplas responsabilidades e torna as
-regras de cada operação mais fáceis de localizar, testar e modificar.
+Criação, exclusão e consulta da árvore têm casos de uso próprios. Evita um
+"service" genérico e deixa cada regra fácil de achar e testar.
 
 #### Repository como porta
 
-Os casos de uso dependem de um contrato de repositório, e não diretamente do
-Mongoose.
+Casos de uso dependem de um contrato, não do Mongoose. Schemas, queries e
+operadores ficam na infraestrutura; testes unitários usam fakes em memória.
 
-Essa decisão permite executar testes unitários com implementações em memória e
-mantém detalhes como schemas, queries e operadores MongoDB restritos à camada de
-infraestrutura.
+A porta não antecipa "vários bancos". Ela impede a aplicação de depender da
+tecnologia de persistência.
 
-A abstração não foi criada para prever vários bancos de dados, mas para impedir
-que a lógica da aplicação dependa da tecnologia de persistência.
+#### ID público ≠ ObjectId
 
-#### Identificador público separado do ObjectId
+O desafio exige IDs numéricos e `relatedId`. O MongoDB continua com `ObjectId`
+por baixo; a API expõe só o ID numérico. O contrato externo não vaza detalhe do
+banco.
 
-O MongoDB utiliza `ObjectId` internamente, mas o contrato do desafio trabalha com
-identificadores numéricos e com o campo `relatedId`.
+#### Contador atômico
 
-Por isso, a aplicação mantém um identificador público numérico separado do
-identificador interno do MongoDB.
+`max(id) + 1` colide sob concorrência. Um contador atômico no MongoDB garante ID
+único em criações paralelas.
 
-Essa decisão:
+#### Lista de adjacência
 
-* preserva o contrato externo;
-* evita expor detalhes do banco;
-* mantém referências entre itens consistentes;
-* permite alterar a persistência sem modificar a API.
+Cada item guarda só o pai (`relatedId`). Criação fica simples, a profundidade é
+arbitrária e não há cópia da árvore inteira em cada documento.
 
-#### Geração atômica de identificadores
+#### Árvore em memória, O(n)
 
-A geração dos identificadores utiliza uma operação atômica no MongoDB.
-
-Calcular o próximo identificador com base no maior valor existente poderia gerar
-colisões quando duas requisições fossem processadas simultaneamente.
-
-O contador atômico garante que cada criação receba um identificador único mesmo
-sob concorrência.
-
-#### Representação hierárquica por lista de adjacência
-
-Cada item armazena apenas a referência para seu item pai.
-
-Essa representação foi escolhida porque:
-
-* simplifica a criação de itens;
-* permite profundidade arbitrária;
-* evita duplicar toda a árvore em cada documento;
-* mantém alterações locais e previsíveis;
-* representa diretamente o campo `relatedId` definido pelo desafio.
-
-#### Construção da árvore em memória
-
-A consulta busca os itens em uma única operação e monta a árvore utilizando mapas
-indexados por identificador.
-
-Esse processo possui complexidade O(n), evitando:
-
-* uma consulta ao banco para cada nível;
-* recursão de acesso à persistência;
-* comportamento N+1;
-* pipelines de agregação excessivamente acoplados ao MongoDB.
-
-A montagem da árvore permanece uma função de domínio pura, permitindo testes
-independentes da infraestrutura.
+Um `find` traz a lista plana; mapas por ID montam a floresta em tempo linear.
+Sem query por nível, sem N+1 e sem aggregation pipeline amarrada ao MongoDB. A
+função de montagem é pura e testável sem infraestrutura.
 
 #### Exclusão de subárvore
 
-Ao excluir um item, seus descendentes também precisam ser removidos para evitar
-registros órfãos.
-
-A modelagem mantém informações suficientes para identificar a subárvore sem
-depender de múltiplas consultas recursivas na aplicação.
-
-Essa decisão preserva a integridade hierárquica e torna explícita a semântica da
-exclusão.
+Apagar um item remove os descendentes. A cadeia de `ancestors` no documento
+permite achar a subárvore sem recursão de queries na aplicação.
 
 #### Erros tipados
 
-Erros de domínio e aplicação são representados por tipos próprios, como:
-
-* item pai inexistente;
-* item não encontrado;
-* nome duplicado;
-* inconsistência hierárquica.
-
-O controller não interpreta códigos internos do MongoDB nem conhece detalhes como
-erros de índice duplicado. A infraestrutura converte falhas técnicas para erros
-compreendidos pela aplicação, e a camada HTTP converte esses erros para status
-adequados.
+Pai inexistente, item ausente, nome duplicado, hierarquia inconsistente: tipos
+próprios. A infra traduz falhas técnicas (ex.: índice único); o HTTP só mapeia
+esses erros para status.
 
 #### Validação na borda
 
-Dados recebidos pela API são validados antes de alcançar os casos de uso.
+Zod cobre formato e tipos na entrada. Existência do pai e unicidade do nome
+ficam no caso de uso.
 
-A validação HTTP garante formato e tipos básicos. Os casos de uso continuam
-responsáveis pelas regras de negócio, como existência do item pai e unicidade do
-nome.
+#### Composição explícita
 
-Essa separação evita misturar validação de transporte com validação de domínio.
+`main` instancia repositories, generators e casos de uso. Nada de service
+locator nem `new` escondido dentro de controller.
 
-#### Composição explícita de dependências
+#### Testes por risco, não por endpoint
 
-As dependências são instanciadas na camada principal da aplicação.
+* unitário: domínio e casos de uso;
+* integração: adapters MongoDB;
+* HTTP: contrato da API;
+* concorrência: geração de IDs;
+* arquitetura: fronteiras entre camadas;
+* documentação: OpenAPI alinhado ao código.
 
-Controllers e casos de uso não criam diretamente repositories, models ou
-conexões. Isso torna o grafo de dependências visível e evita service locators ou
-dependências ocultas.
-
-#### Estratégia de testes
-
-A quantidade de testes não está relacionada à quantidade de endpoints, mas aos
-comportamentos e riscos existentes.
-
-A suíte foi dividida por objetivo:
-
-* testes unitários para regras de domínio e casos de uso;
-* testes de integração para adapters MongoDB;
-* testes HTTP para validação do contrato da API;
-* testes de concorrência para geração de identificadores;
-* testes de arquitetura para preservar as fronteiras entre camadas;
-* testes de documentação para manter o OpenAPI compatível com a implementação.
-
-Cada nível de teste protege uma responsabilidade diferente. O objetivo não é
-testar a mesma implementação várias vezes, mas detectar falhas no nível mais
-próximo de sua origem.
+Cada camada pega a falha perto da origem.
 
 #### Quality gates
 
-Lint, type checking, testes e validação da documentação são executados
-automaticamente.
-
-Essas verificações impedem que alterações aparentemente pequenas introduzam:
-
-* erros de tipagem;
-* violações das fronteiras arquiteturais;
-* divergências entre código e OpenAPI;
-* regressões no contrato HTTP;
-* falhas de integração com MongoDB.
+Lint, types, testes e checagem de docs no CI. Evitam regressão de tipagem,
+fronteiras, OpenAPI, contrato HTTP e MongoDB.
 
 #### Trade-offs
 
-Essa arquitetura possui mais arquivos e conceitos do que uma implementação baseada
-apenas em routes, controllers e models.
+Mais arquivos e conceitos do que routes + controllers + models. O custo é
+estrutura inicial maior; o ganho é regras isoladas, testes focados, dependências
+visíveis e erros previsíveis.
 
-O custo aceito é uma estrutura inicial maior. Em contrapartida, a solução oferece:
-
-* regras isoladas de frameworks;
-* testes mais rápidos e específicos;
-* dependências explícitas;
-* menor acoplamento ao MongoDB;
-* tratamento previsível de erros;
-* maior segurança para evolução.
-
-Para uma API descartável, essa estrutura provavelmente seria desnecessária. Para
-este desafio, ela foi adotada deliberadamente para demonstrar organização de
-código, concorrência, testabilidade, integridade de dados e capacidade de
-evolução.
+Para uma API descartável, seria excesso. Neste desafio, a escolha é deliberada:
+mostrar organização, concorrência, testabilidade e integridade da hierarquia.
 
 #### O que não foi abstraído
 
-A arquitetura não busca abstrair todos os detalhes ou antecipar requisitos
-inexistentes.
-
-Não foram criadas generalizações para múltiplos bancos, múltiplos protocolos ou
-funcionalidades que não fazem parte do desafio.
-
-As abstrações existentes correspondem a fronteiras reais:
-
-* entrada HTTP;
-* execução dos casos de uso;
-* persistência;
-* geração de identificadores;
-* montagem da hierarquia.
-
-O objetivo é manter complexidade estrutural justificável, e não maximizar a
-quantidade de padrões utilizados.
+Sem multi-banco, multi-protocolo ou features fora do escopo. As únicas portas
+são as fronteiras reais: HTTP, casos de uso, persistência, IDs e montagem da
+árvore. Complexidade só onde se justifica.
 
 </details>
 
@@ -591,7 +481,7 @@ Lines        100% (258/258)
 <div align="center">
   <img
     src="docs-site/assets/coverage-report.png"
-    alt="Relatório de cobertura v8 — 100% em statements, branches, functions e lines"
+    alt="Relatório de cobertura v8: 100% em statements, branches, functions e lines"
     width="920"
   />
 </div>

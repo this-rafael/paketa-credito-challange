@@ -1,4 +1,4 @@
-# BDD — API Menu
+# BDD: API Menu
 
 Tags: `unit` `property` `integration` `http` `contract` `concurrency` `architecture` `operational` `quality` `benchmark`
 
