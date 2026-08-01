@@ -25,7 +25,7 @@ docker compose up --build
 
 The `web` container proxies `/api` → API and `/otlp` → Collector (browser traces without CORS pain).
 
-## What this experiment adds (vs a minimal OTel demo)
+## What this experiment adds
 
 - **Collector-first pipeline**: API and UI export OTLP to the Collector; Collector fans out to Tempo (traces) and a Prometheus scrape endpoint (metrics). The API does **not** open a side-car Prometheus port.
 - **Clean-architecture placement**: SDK lives under `backend/src/infrastructure/telemetry/`, registered via `node --import` before Express/Mongoose load.
