@@ -128,6 +128,33 @@ API em `main`.
   </sub>
 </p>
 
+### Evidência reproduzível
+
+O carregamento guiado pelo Menu Studio, sem seed direto na API, cria uma raiz
+com três cadeias lineares de profundidades **50 / 200 / 500** (cerca de 754
+criações sequenciais, com nomes únicos). Em seguida, o Studio recarrega a
+árvore e remove as três cabeças de ramo — exercitando também o delete de
+subárvore. O Playwright registra o estado do Studio, o dashboard Grafana e a
+consulta do Tempo.
+
+Para reproduzir, faça checkout da branch experimental e execute:
+
+```bash
+docker compose up --build
+npm ci --prefix e2e && npx --prefix e2e playwright install chromium
+npm run evidence:otel
+```
+
+As [capturas do Studio](https://github.com/this-rafael/paketa-credito-challange/tree/experiments/opentelemetry/docs/evidence/otel)
+e as [capturas de Grafana e Tempo](https://github.com/this-rafael/paketa-credito-challange/tree/experiments/opentelemetry/docs/evidence/otel)
+estão versionadas na própria branch. A execução observada mostrou predominância
+de `POST /api/v1/menu` com **201**, pico de aproximadamente 2 req/s, razão de
+4xx próxima de 0% e latências saudáveis (p50 de 5–10 ms; p95 de 10–20 ms).
+No Tempo, a consulta TraceQL `{resource.service.name="menu-api"}` retornou
+traces de `menu-api` e `menu-studio`, incluindo as chamadas GET e DELETE do
+recarregamento e das remoções. Isso demonstra o fluxo fim a fim Collector →
+Prometheus/Tempo para o experimento.
+
 ## 🚀 Comece em 60 segundos
 
 ### Com Docker: caminho recomendado
