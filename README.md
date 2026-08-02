@@ -35,6 +35,36 @@ The `web` container proxies `/api` → API and `/otlp` → Collector (browser tr
 - **Pinned images** and Grafana on **:3001** so it never collides with the API on **:3000**.
 - **`OTEL_ENABLED`**: off under Vitest by default so the existing BDD suites stay hermetic.
 
+### Evidence (load via Menu Studio)
+
+UI-driven load (no API seed) builds one root with three linear branches — depths **50 / 200 / 500** (~754 creates with unique timestamp-prefixed names) — then reloads the Studio tree and deletes the three branch heads (subtree wipe). Playwright then captures Grafana + Tempo.
+
+Reproduce:
+
+```bash
+docker compose up --build
+npm ci --prefix e2e && npx --prefix e2e playwright install chromium
+npm run evidence:otel
+```
+
+**Studio**
+
+![Studio before delete](docs/evidence/otel/05-studio-tree-before-delete.png)
+
+![Studio after reload](docs/evidence/otel/06-studio-after-reload.png)
+
+**Grafana / Tempo** (`menu-api-otel`, last 15m)
+
+![Grafana overview](docs/evidence/otel/01-grafana-dashboard-overview.png)
+
+![HTTP rate / latency](docs/evidence/otel/02-grafana-http-rate-latency.png)
+
+![Menu route rate](docs/evidence/otel/03-grafana-menu-route-rate.png)
+
+![Tempo Explore](docs/evidence/otel/04-tempo-explore-menu-api.png)
+
+**Analysis:** The Studio load produces a clear create-heavy series on Prometheus (`service_name="menu-api"`), with `/api/v1/menu` **201** dominating the HTTP request-rate panel (~2 req/s peak) and 4xx ratio at ~0%. Latency stays healthy (p50 ≈ 5–10ms, p95 ≈ 10–20ms) under ~750 sequential UI creates. Tempo Explore with TraceQL `{resource.service.name="menu-api"}` lists traces spanning `menu-api` and `menu-studio` (including GET/DELETE from the reload and branch subtree deletes) — evidence that Collector → Prometheus/Tempo works end-to-end for this experiment.
+
 ```mermaid
 flowchart LR
   browser[Angular Studio]

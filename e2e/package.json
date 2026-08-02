@@ -1,0 +1,11 @@
+{
+  "name": "paketa-otel-evidence",
+  "private": true,
+  "description": "Playwright evidence script: Menu Studio load + Grafana/Tempo screenshots",
+  "scripts": {
+    "evidence:otel": "playwright test otel-load-evidence.spec.ts"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.51.0"
+  }
+}

@@ -4,11 +4,20 @@ global:
 
 scrape_configs:
   - job_name: otel-collector
+    honor_labels: true
     static_configs:
       - targets:
           - otel-collector:8889
         labels:
           service: menu-api
+    metric_relabel_configs:
+      # Prefer OTel service.name when scrape job overwrote `job`
+      - source_labels: [service_name]
+        regex: (.+)
+        target_label: job
+      - source_labels: [exported_job]
+        regex: (.+)
+        target_label: job
 
   - job_name: prometheus
     static_configs:

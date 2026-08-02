@@ -53,7 +53,7 @@
       "id": 1,
       "targets": [
         {
-          "expr": "sum by (http_route, http_response_status_code) (rate(http_server_request_duration_seconds_count{job=\"menu-api\"}[5m])) or sum by (http_route, http_status_code) (rate(http_server_duration_milliseconds_count{job=\"menu-api\"}[5m])) or sum by (http_route, http_status_code) (rate(http_server_duration_count{job=\"menu-api\"}[5m]))",
+          "expr": "sum by (http_route, http_response_status_code) (rate(http_server_request_duration_seconds_count{service_name=\"menu-api\"}[5m])) or sum by (http_route, http_status_code) (rate(http_server_duration_milliseconds_count{service_name=\"menu-api\"}[5m])) or sum by (http_route, http_status_code) (rate(http_server_duration_count{service_name=\"menu-api\"}[5m]))",
           "legendFormat": "{{http_route}} {{http_response_status_code}}{{http_status_code}}",
           "refId": "A"
         }
@@ -80,12 +80,12 @@
       "id": 2,
       "targets": [
         {
-          "expr": "histogram_quantile(0.95, sum by (le, http_route) (rate(http_server_request_duration_seconds_bucket{job=\"menu-api\"}[5m]))) or histogram_quantile(0.95, sum by (le, http_route) (rate(http_server_duration_milliseconds_bucket{job=\"menu-api\"}[5m])) / 1000) or histogram_quantile(0.95, sum by (le, http_route) (rate(http_server_duration_bucket{job=\"menu-api\"}[5m])))",
+          "expr": "histogram_quantile(0.95, sum by (le, http_route) (rate(http_server_request_duration_seconds_bucket{service_name=\"menu-api\"}[5m]))) or histogram_quantile(0.95, sum by (le, http_route) (rate(http_server_duration_milliseconds_bucket{service_name=\"menu-api\"}[5m])) / 1000) or histogram_quantile(0.95, sum by (le, http_route) (rate(http_server_duration_bucket{service_name=\"menu-api\"}[5m])))",
           "legendFormat": "p95 {{http_route}}",
           "refId": "A"
         },
         {
-          "expr": "histogram_quantile(0.50, sum by (le, http_route) (rate(http_server_request_duration_seconds_bucket{job=\"menu-api\"}[5m]))) or histogram_quantile(0.50, sum by (le, http_route) (rate(http_server_duration_milliseconds_bucket{job=\"menu-api\"}[5m])) / 1000) or histogram_quantile(0.50, sum by (le, http_route) (rate(http_server_duration_bucket{job=\"menu-api\"}[5m])))",
+          "expr": "histogram_quantile(0.50, sum by (le, http_route) (rate(http_server_request_duration_seconds_bucket{service_name=\"menu-api\"}[5m]))) or histogram_quantile(0.50, sum by (le, http_route) (rate(http_server_duration_milliseconds_bucket{service_name=\"menu-api\"}[5m])) / 1000) or histogram_quantile(0.50, sum by (le, http_route) (rate(http_server_duration_bucket{service_name=\"menu-api\"}[5m])))",
           "legendFormat": "p50 {{http_route}}",
           "refId": "B"
         }
@@ -112,12 +112,12 @@
       "id": 3,
       "targets": [
         {
-          "expr": "sum(rate(http_server_request_duration_seconds_count{job=\"menu-api\", http_response_status_code=~\"5..\"}[5m])) / clamp_min(sum(rate(http_server_request_duration_seconds_count{job=\"menu-api\"}[5m])), 1e-9) or sum(rate(http_server_duration_count{job=\"menu-api\", http_status_code=~\"5..\"}[5m])) / clamp_min(sum(rate(http_server_duration_count{job=\"menu-api\"}[5m])), 1e-9)",
+          "expr": "sum(rate(http_server_request_duration_seconds_count{service_name=\"menu-api\", http_response_status_code=~\"5..\"}[5m])) / clamp_min(sum(rate(http_server_request_duration_seconds_count{service_name=\"menu-api\"}[5m])), 1e-9) or sum(rate(http_server_duration_count{service_name=\"menu-api\", http_status_code=~\"5..\"}[5m])) / clamp_min(sum(rate(http_server_duration_count{service_name=\"menu-api\"}[5m])), 1e-9)",
           "legendFormat": "5xx ratio",
           "refId": "A"
         },
         {
-          "expr": "sum(rate(http_server_request_duration_seconds_count{job=\"menu-api\", http_response_status_code=~\"4..\"}[5m])) / clamp_min(sum(rate(http_server_request_duration_seconds_count{job=\"menu-api\"}[5m])), 1e-9) or sum(rate(http_server_duration_count{job=\"menu-api\", http_status_code=~\"4..\"}[5m])) / clamp_min(sum(rate(http_server_duration_count{job=\"menu-api\"}[5m])), 1e-9)",
+          "expr": "sum(rate(http_server_request_duration_seconds_count{service_name=\"menu-api\", http_response_status_code=~\"4..\"}[5m])) / clamp_min(sum(rate(http_server_request_duration_seconds_count{service_name=\"menu-api\"}[5m])), 1e-9) or sum(rate(http_server_duration_count{service_name=\"menu-api\", http_status_code=~\"4..\"}[5m])) / clamp_min(sum(rate(http_server_duration_count{service_name=\"menu-api\"}[5m])), 1e-9)",
           "legendFormat": "4xx ratio",
           "refId": "B"
         }
@@ -144,7 +144,7 @@
       "id": 4,
       "targets": [
         {
-          "expr": "sum by (http_route) (rate(http_server_request_duration_seconds_count{job=\"menu-api\", http_route=~\"/api/v1/menu.*\"}[5m])) or sum by (http_route) (rate(http_server_duration_count{job=\"menu-api\", http_route=~\"/api/v1/menu.*\"}[5m]))",
+          "expr": "sum by (http_route) (rate(http_server_request_duration_seconds_count{service_name=\"menu-api\", http_route=~\"/api/v1/menu.*\"}[5m])) or sum by (http_route) (rate(http_server_duration_count{service_name=\"menu-api\", http_route=~\"/api/v1/menu.*\"}[5m]))",
           "legendFormat": "{{http_route}}",
           "refId": "A"
         }
@@ -171,12 +171,12 @@
       "id": 5,
       "targets": [
         {
-          "expr": "v8js_memory_heap_used{job=\"menu-api\"} or process_runtime_nodejs_memory_heap_used_bytes{job=\"menu-api\"}",
+          "expr": "v8js_memory_heap_used{service_name=\"menu-api\"} or process_runtime_nodejs_memory_heap_used_bytes{service_name=\"menu-api\"}",
           "legendFormat": "heap used",
           "refId": "A"
         },
         {
-          "expr": "v8js_memory_heap_total{job=\"menu-api\"} or process_runtime_nodejs_memory_heap_total_bytes{job=\"menu-api\"}",
+          "expr": "v8js_memory_heap_total{service_name=\"menu-api\"} or process_runtime_nodejs_memory_heap_total_bytes{service_name=\"menu-api\"}",
           "legendFormat": "heap total",
           "refId": "B"
         }
@@ -203,12 +203,12 @@
       "id": 6,
       "targets": [
         {
-          "expr": "nodejs_eventloop_delay_p99{job=\"menu-api\"} or process_runtime_nodejs_event_loop_delay_p99_seconds{job=\"menu-api\"}",
+          "expr": "nodejs_eventloop_delay_p99{service_name=\"menu-api\"} or process_runtime_nodejs_event_loop_delay_p99_seconds{service_name=\"menu-api\"}",
           "legendFormat": "p99",
           "refId": "A"
         },
         {
-          "expr": "nodejs_eventloop_delay_p50{job=\"menu-api\"} or process_runtime_nodejs_event_loop_delay_p50_seconds{job=\"menu-api\"}",
+          "expr": "nodejs_eventloop_delay_p50{service_name=\"menu-api\"} or process_runtime_nodejs_event_loop_delay_p50_seconds{service_name=\"menu-api\"}",
           "legendFormat": "p50",
           "refId": "B"
         }
