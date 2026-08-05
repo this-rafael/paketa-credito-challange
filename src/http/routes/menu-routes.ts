@@ -5,21 +5,23 @@
  * when the corresponding use case is supplied, allowing partial wiring in tests.
  */
 import { Router } from 'express';
-import type { CreateMenuItem } from '../../application/use-cases/create-menu-item.js';
-import type { DeleteMenuSubtree } from '../../application/use-cases/delete-menu-subtree.js';
-import type { GetMenuTree } from '../../application/use-cases/get-menu-tree.js';
-import { MenuController } from '../controllers/menu-controller.js';
+import {
+  MenuController,
+  type CreateMenuItemPort,
+  type DeleteMenuSubtreePort,
+  type GetMenuTreePort,
+} from '../controllers/menu-controller.js';
 import { validateBody } from '../middlewares/validate-body.js';
 import { createMenuItemBodySchema } from '../schemas/create-menu-item.schema.js';
 
 /** Optional use cases the menu router can be wired with. */
 export type MenuRouterDeps = {
   /** Enables `POST /`. */
-  createMenuItem?: CreateMenuItem;
+  createMenuItem?: CreateMenuItemPort;
   /** Enables `GET /`. */
-  getMenuTree?: GetMenuTree;
+  getMenuTree?: GetMenuTreePort;
   /** Enables `DELETE /:id`. */
-  deleteMenuSubtree?: DeleteMenuSubtree;
+  deleteMenuSubtree?: DeleteMenuSubtreePort;
 };
 
 /**

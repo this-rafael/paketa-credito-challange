@@ -11,6 +11,7 @@ export default defineConfig({
       include: ['src/**/*.ts'],
       exclude: [
         'src/**/*.d.ts',
+        'src/types/**',
         'src/main/server.ts',
         'src/http/middlewares/http-logger.ts',
       ],

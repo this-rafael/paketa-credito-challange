@@ -5,9 +5,14 @@
  * menu use cases and translates domain errors into JSON error responses.
  */
 import type { NextFunction, Request, Response } from 'express';
-import type { CreateMenuItem } from '../../application/use-cases/create-menu-item.js';
+import type {
+  CreateMenuItem,
+  CreateMenuItemInput,
+} from '../../application/use-cases/create-menu-item.js';
 import type { DeleteMenuSubtree } from '../../application/use-cases/delete-menu-subtree.js';
 import type { GetMenuTree } from '../../application/use-cases/get-menu-tree.js';
+import type { DeleteSubtreeResult } from '../../application/ports/menu-repository.js';
+import type { MenuItem } from '../../domain/menu/menu-item.js';
 import {
   DataIntegrityError,
   MenuItemNameAlreadyExistsError,
@@ -17,6 +22,19 @@ import {
 import type { CreateMenuItemBody } from '../schemas/create-menu-item.schema.js';
 import { parseMenuItemIdParam } from '../schemas/menu-item-id.param.js';
 import { sendError } from '../presenters/error-presenter.js';
+
+/** Structural create port (supports LockedCreateMenuItem). */
+export type CreateMenuItemPort = Pick<CreateMenuItem, 'execute'> & {
+  execute(input: CreateMenuItemInput): Promise<MenuItem>;
+};
+
+/** Structural delete port (supports LockedDeleteMenuSubtree). */
+export type DeleteMenuSubtreePort = Pick<DeleteMenuSubtree, 'execute'> & {
+  execute(id: number): Promise<DeleteSubtreeResult>;
+};
+
+/** Structural get-tree port. */
+export type GetMenuTreePort = Pick<GetMenuTree, 'execute'>;
 
 /**
  * Handles menu HTTP requests.
@@ -31,9 +49,9 @@ export class MenuController {
    *   handler responds `500 INTERNAL_ERROR`.
    */
   constructor(
-    private readonly createMenuItem?: CreateMenuItem,
-    private readonly getMenuTree?: GetMenuTree,
-    private readonly deleteMenuSubtree?: DeleteMenuSubtree,
+    private readonly createMenuItem?: CreateMenuItemPort,
+    private readonly getMenuTree?: GetMenuTreePort,
+    private readonly deleteMenuSubtree?: DeleteMenuSubtreePort,
   ) {}
 
   /**

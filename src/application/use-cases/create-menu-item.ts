@@ -21,6 +21,15 @@ export type CreateMenuItemInput = {
   relatedId?: number | null;
 };
 
+/** Optional hooks for experiments / race-window tests. */
+export type CreateMenuItemHooks = {
+  /**
+   * Invoked after a successful parent lookup and before id allocation /
+   * persistence. Used by CON-009 to widen the race window.
+   */
+  afterParentLookup?: () => Promise<void>;
+};
+
 /**
  * Creates menu items.
  */
@@ -28,10 +37,12 @@ export class CreateMenuItem {
   /**
    * @param repository - Persists and reads `MenuItem` entities.
    * @param idGenerator - Produces unique identifiers for new items.
+   * @param hooks - Optional hooks (race-window delay for experiments).
    */
   constructor(
     private readonly repository: MenuRepository,
     private readonly idGenerator: MenuItemIdGenerator,
+    private readonly hooks: CreateMenuItemHooks = {},
   ) {}
 
   /**
@@ -50,6 +61,9 @@ export class CreateMenuItem {
       parent = await this.repository.findById(relatedId);
       if (!parent) {
         throw new ParentMenuItemNotFoundError(relatedId);
+      }
+      if (this.hooks.afterParentLookup) {
+        await this.hooks.afterParentLookup();
       }
     }
 

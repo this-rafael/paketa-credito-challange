@@ -12,12 +12,18 @@ describe('ops packaging', () => {
       join(backendRoot, 'docker-compose.yml'),
       'utf8',
     );
+    const redlockCompose = readFileSync(
+      join(backendRoot, 'docker-compose.redlock.yml'),
+      'utf8',
+    );
     const readme = readFileSync(join(backendRoot, 'README.md'), 'utf8');
 
     expect(dockerfile).toMatch(/USER\s+node/);
     expect(compose).toMatch(/mongodb:/);
     expect(compose).toMatch(/api:/);
     expect(compose).not.toMatch(/replSet|replica/i);
+    expect(redlockCompose).toMatch(/redis:/);
+    expect(redlockCompose).toMatch(/ENABLE_DISTRIBUTED_LOCK/);
     expect(readme).toMatch(/docker compose/i);
     expect(readme).toMatch(/npm (ci|install)/i);
   });
