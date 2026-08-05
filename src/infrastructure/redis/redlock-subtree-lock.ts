@@ -35,8 +35,10 @@ export class RedlockSubtreeLock implements SubtreeLock {
    */
   constructor(redisUrl: string, options: RedlockSubtreeLockOptions) {
     this.ttlMs = options.ttlMs;
+    // Fail the command instead of queueing forever: a lock that never resolves
+    // would hang the request until the HTTP client gives up.
     this.redis = new Redis(redisUrl, {
-      maxRetriesPerRequest: null,
+      maxRetriesPerRequest: 2,
       enableReadyCheck: true,
       lazyConnect: false,
     });
@@ -70,9 +72,14 @@ export class RedlockSubtreeLock implements SubtreeLock {
   }
 
   /**
-   * Quits the underlying Redis client.
+   * Quits the underlying Redis client, forcing a disconnect when the
+   * connection is already broken and `QUIT` cannot complete.
    */
   async close(): Promise<void> {
-    await this.redis.quit();
+    try {
+      await this.redis.quit();
+    } finally {
+      this.redis.disconnect();
+    }
   }
 }

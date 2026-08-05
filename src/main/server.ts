@@ -72,11 +72,23 @@ export async function bootstrap(): Promise<BootstrapResult> {
   const repository = new MongooseMenuRepository();
   const idGenerator = new MongoIdGenerator(logger);
   const lock = createSubtreeLock(env);
+  const raceDelayMs = env.CREATE_RACE_DELAY_MS;
   const app = createApp({
     jsonBodyLimit: env.JSON_BODY_LIMIT,
     logger,
     createMenuItem: new LockedCreateMenuItem(
-      new CreateMenuItem(repository, idGenerator),
+      new CreateMenuItem(
+        repository,
+        idGenerator,
+        raceDelayMs > 0
+          ? {
+              afterParentLookup: () =>
+                new Promise<void>((resolve) =>
+                  setTimeout(resolve, raceDelayMs),
+                ),
+            }
+          : {},
+      ),
       lock,
     ),
     getMenuTree: new GetMenuTree(repository),
@@ -149,10 +161,16 @@ export async function startServer(): Promise<void> {
   process.once('SIGTERM', onSignal);
 }
 
-const entryPath = process.argv[1]?.replaceAll('\\', '/');
+// Under PM2 cluster mode argv[1] is PM2's ProcessContainer, not this script;
+// pm_exec_path carries the real entry point.
+const entryPath = (process.env['pm_exec_path'] ?? process.argv[1])?.replaceAll(
+  '\\',
+  '/',
+);
 /** `true` when this module is executed directly (not imported by a test/harness). */
 const isDirectRun =
   entryPath !== undefined &&
+  !process.env['VITEST'] &&
   (import.meta.url === `file://${entryPath}` ||
     import.meta.url.endsWith(entryPath));
 

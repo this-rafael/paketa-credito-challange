@@ -28,6 +28,7 @@ export const envSchema = z
     REDIS_URL: z.string().min(1).optional(),
     LOCK_TTL_MS: z.coerce.number().int().positive().default(5000),
     LOCK_RETRY_COUNT: z.coerce.number().int().nonnegative().default(3),
+    CREATE_RACE_DELAY_MS: z.coerce.number().int().nonnegative().default(0),
   })
   .superRefine((env, ctx) => {
     if (env.ENABLE_DISTRIBUTED_LOCK && !env.REDIS_URL) {
@@ -62,5 +63,6 @@ export function loadEnv(
     REDIS_URL: source.REDIS_URL,
     LOCK_TTL_MS: source.LOCK_TTL_MS ?? '5000',
     LOCK_RETRY_COUNT: source.LOCK_RETRY_COUNT ?? '3',
+    CREATE_RACE_DELAY_MS: source.CREATE_RACE_DELAY_MS ?? '0',
   });
 }

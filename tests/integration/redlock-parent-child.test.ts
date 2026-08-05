@@ -170,6 +170,21 @@ describe('CON-009: parent delete vs child create race', () => {
     }
   }, 180_000);
 
+  it('RedlockSubtreeLock swallows Redis connection errors instead of crashing', async () => {
+    // Port 1 refuses connections, so ioredis emits 'error'. Without a listener
+    // Node would treat it as unhandled and kill the process.
+    const lock = new RedlockSubtreeLock('redis://127.0.0.1:1', {
+      ttlMs: 1_000,
+      retryCount: 0,
+      retryDelayMs: 10,
+    });
+    try {
+      await expect(lock.withLock(1, async () => 'never')).rejects.toBeTruthy();
+    } finally {
+      await lock.close().catch(() => undefined);
+    }
+  }, 30_000);
+
   it('RedlockSubtreeLock defaults retryDelayMs when omitted', async () => {
     const lock = new RedlockSubtreeLock(redisUrl, {
       ttlMs: 2_000,

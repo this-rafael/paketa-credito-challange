@@ -39,12 +39,13 @@ experimento.
 
 ## Variáveis de ambiente
 
-| Variável                  | Default | Descrição                            |
-| ------------------------- | ------- | ------------------------------------ |
-| `ENABLE_DISTRIBUTED_LOCK` | `false` | Liga Redlock                         |
-| `REDIS_URL`               | —       | Obrigatório quando o lock está ativo |
-| `LOCK_TTL_MS`             | `5000`  | TTL do lock                          |
-| `LOCK_RETRY_COUNT`        | `3`     | Tentativas de aquisição              |
+| Variável                  | Default | Descrição                                    |
+| ------------------------- | ------- | -------------------------------------------- |
+| `ENABLE_DISTRIBUTED_LOCK` | `false` | Liga Redlock                                 |
+| `REDIS_URL`               | —       | Obrigatório quando o lock está ativo         |
+| `LOCK_TTL_MS`             | `5000`  | TTL do lock                                  |
+| `LOCK_RETRY_COUNT`        | `3`     | Tentativas de aquisição                      |
+| `CREATE_RACE_DELAY_MS`    | `0`     | Só demo: alarga a janela pai-lookup → insert |
 
 ## Stack local
 
@@ -61,31 +62,62 @@ curl -sS http://127.0.0.1:3000/api/v1/menu
 npm run load:redlock
 ```
 
-Comparar com lock desligado:
+Comparar com lock desligado (perfil `baseline` do PM2):
 
 ```bash
-ENABLE_DISTRIBUTED_LOCK=false pm2 reload ecosystem.config.cjs --update-env
+# limpe a árvore entre execuções: um órfão remanescente deixa o GET em 500
+docker compose -f docker-compose.redlock.yml exec -T mongodb \
+  mongosh menu --quiet --eval 'db.menu_items.deleteMany({})'
+
+pm2 delete menu-api
+pm2 start ecosystem.config.cjs --env baseline
 npm run load:redlock
-# orphans / tree_errors > 0 esperados no baseline
 ```
+
+Resultado observado com `ROUNDS=25` e `CREATE_RACE_DELAY_MS=80` (3 instâncias):
+
+| Modo                   | orphans | wins_delete |
+| ---------------------- | ------- | ----------- |
+| `--env baseline` (sem) | 25      | 0           |
+| padrão (Redlock)       | 0       | 25          |
+
+Sem o lock, todo filho é gravado apontando para um pai já removido. Com o
+Redlock, o delete e o create são serializados: o create encontra o pai ausente
+e responde `404`.
+
+> `ENABLE_DISTRIBUTED_LOCK=false pm2 reload ... --update-env` **não** funciona:
+> o bloco `env` do `ecosystem.config.cjs` sobrepõe a variável do shell. Use o
+> perfil `--env baseline`.
 
 ### Troubleshooting: `ECONNREFUSED 127.0.0.1:3000`
 
-PM2 pode listar as 3 instâncias como `online` mesmo quando o HTTP **não**
-abriu a porta (worker crasha no boot e reinicia). Causas comuns:
+PM2 pode listar as 3 instâncias como `online` mesmo sem nada escutando na
+porta. Causas observadas, em ordem:
 
-1. Mongo ou Redis não estão no ar (`127.0.0.1:27017` / `:6379`)
-2. `dist/main/server.js` ausente — rode `npm run build`
-3. Redis down com `ENABLE_DISTRIBUTED_LOCK=true`
+1. **Guard de entrypoint** — em `exec_mode: cluster` o PM2 troca
+   `process.argv[1]` pelo `ProcessContainer.js`, então o check "estou sendo
+   executado direto?" em `src/main/server.ts` falhava e `startServer()` nunca
+   rodava. Os logs ficavam vazios (0 B) e o processo seguia `online`. Resolvido
+   usando `process.env.pm_exec_path` como entrypoint quando presente.
+2. Mongo ou Redis fora do ar (`127.0.0.1:27017` / `:6379`)
+3. `dist/main/server.js` ausente — rode `npm run build`
 
 Diagnóstico:
 
 ```bash
 pm2 logs menu-api --lines 80
-pm2 describe menu-api
-ss -ltnp | grep 3000   # ou: curl -sS http://127.0.0.1:3000/api/v1/menu
+ls -la ~/.pm2/logs/menu-api-out-0.log   # 0 B = processo subiu mas não bootou
+ss -ltnp | grep 3000
+curl -sS http://127.0.0.1:3000/api/v1/menu
 docker compose -f docker-compose.redlock.yml ps
 ```
+
+### Troubleshooting: todo round vira `orphan`
+
+Um único órfão remanescente faz o `GET /api/v1/menu` responder `500` para
+sempre, e o script conta isso como órfão em todas as rodadas. Limpe a
+collection (`menu_items`, não `menuitems`) antes de cada execução. O load test
+agora aborta com essa dica quando a árvore já está inconsistente no início.
 
 ## Teste CON-009
 

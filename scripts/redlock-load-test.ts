@@ -102,7 +102,26 @@ function isConnectionRefused(error: unknown): boolean {
 
 async function assertApiReachable(): Promise<void> {
   try {
-    await fetch(`${BASE_URL}/api/v1/menu`);
+    const response = await fetch(`${BASE_URL}/api/v1/menu`);
+    if (response.status >= 500) {
+      console.error(
+        JSON.stringify(
+          {
+            baseUrl: BASE_URL,
+            treeStatus: response.status,
+            error: 'tree already inconsistent before the run',
+            hint: [
+              'A leftover orphan makes every round report an orphan, hiding the real result.',
+              'Clean the collection first:',
+              "docker compose -f docker-compose.redlock.yml exec -T mongodb mongosh menu --quiet --eval 'db.menu_items.deleteMany({})'",
+            ],
+          },
+          null,
+          2,
+        ),
+      );
+      process.exit(1);
+    }
   } catch (error) {
     if (isConnectionRefused(error)) {
       console.error(
