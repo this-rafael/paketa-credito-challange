@@ -56,6 +56,8 @@ docker compose -f docker-compose.redlock.yml up --build
 docker compose -f docker-compose.redlock.yml up -d mongodb redis
 npm run build
 pm2 start ecosystem.config.cjs
+# Confirme que a API responde antes do load test:
+curl -sS http://127.0.0.1:3000/api/v1/menu
 npm run load:redlock
 ```
 
@@ -65,6 +67,24 @@ Comparar com lock desligado:
 ENABLE_DISTRIBUTED_LOCK=false pm2 reload ecosystem.config.cjs --update-env
 npm run load:redlock
 # orphans / tree_errors > 0 esperados no baseline
+```
+
+### Troubleshooting: `ECONNREFUSED 127.0.0.1:3000`
+
+PM2 pode listar as 3 instâncias como `online` mesmo quando o HTTP **não**
+abriu a porta (worker crasha no boot e reinicia). Causas comuns:
+
+1. Mongo ou Redis não estão no ar (`127.0.0.1:27017` / `:6379`)
+2. `dist/main/server.js` ausente — rode `npm run build`
+3. Redis down com `ENABLE_DISTRIBUTED_LOCK=true`
+
+Diagnóstico:
+
+```bash
+pm2 logs menu-api --lines 80
+pm2 describe menu-api
+ss -ltnp | grep 3000   # ou: curl -sS http://127.0.0.1:3000/api/v1/menu
+docker compose -f docker-compose.redlock.yml ps
 ```
 
 ## Teste CON-009

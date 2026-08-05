@@ -88,6 +88,47 @@ async function runRound(index: number): Promise<{
   };
 }
 
+function isConnectionRefused(error: unknown): boolean {
+  if (!(error instanceof Error)) {
+    return false;
+  }
+  const cause = (error as Error & { cause?: { code?: string } }).cause;
+  return (
+    cause?.code === 'ECONNREFUSED' ||
+    error.message.includes('ECONNREFUSED') ||
+    error.message.includes('fetch failed')
+  );
+}
+
+async function assertApiReachable(): Promise<void> {
+  try {
+    await fetch(`${BASE_URL}/api/v1/menu`);
+  } catch (error) {
+    if (isConnectionRefused(error)) {
+      console.error(
+        JSON.stringify(
+          {
+            baseUrl: BASE_URL,
+            error: 'ECONNREFUSED',
+            hint: [
+              'Nothing is listening on the API port. PM2 "online" does not mean the HTTP server started.',
+              '1) docker compose -f docker-compose.redlock.yml up -d mongodb redis',
+              '2) npm run build',
+              '3) pm2 delete menu-api; pm2 start ecosystem.config.cjs',
+              '4) pm2 logs menu-api --lines 50',
+              '5) curl -sS http://127.0.0.1:3000/api/v1/menu',
+            ],
+          },
+          null,
+          2,
+        ),
+      );
+      process.exit(1);
+    }
+    throw error;
+  }
+}
+
 async function main(): Promise<void> {
   console.log(
     JSON.stringify({
@@ -96,6 +137,8 @@ async function main(): Promise<void> {
       message: 'starting redlock load test',
     }),
   );
+
+  await assertApiReachable();
 
   let orphans = 0;
   let winsDelete = 0;
@@ -121,6 +164,12 @@ async function main(): Promise<void> {
         treeErrors += 1;
       }
     } catch (error) {
+      if (isConnectionRefused(error)) {
+        console.error(
+          `round ${i}: API became unreachable (ECONNREFUSED). Aborting.`,
+        );
+        process.exit(1);
+      }
       treeErrors += 1;
       console.error(`round ${i} failed`, error);
     }

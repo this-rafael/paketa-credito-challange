@@ -40,6 +40,10 @@ export class RedlockSubtreeLock implements SubtreeLock {
       enableReadyCheck: true,
       lazyConnect: false,
     });
+    // ioredis emits 'error' on connection failures; without a listener Node
+    // treats it as unhandled and the PM2 worker can exit while still looking
+    // "online" during restart loops.
+    this.redis.on('error', () => undefined);
     this.redlock = new Redlock([this.redis], {
       driftFactor: 0.01,
       retryCount: options.retryCount,
