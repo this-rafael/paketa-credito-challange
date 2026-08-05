@@ -144,6 +144,9 @@ Raiz: id positivo, name trimado, `parentId: null`, `ancestors: []`.
 **CON-008** `unit` `integration`  
 Filho: último de `ancestors` == `parentId`; id fora de `ancestors`; `_id` não vaza.
 
+**CON-009** `integration` `concurrency` `redlock`  
+DELETE do pai em paralelo com POST de filho (`relatedId` = pai): sem lock (noop + delay pós-lookup) pelo menos um órfão (`parentId` aponta para pai ausente); com Redlock a invariante vale — se o filho existe o pai também existe, e `GET /api/v1/menu` nunca falha por integridade.
+
 ## Erros e observabilidade
 
 **ERR-001** `http` `operational`  

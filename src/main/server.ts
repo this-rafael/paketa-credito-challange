@@ -8,14 +8,19 @@
 import type { Server } from 'node:http';
 import mongoose from 'mongoose';
 import type { Logger } from 'pino';
+import { LockedCreateMenuItem } from '../application/use-cases/locked-create-menu-item.js';
+import { LockedDeleteMenuSubtree } from '../application/use-cases/locked-delete-menu-subtree.js';
 import { CreateMenuItem } from '../application/use-cases/create-menu-item.js';
 import { DeleteMenuSubtree } from '../application/use-cases/delete-menu-subtree.js';
 import { GetMenuTree } from '../application/use-cases/get-menu-tree.js';
+import type { SubtreeLock } from '../application/ports/subtree-lock.js';
 import { loadEnv, type Env } from '../infrastructure/config/env.js';
 import { MongoIdGenerator } from '../infrastructure/database/mongo-id-generator.js';
 import { ensureMenuIndexes } from '../infrastructure/database/mongoose/ensure-menu-indexes.js';
 import { MongooseMenuRepository } from '../infrastructure/database/mongoose/mongoose-menu-repository.js';
 import { createLogger } from '../infrastructure/logging/logger.js';
+import { NoopSubtreeLock } from '../infrastructure/redis/noop-subtree-lock.js';
+import { RedlockSubtreeLock } from '../infrastructure/redis/redlock-subtree-lock.js';
 import { createApp } from './create-app.js';
 
 /** Result of `bootstrap`, exposing the wired pieces. */
@@ -26,7 +31,30 @@ export type BootstrapResult = {
   server: Server;
   /** Application logger. */
   logger: Logger;
+  /** Active subtree lock (may hold Redis connections). */
+  lock: SubtreeLock;
 };
+
+/**
+ * Builds the subtree lock from env (Redlock when enabled, otherwise no-op).
+ *
+ * @param env - Validated environment.
+ * @returns A `SubtreeLock` implementation.
+ */
+export function createSubtreeLock(env: Env): SubtreeLock {
+  if (!env.ENABLE_DISTRIBUTED_LOCK) {
+    return new NoopSubtreeLock();
+  }
+  if (!env.REDIS_URL) {
+    throw new Error(
+      'REDIS_URL is required when ENABLE_DISTRIBUTED_LOCK is true',
+    );
+  }
+  return new RedlockSubtreeLock(env.REDIS_URL, {
+    ttlMs: env.LOCK_TTL_MS,
+    retryCount: env.LOCK_RETRY_COUNT,
+  });
+}
 
 /**
  * Connects to the database, wires dependencies and starts the HTTP server.
@@ -43,12 +71,31 @@ export async function bootstrap(): Promise<BootstrapResult> {
 
   const repository = new MongooseMenuRepository();
   const idGenerator = new MongoIdGenerator(logger);
+  const lock = createSubtreeLock(env);
+  const raceDelayMs = env.CREATE_RACE_DELAY_MS;
   const app = createApp({
     jsonBodyLimit: env.JSON_BODY_LIMIT,
     logger,
-    createMenuItem: new CreateMenuItem(repository, idGenerator),
+    createMenuItem: new LockedCreateMenuItem(
+      new CreateMenuItem(
+        repository,
+        idGenerator,
+        raceDelayMs > 0
+          ? {
+              afterParentLookup: () =>
+                new Promise<void>((resolve) =>
+                  setTimeout(resolve, raceDelayMs),
+                ),
+            }
+          : {},
+      ),
+      lock,
+    ),
     getMenuTree: new GetMenuTree(repository),
-    deleteMenuSubtree: new DeleteMenuSubtree(repository),
+    deleteMenuSubtree: new LockedDeleteMenuSubtree(
+      new DeleteMenuSubtree(repository),
+      lock,
+    ),
   });
 
   const server = await new Promise<Server>((resolve, reject) => {
@@ -61,19 +108,26 @@ export async function bootstrap(): Promise<BootstrapResult> {
     }
   });
 
-  return { env, server, logger };
+  return { env, server, logger, lock };
 }
 
 /**
- * Stops the HTTP server and closes the MongoDB connection.
+ * Stops the HTTP server, closes Redis (when present) and closes MongoDB.
  *
  * @param server - The `Server{ returned by }bootstrap`.
+ * @param lock - Optional lock to close (Redis client).
  * @returns A promise that resolves once both are closed.
  */
-export async function gracefulShutdown(server: Server): Promise<void> {
+export async function gracefulShutdown(
+  server: Server,
+  lock?: SubtreeLock,
+): Promise<void> {
   await new Promise<void>((resolve, reject) => {
     server.close((error) => (error ? reject(error) : resolve()));
   });
+  if (lock?.close) {
+    await lock.close();
+  }
   await mongoose.disconnect();
 }
 
@@ -85,11 +139,17 @@ export async function gracefulShutdown(server: Server): Promise<void> {
  *   alive until a termination signal arrives).
  */
 export async function startServer(): Promise<void> {
-  const { server, logger, env } = await bootstrap();
-  logger.info({ port: env.PORT }, 'server listening');
+  const { server, logger, env, lock } = await bootstrap();
+  logger.info(
+    {
+      port: env.PORT,
+      distributedLock: env.ENABLE_DISTRIBUTED_LOCK,
+    },
+    'server listening',
+  );
 
   const onSignal = () => {
-    void gracefulShutdown(server)
+    void gracefulShutdown(server, lock)
       .then(() => process.exit(0))
       .catch((error: unknown) => {
         logger.error({ err: error }, 'shutdown failed');
@@ -101,10 +161,16 @@ export async function startServer(): Promise<void> {
   process.once('SIGTERM', onSignal);
 }
 
-const entryPath = process.argv[1]?.replaceAll('\\', '/');
+// Under PM2 cluster mode argv[1] is PM2's ProcessContainer, not this script;
+// pm_exec_path carries the real entry point.
+const entryPath = (process.env['pm_exec_path'] ?? process.argv[1])?.replaceAll(
+  '\\',
+  '/',
+);
 /** `true` when this module is executed directly (not imported by a test/harness). */
 const isDirectRun =
   entryPath !== undefined &&
+  !process.env['VITEST'] &&
   (import.meta.url === `file://${entryPath}` ||
     import.meta.url.endsWith(entryPath));
 

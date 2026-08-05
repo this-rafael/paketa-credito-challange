@@ -13,9 +13,11 @@ import helmet from 'helmet';
 import type { Logger } from 'pino';
 import swaggerUi from 'swagger-ui-express';
 import YAML from 'yaml';
-import type { CreateMenuItem } from '../application/use-cases/create-menu-item.js';
-import type { DeleteMenuSubtree } from '../application/use-cases/delete-menu-subtree.js';
-import type { GetMenuTree } from '../application/use-cases/get-menu-tree.js';
+import type {
+  CreateMenuItemPort,
+  DeleteMenuSubtreePort,
+  GetMenuTreePort,
+} from '../http/controllers/menu-controller.js';
 import { errorHandler } from '../http/middlewares/error-handler.js';
 import { httpLoggerMiddleware } from '../http/middlewares/http-logger.js';
 import {
@@ -34,11 +36,11 @@ export type CreateAppOptions = {
   /** Logger used by the HTTP logging middleware. */
   logger?: Logger;
   /** When provided, enables `POST /api/v1/menu`. */
-  createMenuItem?: CreateMenuItem;
+  createMenuItem?: CreateMenuItemPort;
   /** When provided, enables `GET /api/v1/menu`. */
-  getMenuTree?: GetMenuTree;
+  getMenuTree?: GetMenuTreePort;
   /** When provided, enables `DELETE /api/v1/menu/:id`. */
-  deleteMenuSubtree?: DeleteMenuSubtree;
+  deleteMenuSubtree?: DeleteMenuSubtreePort;
 };
 
 const openApiDocument = YAML.parse(

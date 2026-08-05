@@ -39,6 +39,8 @@ describe('architecture boundaries', () => {
     expect(deps.supertest).toBeDefined();
     expect(deps['fast-check']).toBeDefined();
     expect(deps.testcontainers).toBeDefined();
+    expect(deps.ioredis).toBeDefined();
+    expect(deps.redlock).toBeDefined();
   });
 
   it('ARC-002: domain stays framework-free', () => {

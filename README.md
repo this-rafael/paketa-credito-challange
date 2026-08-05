@@ -83,7 +83,7 @@ mensurável.
 
 ## 🎛️ Addon opcional: UI para explorar a árvore
 
-A entrega principal é a API. Se, na avaliação, for mais confortável *ver* a
+A entrega principal é a API. Se, na avaliação, for mais confortável _ver_ a
 hierarquia sendo montada e desmontada — em vez de só bater no Swagger ou no
 `curl` — existe um studio Angular na branch
 [`experiments/angular`](https://github.com/this-rafael/paketa-credito-challange/tree/experiments/angular).
@@ -110,7 +110,7 @@ Não altera o contrato nem a arquitetura da API em `main`.
 
 ## 📡 Addon opcional: OpenTelemetry
 
-*Essa branch foi implementada após o envio do projeto — pode desconsiderá-la, mas caso tenha curiosidade ela contém o equivalente a este projeto instrumentado com OpenTelemetry.*
+_Essa branch foi implementada após o envio do projeto — pode desconsiderá-la, mas caso tenha curiosidade ela contém o equivalente a este projeto instrumentado com OpenTelemetry._
 
 Se quiser inspecionar traces, métricas e correlação com logs estruturados, a branch
 [`experiments/opentelemetry`](https://github.com/this-rafael/paketa-credito-challange/tree/experiments/opentelemetry)
@@ -154,6 +154,27 @@ No Tempo, a consulta TraceQL `{resource.service.name="menu-api"}` retornou
 traces de `menu-api` e `menu-studio`, incluindo as chamadas GET e DELETE do
 recarregamento e das remoções. Isso demonstra o fluxo fim a fim Collector →
 Prometheus/Tempo para o experimento.
+
+## 🔐 Addon opcional: Redlock (lock distribuído)
+
+Branch
+[`experiments/redlock`](https://github.com/this-rafael/paketa-credito-challange/tree/experiments/redlock):
+demonstra Redis + Redlock no cenário de corrida entre exclusão do pai e criação
+do filho. Inclui teste CON-009 (baseline vs protegido), `docker-compose.redlock.yml`,
+PM2 cluster e script de carga. O contrato HTTP permanece o mesmo; o lock é
+ativado por `ENABLE_DISTRIBUTED_LOCK`.
+
+Detalhes: [`docs-experiments/redlock.md`](docs-experiments/redlock.md).
+
+<p>
+  <sub>
+    Branch
+    <a href="https://github.com/this-rafael/paketa-credito-challange/tree/experiments/redlock"><code>experiments/redlock</code></a>
+    · <code>docker compose -f docker-compose.redlock.yml up --build</code>
+    · <code>pm2 start ecosystem.config.cjs</code>
+    · <code>npm run load:redlock</code>
+  </sub>
+</p>
 
 ## 🚀 Comece em 60 segundos
 
@@ -283,9 +304,9 @@ As fronteiras aparecem só onde resolvem um problema concreto.
 
 Regras de menu não importam Express, Mongoose nem MongoDB. Isso permite:
 
-* testar casos de uso sem servidor ou banco;
-* trocar persistência sem mexer nas regras;
-* deixar controllers só no protocolo HTTP.
+- testar casos de uso sem servidor ou banco;
+- trocar persistência sem mexer nas regras;
+- deixar controllers só no protocolo HTTP.
 
 ```text
 HTTP → Controller → Use Case → Repository Port → MongoDB Adapter
@@ -349,12 +370,12 @@ locator nem `new` escondido dentro de controller.
 
 #### Testes por risco, não por endpoint
 
-* unitário: domínio e casos de uso;
-* integração: adapters MongoDB;
-* HTTP: contrato da API;
-* concorrência: geração de IDs;
-* arquitetura: fronteiras entre camadas;
-* documentação: OpenAPI alinhado ao código.
+- unitário: domínio e casos de uso;
+- integração: adapters MongoDB;
+- HTTP: contrato da API;
+- concorrência: geração de IDs;
+- arquitetura: fronteiras entre camadas;
+- documentação: OpenAPI alinhado ao código.
 
 Cada camada pega a falha perto da origem.
 
@@ -596,15 +617,15 @@ A solução foi construída em ciclos **red → green**: primeiro os testes
 falhando, depois a implementação até o verde. O histórico abaixo preserva
 essa sequência no Git.
 
-| # | Capacidade | Red | Green |
-| :-: | :--- | :--- | :--- |
-| 01 | Bootstrap (Express + Vitest) | [`d114801`](https://github.com/this-rafael/paketa-credito-challange/commit/d114801) | [`#1`](https://github.com/this-rafael/paketa-credito-challange/pull/1) |
-| 02 | Criar item de menu | [`e6b0297`](https://github.com/this-rafael/paketa-credito-challange/commit/e6b0297) | [`#2`](https://github.com/this-rafael/paketa-credito-challange/pull/2) |
-| 03 | Obter árvore de menus | [`129e1e1`](https://github.com/this-rafael/paketa-credito-challange/commit/129e1e1) | [`#3`](https://github.com/this-rafael/paketa-credito-challange/pull/3) |
-| 04 | Remover subárvore | [`4f1743b`](https://github.com/this-rafael/paketa-credito-challange/commit/4f1743b) | [`#4`](https://github.com/this-rafael/paketa-credito-challange/pull/4) |
-| 05 | Erros e observabilidade | [`5d0571d`](https://github.com/this-rafael/paketa-credito-challange/commit/5d0571d) | [`#5`](https://github.com/this-rafael/paketa-credito-challange/pull/5) |
-| 06 | Ops e concorrência | [`53ed9e3`](https://github.com/this-rafael/paketa-credito-challange/commit/53ed9e3) | [`#6`](https://github.com/this-rafael/paketa-credito-challange/pull/6) |
-| 07 | OpenAPI e quality gates | [`97323c1`](https://github.com/this-rafael/paketa-credito-challange/commit/97323c1) | [`#7`](https://github.com/this-rafael/paketa-credito-challange/pull/7) |
+|  #  | Capacidade                   | Red                                                                                 | Green                                                                  |
+| :-: | :--------------------------- | :---------------------------------------------------------------------------------- | :--------------------------------------------------------------------- |
+| 01  | Bootstrap (Express + Vitest) | [`d114801`](https://github.com/this-rafael/paketa-credito-challange/commit/d114801) | [`#1`](https://github.com/this-rafael/paketa-credito-challange/pull/1) |
+| 02  | Criar item de menu           | [`e6b0297`](https://github.com/this-rafael/paketa-credito-challange/commit/e6b0297) | [`#2`](https://github.com/this-rafael/paketa-credito-challange/pull/2) |
+| 03  | Obter árvore de menus        | [`129e1e1`](https://github.com/this-rafael/paketa-credito-challange/commit/129e1e1) | [`#3`](https://github.com/this-rafael/paketa-credito-challange/pull/3) |
+| 04  | Remover subárvore            | [`4f1743b`](https://github.com/this-rafael/paketa-credito-challange/commit/4f1743b) | [`#4`](https://github.com/this-rafael/paketa-credito-challange/pull/4) |
+| 05  | Erros e observabilidade      | [`5d0571d`](https://github.com/this-rafael/paketa-credito-challange/commit/5d0571d) | [`#5`](https://github.com/this-rafael/paketa-credito-challange/pull/5) |
+| 06  | Ops e concorrência           | [`53ed9e3`](https://github.com/this-rafael/paketa-credito-challange/commit/53ed9e3) | [`#6`](https://github.com/this-rafael/paketa-credito-challange/pull/6) |
+| 07  | OpenAPI e quality gates      | [`97323c1`](https://github.com/this-rafael/paketa-credito-challange/commit/97323c1) | [`#7`](https://github.com/this-rafael/paketa-credito-challange/pull/7) |
 
 As branches `feature/*/red` e `feature/*/green` permanecem no repositório para
 inspecionar cada ciclo.
